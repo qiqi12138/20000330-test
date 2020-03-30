@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>设置</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            background: rgba(248, 248, 248, 1);
+        }
+
+        .public_info_list .public_info_item .login_mode {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.45rem;
+        }
+
+        .join_bot {
+            height: 3.45rem;
+            width: 100%;
+            left: 0;
+            position: fixed;
+            bottom: 0;
+            background: #fff;
+            padding: 0.6rem 0.75rem;
+        }
+
+        .join_btn {
+            height: 2.25rem;
+            background: rgba(217, 39, 39, 1);
+            border-radius: 0.2rem;
+            font-size: 0.8rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            line-height: 2.25rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="public_info_list">
+            <div class="public_info_item public_line" tapmode  @click="fnOpenPublicWin('描述建议...','mine/feedback_view')">
+                <span class="public_info_item_title overflow_hidden_one">意见建议描述描述展示一行...</span>
+                <img class="public_info_item_img" src="../../image/index/go_page.png" alt="">
+            </div>
+
+
+        </div>
+        <div class="join_bot">
+            <div class="join_btn" tapmode @click="fnOpenPublicWin('意见反馈','mine/feedback_add')">
+                立即反馈
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+        fnCache();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                custId: USER.Get("custId", true) || "",
+                phone: USER.Get("phone", true) || "",
+                wecharOpenId: USER.Get("wecharOpenId", true) || "",
+                cache: "",
+            },
+            methods: {
+                fnSetTel: function(tel) {
+                    var reg = /^(\d{3})\d{4}(\d{4})$/;
+                    return tel.replace(reg, "$1****$2");
+                }
+            },
+        })
+    }
+
+    // 退出登录
+    function fnLogout() {
+        var param = {
+            alertConfirmFn: "logount()",
+            alertType: "1"
+        }
+        fnOpenAlert(param);
+    }
+
+    function logount() {
+        USER.Clear();
+        vm.custId = USER.Get("custId", true) || "";
+        api.sendEvent({
+            name: 'loginStatus',
+            extra: {
+                login: false,
+            }
+        });
+        var param = {
+            name: 'login',
+            url: '../login/login.html',
+        }
+        fnOpenWin(param);
+        fnDelayCloseWin(500);
+    }
+
+    function fnClearCache() {
+        if (vm.cache != "0B") {
+            api.confirm({
+                title: '提示',
+                msg: '是否清除缓存？',
+                buttons: ['确定', '取消']
+            }, function(ret, err) {
+                var index = ret.buttonIndex;
+                if (index == "1") {
+                    api.clearCache(function() {
+                        fnToast("清除成功");
+                        vm.cache = "0B";
+                    });
+                }
+            });
+        } else {
+            fnToast("暂无缓存");
+        }
+    }
+    //获取缓存的大小
+    function fnCache() {
+        api.getCacheSize(function(ret) {
+            var size = ret.size;
+            if (size > 0) {
+                vm.cache = fnBytesToSize(size);
+            } else {
+                vm.cache = "0B";
+            }
+        });
+    }
+    //计算缓存大小
+    function fnBytesToSize(bytes) {
+        if (bytes === 0) return '0B';
+        var k = 1024;
+        sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+        i = Math.floor(Math.log(bytes) / Math.log(k));
+        return Math.floor((bytes / Math.pow(k, i))) + ' ' + sizes[i];
+    }
+
+    function fnSetPhone(phone) {
+        vm.phone = phone;
+    }
+
+    function fnBindWx() {
+        if (vm.wecharOpenId != '') {
+            fnMobileBind(vm.wecharOpenId);
+        } else {
+            fnLoginType('1', function(_param, ret1, err1) {
+                console.log(JSON.stringify(_param));
+                console.log(JSON.stringify(ret1))
+                console.log(JSON.stringify(err1));
+                var _nickName, _photo;
+                _nickName = ret1.nickname;
+                _photo = ret1.headimgurl;
+                fnMobileBind(_param.openId);
+            })
+        }
+    }
+
+    function fnMobileBind(_wecharOpenId) {
+        $S.ShowProgress();
+        var postData = {
+            "wecharOpenId": _wecharOpenId
+        }
+        $S.POST("crewIdentify/bindWeiXin", postData, function(ret, err) {
+            if (ret && "200" == ret.status) {
+                if (vm.wecharOpenId == '') {
+                    fnToast("绑定成功");
+                    vm.wecharOpenId = _wecharOpenId;
+                } else {
+                    fnToast("解绑成功");
+                    vm.wecharOpenId = "";
+                }
+                api.execScript({
+                    name: 'main',
+                    frameName: 'tab_mine',
+                    script: 'fnInitPage();'
+                });
+            }
+            $S.CloseProgress();
+        })
+    }
+</script>
+
+</html>

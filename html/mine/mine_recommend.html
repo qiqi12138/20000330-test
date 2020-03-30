@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>协议</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/base.css" />
+    <style>
+        html,
+        body {
+            background: rgba(248, 248, 248, 1);
+            padding: 0.375rem;
+        }
+
+        .agreement_detail {
+            padding: 1rem;
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(102, 102, 102, 1);
+            line-height: 1.2rem;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 0.2rem;
+            border: 0.5px solid rgba(237, 237, 240, 1);
+            margin-bottom: 3.5rem;
+        }
+
+        .join_bot {
+            height: 3.45rem;
+            width: 100%;
+            left: 0;
+            position: fixed;
+            bottom: 0;
+            background: #fff;
+            padding: 0.6rem 0.75rem;
+        }
+
+        .join_btn {
+            height: 2.25rem;
+            background: rgba(217, 39, 39, 1);
+            border-radius: 0.2rem;
+            font-size: 0.8rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            line-height: 2.25rem;
+            text-align: center;
+        }
+
+        .agreement_detail h2 {
+            font-size: 1.1rem;
+            width: 100%;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: rgba(51, 51, 51, 1);
+            line-height: 1.5rem;
+            text-align: center;
+            margin-bottom: 0.6rem;
+        }
+
+        .mine_info {
+            height: 2.75rem;
+            background: #fff;
+            border-radius: 0.2rem 0.2rem 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 0.75rem;
+            overflow: hidden;
+            margin-bottom: 0.75rem;
+        }
+
+        .mine_info .mine_head_portrait {
+            width: 1.1rem;
+            height: 1.1rem;
+            object-fit: cover;
+            background: rgba(217, 39, 39, 1);
+            border-radius: 0.2rem;
+        }
+
+        .mine_info .mine_nickname {
+            flex: 1;
+            padding: 0 0.5rem;
+            font-size: 0.8rem;
+            color: #333333;
+        }
+
+        .mine_info .mine_info_right {
+            width: 0.75rem;
+            height: 0.75rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="mine_info"  tapmode @click="fnOpenPublicWin('我的团队','mine/mine_team',{isLine:0})">
+            <img class="mine_head_portrait" src="../../image/mine/team_icon.png" alt="">
+            <span class="mine_nickname overflow_hidden_one">我的团队</span>
+            <img class="mine_info_right" src="../../image/mine/black_arrow.png" alt="">
+        </div>
+        <div class="agreement_detail">
+            <h2>推荐有奖</h2> （后台编辑）语雀是一款优雅高效的在线文档编辑与协同工具，让每个企业轻松拥有文档中心阿里巴巴集团内部使用多年，众多中小企业首选。语雀是一款优雅高效的在线文档编辑与协同工具，让每个企业轻松拥有文档中心阿里巴巴集团内部使用多年，众多中小企业首选。语雀是一款优雅高效的在线文档编辑与协同工具，让每个企业轻松拥有文档中心阿里巴巴集团内部使用多年，众多中小企业首选。 不断推进学校体育的教学、训练、竞赛等方面的改革发展工作。开展学生体质健康督查。召开“一校一品”教育改革现场会。积极推进和加强中小学、高校的评价体系与学生体质健康挂钩建设。推进高师体育教育专业改革。加强教师的培训工作。加强学校风险防控体系建设。
+        </div>
+        <div class="join_bot">
+            <div class="join_btn" tapmode @click="openShareFrame()">
+                分享
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    }
+</script>
+
+</html>

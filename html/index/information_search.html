@@ -1,0 +1,273 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>搜索(header)</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/base.css" />
+    <style>
+        .index_header {
+            position: relative;
+        }
+
+        .public_header .public_header_search {
+            padding: 0 0.75rem;
+            justify-content: flex-start;
+        }
+
+        .public_header .public_header_right .public_header_right_search_text {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: rgba(51, 51, 51, 1);
+            line-height: 1rem;
+            margin-left: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        .search_history {
+            padding-bottom: 0.1rem;
+        }
+
+        .search_history .search_history_title {
+            padding: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            font-weight: 400;
+          color:rgba(48,48,51,1);
+            line-height: 1rem;
+        }
+
+        .search_history .search_history_title img {
+            width: 1.1rem;
+            height: 1.1rem;
+        }
+
+        .search_history_list {
+            padding-left: 0.75rem;
+            padding-right: 0.25rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .search_history_list .search_history_item {
+            background: rgba(244, 244, 244, 1);
+            border-radius: 0.2rem;
+            font-size: 0.65rem;
+            font-weight: 400;
+            color:rgba(48,48,51,1);
+            line-height: 0.9rem;
+            padding: 0.3rem 0.75rem;
+            letter-spacing:1px;
+            margin-right: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .search_hot {
+            padding-bottom: 0.1rem;
+        }
+
+        .search_hot .search_hot_title {
+            padding: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: rgba(48, 48, 51, 1);
+            line-height: 1.rem;
+            letter-spacing: 1px;
+        }
+
+        .search_hot_list {
+            padding-left: 0.75rem;
+            padding-right: 0.25rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .search_hot_list .search_hot_item {
+            background: rgba(244, 244, 244, 1);
+            border-radius: 0.2rem;
+            font-size: 0.65rem;
+              font-weight: 400;
+            color: rgba(48, 48, 51, 1);
+            line-height: 0.9rem;
+            letter-spacing: 1px;
+            padding: 0.3rem 0.75rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <header class="index_header">
+            <div class="public_header">
+                <div class="public_header_search">
+                    <img src="../../image/index/index_search.png" alt="">
+                    <form id="search_from" target="nm_iframe">
+                        <input spellcheck="false" type="search" id="goToSearch" name="" v-model="searchVal" placeholder="内容" maxlength="15">
+                    </form>
+                    <iframe name="nm_iframe" style="display:none;"></iframe>
+                    <!-- <img v-if="searchVal!=''" style="width:0.8rem;height:0.8rem;" src="../../image/consult/clear_val.png" alt="" tapmode @click="fnClearVal()"> -->
+                </div>
+                <div class="public_header_right" tapmode @click="fnBack()">
+                    <span class="public_header_right_search_text">取消</span>
+                </div>
+            </div>
+        </header>
+        <div class="search_hot">
+            <p class="search_hot_title">
+                <span>热门搜索</span>
+            </p>
+            <div class="search_hot_list">
+                <div class="search_hot_item" tapmode @click="fnStartSearch('高中地理')">高中地理</div>
+                <div class="search_hot_item" tapmode @click="fnStartSearch('英语')">英语</div>
+            </div>
+        </div>
+        <div class="search_history" v-if="!isOpenFrm&&searchHisList.length>0">
+            <p class="search_history_title">
+                <span>历史搜索</span>
+                <img tapmode @click="fnClearSearchHis()" src="../../image/index/index_search_del.png" alt="">
+            </p>
+            <div class="search_history_list">
+                <div class="search_history_item" tapmode @click="fnStartSearch(item)" v-for="item in searchHisList">{{item}}</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var _footerH;
+    var searchHis;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        searchHis = api.getPrefs({
+            sync: true,
+            key: 'search_news'
+        }) || "";
+        searchHis = searchHis != "" ? searchHis.split(",") : [];
+        _footerH = localStorage.safeBottom;
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                searchVal: "",
+                searchHisList: searchHis.reverse(),
+                isOpenFrm: false
+            },
+            mounted: function() {
+                this.$nextTick(function() {
+                    if (document.getElementById('search_from')) {
+                        document.getElementById('search_from').onsubmit = function() {
+                            fnKeyboard();
+                            var searchVal = vm.searchVal;
+                            fnStartSearch(searchVal)
+                        };
+                    }
+                })
+            }
+        })
+    }
+
+    function fnStartSearch(searchVal) {
+        fnKeyboard();
+        setTimeout(function() {
+
+            vm.isOpenFrm = true;
+            vm.$nextTick(function() {
+                fnOpenSearchFrm(searchVal);
+            })
+
+            fnSaveHistory(searchVal)
+        }, 500);
+    }
+
+    function fnOpenSearchFrm(searchVal) {
+
+        var param = {
+            name: 'index/search_all',
+            url: '../index/search_all.html',
+
+
+            pageParam: {
+                searchVal: searchVal,
+                isSerach: "1"
+            }
+        }
+        fnOpenWin(param)
+    }
+    //保存搜索历史
+    function fnSaveHistory(val) {
+        if (vm.searchVal != val) {
+            vm.searchVal = val;
+        }
+        // if (val.length == 0) {
+        //     fnToast('请输入搜索内容');
+        //     return;
+        // }
+        if (val.length > 0) {
+            var searchHisData = api.getPrefs({
+                sync: true,
+                key: 'search_news'
+            }) || "";
+            searchHisData = searchHisData != "" ? searchHisData.split(",") : [];
+            if (searchHisData.indexOf(val) > -1) {
+                searchHisData.remove(val);
+            }
+            searchHisData.push(val);
+            if (searchHisData.length > 10) {
+                searchHisData = searchHisData.slice(searchHisData.length - 10, searchHisData.length);
+            }
+            searchHisData = searchHisData.join(",");
+            api.setPrefs({
+                key: 'search_news',
+                value: searchHisData
+            });
+        }
+    }
+
+    function fnClearSearchHis() {
+        api.setPrefs({
+            key: 'search_news',
+            value: ""
+        });
+        vm.searchHisList = []
+    }
+
+    function fnBack() {
+        fnDelayCloseWin();
+    }
+</script>
+
+</html>

@@ -1,0 +1,375 @@
+.stroe_head_right_img {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-left: 0.5rem;
+}
+
+.store_head {
+    padding: 0.75rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.store_head_mid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 0.5rem;
+}
+
+.store_head_mid_title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.store_logo img {
+    width: 3rem;
+    height: 3rem;
+    background: rgba(235, 29, 49, 1);
+    border-radius: 0.2rem;
+}
+
+.store_head_mid_info {
+    font-size: 0.65rem;
+    color: rgba(153, 153, 153, 1);
+    line-height: 0.9rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    margin-top: 0.4rem;
+}
+
+.store_head_mid_title h2 {
+    font-size: 0.9rem;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: bold;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1.2rem;
+}
+
+.store_head_mid_title img {
+    width: 2.6rem;
+    height: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+.store_head_mid_info span {
+    font-size: 0.6rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(151, 158, 166, 1);
+    line-height: 0.85rem;
+}
+
+.store_head_mid_info img {
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-left: 0;
+}
+
+.follow {
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(217, 39, 39, 1);
+    line-height: 1rem;
+    border-radius: 0.65rem;
+    border: 1px solid rgba(217, 39, 39, 1);
+    padding: 0.15rem 0.75rem;
+    margin-left: auto;
+}
+
+.store_imgs {
+    margin: 0 0 0 0.75rem;
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+}
+
+.store_imgs img {
+    margin-right: 0.5rem;
+    width: 7.3rem;
+    min-width: 7.3rem;
+    height: 5.45rem;
+    object-fit: cover;
+}
+
+.store_attr {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0.75rem 0.75rem 0 0.75rem;
+}
+
+.store_attr_item {
+    width: 100%;
+    padding: 0.6rem 0 0.5rem 0;
+    border-top: 1px solid #EDEDF0;
+    display: flex;
+    align-items: flex-start;
+}
+
+.store_attr_item span {
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1.1rem;
+    margin-left: 0.4rem;
+}
+
+.store_attr_item img {
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-top: 0.2rem;
+}
+
+
+/*优惠卷*/
+
+.store_coupon {
+    padding: 0.75rem;
+}
+
+.store_coupon h2 {
+    font-size: 0.8rem;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 600;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1.1rem;
+}
+
+.store_coupon_list {
+    margin-top: 0.75rem;
+}
+
+.store_coupon_list_item {
+    display: flex;
+    justify-content:  space-between;
+    align-items: center;
+    padding: 0.4rem 0.75rem;
+    background: rgba(253, 244, 244, 1);
+    border: 0.5px solid rgba(254, 114, 3, 1);
+    height: 4.3rem;
+    border-radius: 2px;
+    position: relative;
+    margin-bottom: 0.6rem;
+}
+
+.store_coupon_list_item:before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    top: 40%;
+    left: -0.55rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 100%;
+    background: #fff;
+    border-right: 1px solid rgba(254, 114, 3, 1);
+}
+
+.store_coupon_list_item:after {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    top: 40%;
+    right: -0.55rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 100%;
+    background: #fff;
+    border-left: 1px solid rgba(254, 114, 3, 1);
+}
+
+.store_coupon_list_item_info {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.store_coupon_price {
+    display: flex;
+    align-items: center;
+}
+
+.store_coupon_price h2 {
+    font-size: 1.2rem;
+    font-family: Oswald-Medium, Oswald;
+    font-weight: 500;
+    color: rgba(254, 114, 3, 1);
+    line-height: 1.1rem;
+}
+
+.store_coupon_price h2 i {
+    font-size: 0.75rem;
+    font-style: normal;
+}
+
+.store_coupon_list_item_info span {
+    font-size: 0.55rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(151, 158, 166, 1);
+    line-height: 0.8rem;
+}
+
+.store_coupon_receive {
+    width: 3.2rem;
+    height: 1.3rem;
+    text-align: center;
+    white-space: nowrap;
+    background: rgba(254, 114, 3, 1);
+    border-radius: 0.65rem;
+    font-size: 0.6rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    line-height: 1.3rem;
+
+}
+
+.store_coupon_received {
+    text-align: center;
+    width: 3.2rem;
+    height: 1.3rem;
+    white-space: nowrap;
+    background: rgba(254, 114, 3, 1);
+    border-radius: 0.65rem;
+    font-size: 0.6rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    line-height: 1.3rem;
+    opacity: 0.19;
+}
+
+.store_coupon_bot {
+    margin-top: 0.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(151, 158, 166, 1);
+    line-height: 1rem;
+}
+
+.store_coupon_bot img {
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+.base_info {
+    padding: 0.75rem;
+}
+
+.base_info h2 {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1.1rem;
+}
+
+.base_info p {
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1.1rem;
+    margin-top: 0.55rem;
+}
+
+.base_info img {
+    margin-top: 0.75rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.2rem;
+    background: rgba(216, 216, 216, 1);
+}
+
+.aui-bar-tab-item span {
+    vertical-align: middle;
+    text-align: center;
+    background: rgba(217, 39, 39, 1);
+    border-radius: 1rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 1); 
+    width: 96%;
+    padding: 0.4rem;
+    margin-right: 1.5rem;
+}
+
+.item_buy_left span {
+    padding: 0.4rem 0.5rem 0.4rem 1rem;
+    background: linear-gradient(270deg, rgba(254, 114, 3, 1) 0%, rgba(255, 199, 0, 1) 100%);
+    border-radius: 20px 0px 0px 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 1);
+    width: 100%;
+}
+
+.item_buy_right {
+    width: 50%;
+    margin-right: 1rem;
+}
+
+.item_buy_right span {
+    width: 100%;
+    padding: 0.4rem 1rem 0.4rem 0.5rem;
+    background: rgba(217, 39, 39, 1);
+    border-radius: 0px 20px 20px 0px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 1);
+    margin-right: 0.75rem;
+}
+
+.aui-bar-tab-item img {
+    position: relative;
+    z-index: 20;
+    top: 0.2rem;
+    width: 1.05rem;
+    height: 1.05rem;
+    display: inline;
+    z-index: 49;
+}
+
+.aui-bar-tab .aui-active {
+    font-weight: 600;
+    color: rgba(44, 53, 64, 1);
+}
+
+.store_honor {
+    padding: 0.75rem 0 0.75rem 0.75rem;
+}
+
+.store_honor h2 {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1.1rem;
+}
+
+.store_honor_imgs {
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    margin-top: 0.75rem;
+}
+
+.store_honor_imgs img {
+    margin-right: 0.5rem;
+    width: 7.3rem;
+    height: 5.45rem;
+    object-fit: cover;
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>意见反馈</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: rgba(247, 246, 246, 1);
+        }
+
+        .feedback_info {
+            padding: 0.75rem 0;
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+            line-height: 1rem;
+        }
+
+        .feedback_info span {
+            padding-left: 0.75rem;
+            padding-bottom: 0.2rem;
+
+        }
+
+        .feedback_content {
+            padding: 0.85rem 0.75rem;
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.75rem;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 0.2rem;
+        }
+
+        .feedback_content textarea {
+            height: 5.85rem;
+            line-height: 1.05rem;
+            overflow: scroll;
+        }
+
+        .feedback_content span {
+            display: block;
+            text-align: right;
+            font-size: 0.75rem;
+            color: rgba(196, 200, 214, 1);
+            line-height: 1.05rem;
+            padding-top: 0.5rem;
+        }
+
+        .feedback_btn {
+            height: 2.2rem;
+            background: rgba(217, 39, 39, 1);
+            border-radius: 0.2rem;
+            font-size: 0.8rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            line-height: 2.2rem;
+            text-align: center;
+            margin: 1.6rem 0.75rem 0 0.75rem;
+        }
+
+        .feedback_imgs {
+            display: flex;
+            flex-wrap: wrap;
+
+            padding: 0 0.6rem;
+            background: #fff;
+        }
+
+        .feedback_imgs_item {
+
+            position: relative;
+            width: 5.5rem;
+            height: 5.5rem;
+            margin-top: 0.8rem;
+             margin-right: 0.5rem;
+        }
+
+        .feedback_imgs_item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.2rem;
+        }
+
+        .feedback_imgs_item_close {
+            position: absolute;
+            width: 0.8rem;
+            height: 0.8rem;
+            object-fit: cover;
+            top: 0.3rem;
+            right: 0.3rem;
+        }
+
+        .img_num {
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+            line-height: 1rem;
+            text-align: right;
+            padding: 0.4rem 0.75rem 0.4rem 0;
+            background: #fff;
+        }
+
+        .feedback_no {
+            padding-left: 0.75rem;
+            display: flex;
+            align-items: center;
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(119, 119, 119, 1);
+            line-height: 1.1rem;
+        }
+
+        .report_no {
+            width: 0.7rem;
+            height: 0.7rem;
+        }
+
+        .aui-radio:checked,
+        .aui-radio.aui-checked,
+        .aui-checkbox:checked,
+        .aui-checkbox.aui-checked {
+            background-color: rgba(217, 39, 39, 1);
+            border: solid 1px rgba(217, 39, 39, 1);
+            text-align: center;
+            background-clip: padding-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="feedback_info">
+            <span>图片证据</span>
+
+            <div class="feedback_imgs">
+                <div class="feedback_imgs_item">
+                    <img src="../../image/index/lecturer.png" alt="">
+                    <div class="feedback_imgs_item_close">
+                        <img src="../../image/message/report_close_icon.png" alt="">
+                    </div>
+                </div>
+
+                <div class="feedback_imgs_item" tapmode @click="fnOpenPhoto('personalInfo', '1')">
+                    <img src="../../image/message/report_add.png" alt="">
+                </div>
+
+            </div>
+            <div class="img_num">1/9</div>
+            <span style="padding-top:0.75rem;">投诉内容</span>
+
+            <div class="feedback_content">
+                <textarea maxlength="500" placeholder="请输入举报内容描述" v-model="context"></textarea>
+                <span style="color:rgba(204,204,204,1);">{{context.length}}/500</span>
+            </div>
+            <div class="feedback_no">
+                <input type="checkbox" class="aui-radio report_no" name="" value=""><span style="padding-left:0.25rem;padding-bottom:0;">屏蔽该用户发布的动态</span>
+            </div>
+
+
+            <div class="feedback_btn" tapmode @click="fnSubmitFeedback()">提交</div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-pic.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                context: "",
+                email: ""
+            }
+        })
+    }
+
+    function fnSubmitFeedback() {
+        if (vm.context.replace(/(\n+)|(\s+)/g, "") == "") {
+            vm.context = "";
+            fnToast("请输入您的宝贵建议～");
+            return;
+        }
+        if (fnVerify("feedback_email")) {
+            $S.ShowProgress();
+            var postData = {
+                "entityName": "complaintSuggestions",
+                "context": vm.context,
+                "contactEmail": vm.email,
+            };
+            $S.POST("common/insert", postData, function(ret, err) {
+                if (ret && ret.status == '200') {
+                    fnToast("提交成功");
+                    fnDelayCloseWin(300);
+                }
+                $S.CloseProgress();
+            })
+        }
+    }
+</script>
+
+</html>

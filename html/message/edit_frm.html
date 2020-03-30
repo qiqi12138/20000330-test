@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>分享Frame</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+            flex-flow: column;
+            height: 100%;
+            background-color: transparent;
+        }
+
+        section {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            overflow: auto;
+        }
+
+        footer {
+            width: 100%;
+            background-color: #fff;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+
+        }
+
+        .col {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            text-align: center;
+            height: 100px;
+        }
+
+        .col img {
+            width: 50px;
+            margin-top: 20px;
+        }
+
+        .col p {
+            margin-top: 3px;
+            color: #7d7d7d;
+            font-size: 14px;
+        }
+
+        .report_list {
+          width: 100%;
+
+        }
+
+        .report_item {
+            height: 2.6rem;
+            width: 100%;
+            text-align: center;
+            font-size: 0.8rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(51, 51, 51, 1);
+            line-height: 2.6rem;
+        }
+        .report_item_one {
+            height: 3.5rem;
+            width: 100%;
+            text-align: center;
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color:rgba(153,153,153,1);
+            line-height: 1rem;
+            padding: 0.75rem;
+        }
+    </style>
+</head>
+
+<body>
+    <section tapmode onclick="api.closeFrame();"></section>
+    <footer id="footer">
+        <div class="report_list" >
+
+            <div class="report_item_one public_line" >
+                任秀兰：这个老师讲的特别好，帮助我解决了困扰我已久的问题，好开心~
+            </div>
+            <div class="report_item public_line" style="color:rgba(217,39,39,1);" tapmode onclick="fnOpenPublicWin('举报','message/chat_report')">
+                删除
+            </div>
+            <div class="report_item public_line" tapmode onclick="fnOpenPublicWin('举报','message/chat_report')">
+                回复
+            </div>
+            <div class="report_item " style="background:rgba(250,250,250,1);" tapmode onclick="api.closeFrame();">
+                取消
+            </div>
+        </div>
+    </footer>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+var USER;
+var $S;
+    apiready = function() {
+      USER = USER();
+      $S = SERVICE();
+   document.getElementById('footer').style.paddingBottom = localStorage.safeBottom + 'px';
+
+
+    };
+</script>
+
+</html>

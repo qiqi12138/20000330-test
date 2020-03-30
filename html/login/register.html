@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>注册</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/login.css" />
+    <style>
+        .login_top .login_title {
+            padding-top: 0.95rem;
+            padding-bottom: 2rem;
+        }
+
+        .login_btn {
+            margin-top: 3rem;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="login_bg">
+            <div class="login_top">
+                <header>
+                    <div class="public_header">
+                        <div class="public_header_left" tapmode onclick="fnBack()">
+                            <img src="../../image/login/close.png" alt="">
+                        </div>
+                        <div class="public_header_text"></div>
+                        <div class="public_header_right">
+                        </div>
+                    </div>
+                </header>
+                <div class="login_title">注册</div>
+            </div>
+            <div>
+                <header></header>
+                <div style="height:6.8rem;"></div>
+            </div>
+            <div class="login_info" id="register">
+                <div class="login_info_item" id="tel_login">
+                    <div class="login_info_item_input login_info_item_title public_line">
+                        <img src="../../image/login/phone_iconx.png" class="img1" alt="">
+                        <input spellcheck="false" type="tel" v-model="telephone" maxlength="11" data-type="_telphone" data-verify="true" data-null="true" data-regular="true" name="手机号" placeholder="请输入您的手机号" oninput="value=value.replace(/[^\d0-9]/g,'')">
+                    </div>
+                </div>
+                <div class="login_info_item" v-if="loginType=='1'">
+                    <div class="login_info_item_input login_info_item_title public_line">
+                        <img src="../../image/login/verify_iconx.png" class="img2" alt="">
+                        <input spellcheck="false" type="tel" oninput="value=value.replace(/[^\d0-9]/g,'')" v-model="verify_code" maxlength="6" data-type="_code" data-verify="true" data-null="true" data-regular="true" name="验证码" placeholder="请输入验证码">
+                        <span class="login_input_btn" tapmode @click="isSendCode?fnGetCode():''">{{sendBtnText}}</span>
+                    </div>
+                </div>
+                <div class="login_info_item">
+                    <div class="login_info_item_input login_info_item_title public_line">
+                        <img src="../../image/login/password_iconx.png" class="img1" alt="">
+                        <input spellcheck="false" :type="isShowPassword?'text':'password'" v-model="password" minlength="6" maxlength="16" data-type="_password" data-verify="true" data-null="true" data-regular="true" name="密码" placeholder="密码位数在6-16之间">
+                        <img tapmode @click="fnIsShowPassword()" :src="isShowPassword?'../../image/login/pass_show.png':'../../image/login/pass_hidden.png'" alt="">
+                    </div>
+                </div>
+            </div>
+            <div :class="isAvailable?'login_btn':'login_btn not_click'" tapmode @click="isAvailable?fnRegister():''">注册并登录</div>
+            <div class="login_tips" :style="'margin-top:'+loginSpace+'px'">
+                <p>登录注册即同意<span tapmode @click="fnOpenAgreement('1')">用户协议</span></p>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+        var _loginSpace = api.winHeight - (localStorage.safeBottom || 0) - AD(".login_bg").offsetH();
+        vm.loginSpace = _loginSpace > 0 ? _loginSpace : 40;
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                loginSpace: "",
+                telephone: "",
+                password: "",
+                verify_code: "",
+                isAvailable: false, //登录按钮是否可用
+                sendBtnText: "获取验证码",
+                isSendCode: true,
+                loginType: "1", //1快捷登录 2密码登录
+                isAgreement: false,
+                isShowPassword: false,
+            },
+            methods: {
+                fnGetCode: function() {
+                    fnGetVerifyCode()
+                },
+                fnSetLoginType: function(key) {
+                    this.loginType = key;
+                },
+                fnIsAgreement: function() {
+                    this.isAgreement = !this.isAgreement;
+                },
+                fnIsShowPassword: function() {
+                    this.isShowPassword = !this.isShowPassword;
+                }
+            },
+            watch: { //监听手机号和密码的值，来判断开启和关闭登录按钮的点击状态
+                telephone: function() {
+                    fnLoginBtnStatus(this);
+                },
+                verify_code: function() {
+                    fnLoginBtnStatus(this);
+                },
+                password: function() {
+                    fnLoginBtnStatus(this);
+                }
+            }
+        })
+    }
+
+    //修改登录按钮的启用状态
+    function fnLoginBtnStatus(el) {
+        if (!isEmpty(vm.telephone) && !isEmpty(vm.verify_code) && !isEmpty(vm.password)) {
+            vm.isAvailable = true;
+        } else {
+            vm.isAvailable = false;
+        }
+    }
+
+    function fnGetVerifyCode() {
+        if (fnVerify("tel_login")) {
+            $S.ShowProgress();
+            var postData = {
+                phone: vm.telephone,
+                loginType: "1" //1注册 2修改密码 3忘记密码 4校验原手机号 5微信绑定手机号 6QQ 7微博 8更换新手机号 9快捷登录
+            }
+            $S.POST("verifyCode/sendCode", postData, function(ret, err) {
+                if (ret && "200" == ret.status) {
+                    vm.isSendCode = false;
+                    fnVerifyTime('60', vm);
+                }
+                $S.CloseProgress();
+            })
+        }
+    }
+    //登录
+    function fnRegister() {
+        if (fnVerify("register")) {
+            if (!vm.isAgreement) {
+                fnToast("请阅读并同意用户协议及隐私政策");
+                return;
+            }
+            $S.ShowProgress();
+            var postData = {
+                code: vm.verify_code,
+                phone: vm.telephone,
+                password: $S.MD5S(vm.password),
+            };
+            $S.POST("apiTbAppUser/addUserSignRegister", postData, function(ret, err) {
+                if (ret && ret.status == '200') {
+                    fnToast("注册成功");
+                    fnWhenLoginSucess(ret.data);
+                    api.sendEvent({
+                        name: 'loginStatus',
+                        extra: {
+                            login: true,
+                        }
+                    });
+                    api.closeWin({
+                        name: 'login'
+                    });
+                    var param = {
+                        alertConfirmFn: "fnOpenCrewAuth()",
+                        cancelFn: "fnBack()",
+                        alertType: "2",
+                        cancelText: "跳过",
+                        confirmText: "完善信息",
+                    }
+                    fnOpenAlert(param);
+                }
+                $S.CloseProgress();
+            })
+
+        }
+    }
+
+    function fnOpenCrewAuth() {
+        fnOpenPublicWin('完善信息', 'mine/crew_auth');
+        fnDelayCloseWin(1000);
+    }
+
+    function fnBack() {
+        fnDelayCloseWin();
+    }
+
+    function fnOpenAgreement(type) {
+        var pageTitle = type == '1' ? '用户协议' : '隐私政策';
+        pageData = {
+            type: type
+        }
+        fnOpenPublicWin(pageTitle, "login/agreement", pageData);
+    }
+</script>
+
+</html>

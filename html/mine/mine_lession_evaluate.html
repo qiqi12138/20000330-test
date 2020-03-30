@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>课程评价</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: rgba(247, 246, 246, 1);
+        }
+
+        .feedback_info {
+            padding-top: 0.75rem;
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+            line-height: 1rem;
+        }
+
+        .feedback_info span {
+            padding-left: 0.75rem;
+            padding-bottom: 0.2rem;
+        }
+
+        .feedback_content {
+            padding: 0.85rem 0.75rem;
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.6rem;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 0.2rem;
+        }
+
+        .feedback_content textarea {
+            height: 5.85rem;
+            line-height: 1.05rem;
+            overflow: scroll;
+        }
+
+        .feedback_content span {
+            display: block;
+            text-align: right;
+            font-size: 0.75rem;
+            color: rgba(196, 200, 214, 1);
+            line-height: 1.05rem;
+            padding-top: 0.5rem;
+        }
+
+        .feedback_btn {
+            height: 2.2rem;
+            background: rgba(217, 39, 39, 1);
+            border-radius: 0.2rem;
+            font-size: 0.8rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            line-height: 2.2rem;
+            text-align: center;
+            position: fixed;
+            bottom: 0.75rem;
+            left: 0.75rem;
+            right: 0.75rem;
+        }
+
+        .feedback_no {
+            padding-left: 0.6rem;
+            display: flex;
+            align-items: center;
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(119, 119, 119, 1);
+            line-height: 1.1rem;
+        }
+
+        .report_no {
+            width: 0.7rem;
+            height: 0.7rem;
+        }
+
+        .refund_head {
+            height: 5.25rem;
+            padding: 0.75rem;
+            display: flex;
+            background: #fff;
+        }
+
+        .refund_head img {
+            width: 5rem;
+            height: 3.75rem;
+            object-fit: cover;
+        }
+
+        .refund_head_title {
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1.1rem;
+        }
+
+        .lession_eavluate {
+            background: #fff;
+            padding: 0.75rem;
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1rem;
+            margin-bottom: 5rem;
+        }
+
+        .lession_eavluate_item {
+            display: flex;
+            align-items: center;
+            margin-top: 0.9rem;
+        }
+        .stars {
+            position: relative;
+            display: inline-block;
+            color: #C7CECC;
+            font-size: 0.35rem;
+            line-height: 0.7rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.75rem;
+        }
+
+        .stars span {
+            position: absolute;
+            letter-spacing: 0.75rem;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            color: #D92727;
+            white-space: nowrap;
+            line-height: 0.7rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="refund_head">
+            <img src="../../image/index/Mask.png" alt="">
+            <div class="refund_head_title">
+                这里是课程名称课程名称，这里是课程名称课程名称
+            </div>
+        </div>
+        <div class="space"></div>
+
+        <div class="feedback_content">
+            <textarea maxlength="500" placeholder="说说你的感受，与大家分享一下" v-model="context"></textarea>
+            <span style="color:rgba(204,204,204,1);">{{context.length}}/300</span>
+        </div>
+        <div class="lession_eavluate">
+            <span>服务评分</span>
+            <div class="lession_eavluate_list">
+                <div class="lession_eavluate_item">
+                    <span style="margin-right:1rem;width:2.8rem;">课程内容</span>
+
+                    <div class="icon  iconfont_index icon-xing stars"><span style="width:50%;"></span></div>
+
+                    <span style="margin-left:auto">3.0</span>
+                </div>
+                <div class="lession_eavluate_item">
+                    <span style="margin-right:1rem;width:2.8rem;">授课老师</span>
+
+                    <div class="icon  iconfont_index icon-xing stars"><span style="width:70%;"></span></div>
+
+                    <span style="margin-left:auto">4.0</span>
+                </div>
+                <div class="lession_eavluate_item">
+                    <span style="margin-right:1rem;width:2.8rem;">授课机构</span>
+
+                    <div class="icon  iconfont_index icon-xing stars"><span style="width:70%;"></span></div>
+
+                    <span style="margin-left:auto">4.0</span>
+                </div>
+                <div class="lession_eavluate_item">
+                    <span style="margin-right:1rem;width:2.8rem;">授课店</span>
+
+                    <div class="icon  iconfont_index icon-xing stars"><span style="width:70%;"></span></div>
+
+                    <span style="margin-left:auto">4.0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="feedback_btn" tapmode  >发表</div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-pic.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                context: "",
+                email: ""
+            }
+        })
+    }
+
+    function fnSubmitFeedback() {
+        if (vm.context.replace(/(\n+)|(\s+)/g, "") == "") {
+            vm.context = "";
+            fnToast("请输入您的宝贵建议～");
+            return;
+        }
+        if (fnVerify("feedback_email")) {
+            $S.ShowProgress();
+            var postData = {
+                "entityName": "complaintSuggestions",
+                "context": vm.context,
+                "contactEmail": vm.email,
+            };
+            $S.POST("common/insert", postData, function(ret, err) {
+                if (ret && ret.status == '200') {
+                    fnToast("提交成功");
+                    fnDelayCloseWin(300);
+                }
+                $S.CloseProgress();
+            })
+        }
+    }
+</script>
+
+</html>

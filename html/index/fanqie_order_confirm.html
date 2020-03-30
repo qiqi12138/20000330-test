@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>店铺订单确认</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/order.css" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="order_main">
+            <div class="organ_item" tapmode>
+                <div class="organ_cover">
+                    <img src="../../image/index/Mask.png" alt="">
+                </div>
+                <div class="organ_info aui-flex-box">
+                    <div class="organ_title overflow_hidden_two">
+                        雅思词汇语法单项班雅思词汇语法单项提升课
+                    </div>
+
+                    <div class="score order_score">
+                        <div class="icon  iconfont icon-xing stars" style="font-size: 0.5rem;letter-spacing:0.1rem;"><span style="width:50%;"></span></div>
+                        <span style="font-size:0.6rem;font-weight:400;color:rgba(217,39,39,1);">4.2</span>
+                        <span style="margin-left: auto;">销量 650</span>
+                    </div>
+                    <h2>¥282 <span>¥666</span></h2>
+                </div>
+            </div>
+            <div class="public_info_list">
+                <div class="public_info_item public_line">
+                    <span class="public_info_item_title">课程所属门店</span>
+                    <span class="public_info_item_value overflow_hidden_one">英孚教育（西直门店)</span>
+
+                </div>
+                <div class="public_info_item public_line">
+                    <span class="public_info_item_title">支付方式</span>
+
+                    <img class="public_info_item_img" src="../../image/index/go_page.png" alt="">
+                </div>
+                <div class="public_info_item public_line">
+                    <span class="public_info_item_title">番茄币余额</span>
+                    <span class="public_info_item_value" style="color:rgba(217,39,39,1);">500.00币</span>
+                </div>
+                <div class="public_info_item_price  public_line">
+                    <div class="public_info_item" style="padding:0;" tapmode @click="fnOpenPublicWin('选择优惠券','mine/coupon_select')">
+                        <span class="public_info_item_title">优惠卷</span>
+                        <span class="public_info_item_value" style="color:rgba(217,39,39,1);">-25番茄币</span>
+                        <img class="public_info_item_img" src="../../image/index/go_page.png" alt="">
+                    </div>
+                    <h2>注意：该类型订单不支持退款、转让，提交订单则表示您同意。</h2>
+                </div>
+            </div>
+        </div>
+        <div class="bot">
+
+            <span>实付金额：</span> <span style="font-size:0.9rem;color:#D92727;margin-right: 0.75rem;">¥388.00币</span> <span class="pay_btn" tapmode @click="fnOpenPublicWin(' ','index/recharge',{isLine:false})">充值并支付</span>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+        api.addEventListener({
+            name: 'searchVal'
+        }, function(ret, err) {
+            if (ret) {
+                if (ret.value.winName == api.winName) {
+                    vm.searchVal = ret.value.searchVal;
+                    fnInitPage();
+                }
+            }
+        });
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                searchVal: api.pageParam.searchVal || '',
+                isSerach: api.pageParam.isSerach || '0',
+                listData: [{
+                    id: "1"
+                }, {
+                    id: "2"
+                }],
+            }
+        })
+    }
+
+    function fnInitPage() {
+        $S.ShowProgress();
+        var postData = {};
+        $S.POST("", postData, function(ret, err) {
+            if (ret && ret.status == '200') {
+
+            }
+            $S.CloseProgress();
+        })
+    }
+</script>
+
+</html>

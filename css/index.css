@@ -1,0 +1,929 @@
+[v-cloak] {
+    display: none;
+}
+
+.space {
+    width: 100%;
+    height: 0.5rem;
+    background: rgba(246, 246, 246, 1);
+}
+
+
+/*首页*/
+
+.index_header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background: #fff;
+    z-index: 999;
+}
+
+.public_header {
+    height: 2.2rem;
+    padding: 0 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.public_header .public_header_left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.8rem;
+    font-size: 1rem;
+    color: #2C3540;
+    font-weight: normal;
+}
+
+.public_header .public_header_left img {
+    width: 0.3rem;
+    height: 0.2rem;
+    margin-left: 0.35rem;
+    margin-right: 1rem;
+}
+
+.public_header .public_header_text {
+    flex: 1;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 1.25rem;
+}
+
+.public_header .public_header_search {
+    background:rgba(246,246,246,1);
+    border-radius: 0.85rem;
+    height: 1.5rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    font-size: 0.6rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(170, 170, 170, 1);
+    line-height: 0.85rem;
+    letter-spacing: 0.1px;
+}
+
+.public_header .public_header_search img {
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-left: 0.75rem;
+    margin-right: 0.2rem;
+}
+
+.public_header .public_header_right {
+    min-width: 1.5rem;
+    position: relative;
+}
+
+.public_header .public_header_right img {
+    width: 1rem;
+    height: 1rem;
+    margin: 0.5rem;
+    margin-right: 0;
+}
+
+.public_header .public_header_right .public_header_right_text {
+    font-size: 0.75rem;
+    color: #1995F8;
+    text-align: right;
+    line-height: 2rem;
+    margin: 0;
+}
+
+.index_swiper {
+    padding: 0.5rem 0.75rem;
+    padding-bottom: 0;
+}
+
+.swiper-container {
+    box-shadow: 0 0.2rem 0.4rem 0 rgba(126, 125, 134, 0.34);
+    border-radius: 0.2rem;
+}
+
+.slide {
+    width: 100%;
+    height: 6.75rem;
+}
+
+.slide:before {
+    content: "";
+    padding-top: 50.145%;
+    display: block;
+    background-size: cover;
+    border-radius: 0.2rem;
+}
+
+.slide img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 0.2rem;
+    background: rgba(216, 216, 216, 1);
+}
+
+.swiper-container>.swiper-pagination-bullets {
+    bottom: 0.5rem;
+    line-height: 0.15rem;
+    left: inherit;
+    right: 0.75rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.swiper-pagination-bullet {
+    width: 0.3rem;
+    height: 0.15rem;
+    background: rgba(255, 255, 255, 1);
+    opacity: 0.39;
+    border-radius: 0;
+}
+
+.swiper-pagination-bullet-active {
+    width: 0.6rem;
+    height: 0.15rem;
+    background: rgba(216, 216, 216, 1);
+    opacity: 1;
+    border-radius: 0;
+}
+
+.head_bg {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(248, 248, 248, 1) 100%);
+}
+
+.index_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.index_icon .index_icon_item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.index_icon .index_icon_item img {
+    width: 2.2rem;
+    height: 2.2rem;
+}
+
+.index_icon .index_icon_item span {
+    margin-top: 0.4rem;
+    font-size: 0.6rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 600;
+    color: rgba(151, 158, 166, 1);
+    line-height: 0.85rem;
+}
+
+
+/*优选面试课*/
+
+.index_optimization {}
+
+.view_more {
+    margin: 0 0.75rem 1.2rem 0.75rem;
+    height: 2.15rem;
+    background: #FDF4F4;
+    border-radius: 0.2rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #D92727;
+    line-height: 2.15rem;
+    text-align: center;
+}
+
+.index_optimization_title {
+    padding: 0.75rem 0 0 0.75rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    flex: 1;
+}
+
+.index_optimization_list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-top: 0.75rem;
+}
+
+.index_optimization_list .index_optimization_item {
+    margin-right: 0.5rem;
+}
+
+.index_optimization_list .index_optimization_item .index_optimization_item_title {
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1rem;
+}
+
+.index_optimization_list .index_optimization_item p {
+    margin-top: 0.4rem;
+}
+
+.index_optimization_list .index_optimization_item .index_optimization_item_pic {
+    width: 8rem;
+}
+
+
+/*0元体验课*/
+
+.index_experience {
+    padding: 0.75rem 0 0.75rem 0.75rem;
+    height: auto;
+}
+
+.index_experience_title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.4rem;
+    padding-right: 0.75rem;
+}
+
+.index_experience .index_experience_title p {
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    flex: 1;
+}
+
+.index_experience .index_experience_title span {
+    font-size: 0.65rem;
+    color: rgba(153, 153, 153, 1);
+    margin-right: 0.05rem
+}
+
+.index_experience .index_experience_title img {
+    width: 0.6rem;
+    height: 0.6rem;
+}
+
+.index_experience_list {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+}
+
+.index_experience_item {
+    width: 8.3rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.index_experience_item .experience {
+    width: 6.65rem;
+}
+
+.index_experience_item .index_experience_item_title {
+    padding-top: 0.5rem;
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1rem;
+}
+
+.index_experience_item img {
+    width: 6.65rem;
+    height: 4.95rem;
+    object-fit: cover;
+    background: rgba(216, 216, 216, 1);
+    border-radius: 0.2rem;
+}
+
+.aui-flex-box h2 {
+    font-size: 0.8rem;
+    font-family: Oswald-Medium, Oswald;
+    font-weight: 500;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1.2rem;
+    margin-top: 0.3rem;
+}
+
+.aui-flex-box h2 i {
+    color: rgba(151, 158, 166, 1);
+    text-decoration: line-through;
+    font-weight: 400;
+    font-style: normal;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-size: 0.6rem;
+    line-height: 0.85rem;
+}
+
+.aui-flex-box h2 span {
+    color: rgba(151, 158, 166, 1);
+    text-decoration: line-through;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 0.6rem;
+    line-height: 0.85rem;
+}
+
+.score {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.5rem;
+    width: 100%;
+}
+.score-right {
+  font-size:0.6rem;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+color:rgba(95,112,133,1);
+line-height:0.85rem;
+margin-left: auto;
+}
+.score-font {
+    padding-top: 0.1rem;
+    font-size: 0.5rem;
+    font-weight: 400;
+    color: rgba(95, 112, 133, 1);
+    line-height: 0.7rem;
+    margin-left: 0.2rem;
+}
+
+.stars span:before, .stars:before {
+    content: "\e616 \e616 \e616 \e616 \e616";
+}
+
+.stars {
+    position: relative;
+    display: inline-block;
+    color: #C7CECC;
+    font-size: 0.35rem;
+    line-height: 0.7rem;
+}
+
+.stars span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    color: #D92727;
+    white-space: nowrap;
+    line-height: 0.7rem;
+}
+
+
+/*在线课推荐*/
+
+.index_online {
+    padding: 0 0.75rem ;
+}
+
+.index_online .index_online_title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    flex: 1;
+    margin-top: 0.75rem;
+}
+
+.index_online_list {}
+
+.index_online_list .index_online_item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+padding-top: 0.75rem;
+    overflow: hidden;
+}
+
+.index_online_list .index_online_item .index_online_item_info {
+    margin-left: 0.75rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    overflow: hidden;
+    border-bottom: 1px solid #EDEDF0;
+}
+
+.index_online_list .index_online_item .index_online_item_info .index_online_item_info_title {
+    font-size: 0.7rem;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1rem;
+}
+
+.index_online_list .index_online_item .index_online_item_info .index_online_attr {
+    font-size: 0.8rem;
+    color: rgba(153, 153, 153, 1);
+    line-height: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: auto;
+}
+
+.index_online_list .index_online_item .index_online_item_cover {
+    width: 5rem;
+    min-width: 5rem;
+    height: 3.75rem;
+}
+
+.lecturer {
+    margin-top: 0.3rem;
+    background: rgba(255, 244, 235, 1);
+    border-radius: 0.1rem;
+    padding: 0.05rem 0.4rem;
+    font-size: 0.5rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(254, 114, 3, 1);
+    line-height: 0.7rem;
+}
+
+.index_online_list .index_online_item .index_online_item_cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: rgba(216, 216, 216, 1);
+    border-radius: 0.2rem;
+}
+
+.index_experience_item .optimization_img {
+    width: 8.3rem;
+    height: 6.2rem;
+}
+
+.index_experience_item .optimization_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/*机构列表*/
+
+.organ_list {
+    padding: 0 0.75rem;
+    background: #fff;
+}
+
+.organ_list .organ_list_title {
+    padding-top: 0.75rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+}
+
+.organ_item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 1rem;
+    overflow: hidden;
+}
+
+.organ_list .organ_item .organ_info {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content:flex-start;
+    flex-direction: column;
+    overflow: hidden;
+    margin-left: 0.6rem;
+    border-bottom: 1px solid #EDEDF0;
+    height: 100%;
+
+}
+
+.organ_list .organ_item:last-child>.organ_info {
+    border-style: none;
+}
+
+.organ_title {
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1.2rem;
+}
+
+.organ_time {
+    font-size: 0.65rem;
+    color: rgba(153, 153, 153, 1);
+    line-height: 0.85rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top:0.3rem;
+}
+
+.organ_list .organ_item .organ_info .organ_time span {
+    margin-left: 0.35rem;
+    font-size: 0.6rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(95, 112, 133, 1);
+    line-height: 0.85rem;
+}
+
+.store_label {
+    font-size: 0.65rem;
+    color: rgba(153, 153, 153, 1);
+    line-height: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 0.8rem;
+}
+
+.store_label .store_label_item {
+    font-size: 0.5rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(217, 39, 39, 1);
+    line-height: 0.7rem;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 0.05rem;
+    border: 1px solid rgba(217, 39, 39, 1);
+    padding: 0.05rem 0.15rem;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.organ_list .organ_item .organ_info .organ_time img {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.organ_list .organ_item .organ_cover {
+    width: 5rem;
+    height: 3.5rem;
+    position: relative;
+}
+
+.organ_list .organ_item .organ_cover .store_label_icon img {
+    position: absolute;
+    top: -0.1rem;
+    left: 0;
+    width: 2.5rem;
+    height: 0.8rem;
+    border-style: hidden;
+    border-radius: none;
+}
+
+.organ_list .organ_item .organ_cover img:first {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: rgba(216, 216, 216, 1);
+    border-radius: 0.2rem;
+}
+
+
+/*tab切换类*/
+
+.tab-nav {
+    position: relative;
+    width: 100%;
+    background-color: #ffffff;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-align-self: center;
+    align-self: center;
+    border-bottom: 1px solid rgba(219, 219, 219, 0.5);
+}
+
+.is_fixed {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+}
+
+.tab-nav-item {
+    width: 100%;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    position: relative;
+    font-size: 0.7rem;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight: 400;
+    text-align: center;
+    color: rgba(151, 158, 166, 1);
+    margin-left: -1px;
+    -webkit-box-flex: 1;
+    box-flex: 1;
+}
+
+.tab-nav-item.nav-active {
+    font-size: 0.7rem;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+    color: rgba(217, 39, 39, 1);
+}
+
+.tab-nav-item:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 1.25rem;
+    opacity: 0;
+    border-bottom: 0.15rem solid rgba(217, 39, 39, 1);
+    border-radius: 0.1rem;
+    transform: translate(-50%) scaleX(0);
+    transition: .2s ease-in-out;
+}
+
+.tab-nav-item.nav-active:after {
+    opacity: 1;
+    transform: translate(-50%) scaleX(1);
+}
+
+.public_line {
+    position: relative;
+}
+
+.public_line:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 0.05rem;
+    width: 100%;
+    background: #E7E6E6;
+    transform: scaleY(0.5);
+    -webkit-transform: scaleY(0.5);
+    transform-origin: left bottom;
+    -webkit-transform-origin: left bottom;
+}
+
+.public_info_list .public_info_item {
+    background: #fff;
+    padding: 0 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 2.8rem;
+    /*line-height: 2.5rem;*/
+    overflow: hidden;
+}
+
+.public_info_list .public_info_item.public_info_item_photo {
+    height: 4.85rem;
+}
+
+.public_info_list .public_info_item.public_line:after {
+    left: 0.75rem;
+    right: 0.75rem;
+    width: auto;
+}
+
+.public_info_list .public_info_item:last-child.public_line:after {
+    background: none;
+}
+
+.public_info_list .public_info_item .public_info_item_title {
+    font-size: 0.85rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1.2rem;
+}
+
+.public_info_list .public_info_item.public_info_item_photo .public_info_item_title {
+    flex: 1;
+}
+
+.public_info_list .public_info_item .public_info_item_value {
+    font-size: 0.7rem;
+    color:rgba(204,204,204,1);
+     line-height:1rem;
+    font-weight: 400;
+    text-align: right;
+    flex: 1;
+    padding-left: 0.4rem;
+}
+
+.public_info_list .public_info_item input {
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(151, 158, 166, 1);
+    /*line-height: 0.65rem;*/
+    text-align: right;
+    flex: 1;
+    padding-left: 0.5rem;
+}
+
+.public_info_list .public_info_item .public_info_item_photo {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 100%;
+    object-fit: cover;
+    margin-right: 0.5rem;
+}
+
+.public_info_list .public_info_item .public_info_item_img {
+    width: 0.5rem;
+    height: 0.5rem;
+    object-fit: cover;
+    /*margin-left: 0.05rem;*/
+}
+
+.public_info_list .public_info_item .public_info_item_input {
+    flex: 1;
+    overflow: hidden;
+}
+
+input {
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(170, 170, 170, 1);
+    line-height: 0.85rem;
+    width: 100%;
+}
+
+input::-webkit-input-placeholder {
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(170, 170, 170, 1);
+    line-height: 0.9rem;
+}
+
+input:-moz-placeholder {
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(170, 170, 170, 1);
+    line-height: 0.9rem;
+}
+
+input::-moz-placeholder {
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(170, 170, 170, 1);
+    line-height: 0.9rem;
+}
+
+input:-ms-input-placeholder {
+    line-height: 1rem;
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(170, 170, 170, 1);
+}
+
+textarea {
+    line-height: 1rem;
+    color: #333333;
+    font-size: 0.75rem;
+    width: 100%;
+    word-break: break-all;
+}
+
+textarea::-webkit-input-placeholder {
+    line-height: 1rem;
+    color: #CCCCCC;
+    font-size: 0.75rem;
+}
+
+textarea:-moz-placeholder {
+    line-height: 1rem;
+    color: #CCCCCC;
+    font-size: 0.75rem;
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+    line-height: 1rem;
+    color: #CCCCCC;
+    font-size: 0.75rem;
+}
+
+textarea:-ms-input-placeholder {
+    line-height: 1rem;
+    color: #CCCCCC;
+    font-size: 0.75rem;
+}
+
+.overflow_hidden_one, .one-line {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.overflow_hidden_two, .two-line {
+    display: -webkit-box !important;
+    overflow: hidden;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.overflow_hidden_three, .three-line {
+    display: -webkit-box !important;
+    overflow: hidden;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.question_list {
+    padding: 0 0.75rem;
+    background: #fff;
+}
+
+.question_list .question_item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 0.6rem;
+    overflow: hidden;
+    border-bottom: 1px solid #EDEDF0;
+}
+
+.question_list .question_item .question_item_title {
+    font-size: 0.85rem;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: bold;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1.2rem;
+    width: 100%;
+}
+
+.question_list .question_item .question_item_info {
+    display: flex;
+    overflow: hidden;
+}
+
+.question_list .question_item .question_item_info span {
+    font-size: 0.75rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 500;
+    color: rgba(151, 158, 166, 1);
+    line-height: 1.2rem;
+}
+
+.question_list .question_item .question_item_info img {
+    width: 5rem;
+    height: 3.5rem;
+    object-fit: cover;
+    background: rgba(216, 216, 216, 1);
+    border-radius: 0.2rem;
+    margin-left: 0.5rem;
+}
+
+.question_list .question_item .question_item_attr {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding-top: 0.5rem;
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+}
+
+.question_list .question_item .question_item_attr .question_item_attr_item {
+    display: flex;
+    justify-content: center;
+    vertical-align: baseline;
+    align-items: center;
+    font-size:0.7rem;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+color:rgba(44,53,64,1);
+line-height:1rem;
+}
+
+.question_list .question_item .question_item_attr img {
+    width: 0.9rem;
+    height: 0.9rem;
+    margin-right: 0.4rem;
+}

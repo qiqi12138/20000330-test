@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>弹窗</title>
+    <link href="../css/aui.css" rel="stylesheet" type="text/css">
+    <link href="../css/index.css" rel="stylesheet" type="text/css">
+    <style>
+        html,
+        body {
+            background-color: rgba(0, 0, 0, 0);
+            height: 100%;
+        }
+
+        .alert_content {
+            position: fixed;
+            top: 50%;
+            left: 2rem;
+            right: 2rem;
+            height: auto;
+            transform: translateY(-50%);
+            background: #fff;
+            z-index: 2;
+            font-size: .85rem;
+            text-align: center;
+            border-radius: 0.4rem;
+        }
+
+        .alert_content h2 {
+            padding: 1rem 0 0.45rem 0;
+            font-size: .96rem;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 1);
+            line-height: .96rem;
+        }
+
+        .alert_content .content {
+            padding-bottom: 0.7rem;
+            color:rgba(136,136,136,1);
+
+            position: relative;
+        }
+
+        .alert_content .content:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 1px;
+            width: 100%;
+            background: #eaeaea;
+            transform: scaleY(0.5);
+            -webkit-transform: scaleY(0.5);
+            transform-origin: 0 0;
+            -webkit-transform-origin: 0 0;
+        }
+
+        .alert_content .alert_btn {
+            display: flex;
+
+            height: 2.5rem;
+            line-height: 2.5rem;
+        }
+
+        .alert_content .alert_btn p {
+          font-size:.96rem;
+          color:rgba(51,51,51,1);
+          font-weight:500;
+            flex: 1;
+            position: relative;
+        }
+
+        .alert_content .alert_btn p:first-child:after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #eaeaea;
+            transform: scaleX(0.5);
+            -webkit-transform: scaleX(0.5);
+            transform-origin: 0 0;
+            -webkit-transform-origin: 0 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div style="background-color: rgba(0, 0, 0, 0.4);width:100%;height:100%;position:fixed;top:0;left:0;z-index:1;"></div>
+        <div class="alert_content">
+            <h2>提示</h2>
+            <p class="content">{{alertType|alertText}}</p>
+            <div class="alert_btn">
+                <p  tapmode onclick="fnBack()">{{cancelText}}</p>
+                <p  tapmode onclick="fnConfirm()">{{confirmText}}</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/vue.min.js"></script>
+<script type="text/javascript" src="../script/service/service-app.js"></script>
+<script type="text/javascript" src="../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../script/service/service-font.js"></script>
+<script type="text/javascript" src="../script/service/service-user.js"></script>
+<script type="text/javascript" src="../script/service/service-tabbar.js"></script>
+<script type="text/javascript">
+    var USER, $S;
+    var status;
+    var vm;
+    var qrcode;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+        // setTimeout(function() {
+        //     fnSetPlayFrmFront();
+        // }, 300);
+
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: api.pageParam,
+            filters: {
+                alertText: function(key) {
+                    var alertArr = [{
+                        "text": "确认退出登录？",
+                        "val": "1"
+                    }, {
+                        "text": "充值需要先完成实名认证！",
+                        "val": "2"
+                    }];
+                    for (var i = 0; i < alertArr.length; i++) {
+                        if (alertArr[i].val == key) {
+                            return alertArr[i].text;
+                        }
+                    }
+                    return "";
+                }
+            }
+        });
+    }
+    //提交
+    var isClick = true;
+
+    function fnConfirm() {
+        if (isClick) {
+            isClick = false;
+            if (vm.alertConfirmFn && vm.alertConfirmFn != "") {
+                api.execScript({
+                    name: vm.winName,
+                    frameName: vm.frameName,
+                    script: vm.alertConfirmFn
+                });
+            }
+            api.closeFrame();
+        }
+    }
+
+    function fnBack() {
+        if (vm.cancelFn && vm.cancelFn != '') {
+            api.execScript({
+                name: vm.winName,
+                frameName: vm.frameName,
+                script: vm.cancelFn
+            });
+        } else {
+            api.closeFrame();
+        }
+    }
+</script>
+
+</html>

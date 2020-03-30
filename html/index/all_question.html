@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+
+    <title>问答</title>
+    <style>
+        .recommend_teacher {
+            padding: 0.75rem 0 0 0.75rem;
+        }
+
+        .recommend_teacher h2 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: rgba(51, 51, 51, 1);
+            line-height: 1.5rem;
+        }
+
+        .recommend_teacher_list {
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: row;
+            overflow: scroll;
+            margin: 0.75rem 0;
+        }
+
+        .recommend_teacher_item {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 9.7rem;
+            min-width: 6.7rem;
+            padding: 0.75rem 0.4rem;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 0.2rem;
+            border: 0.5px solid rgba(151, 158, 166, 1);
+            margin-right: 0.6rem;
+        }
+
+        .recommend_teacher_item h1 {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: rgba(51, 51, 51, 1);
+            line-height: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        .recommend_teacher_item h3 {
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: rgba(151, 158, 166, 1);
+            line-height: 1.2rem;
+        }
+
+        .recommend_teacher_item p {
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: 0.85rem;
+        }
+
+        .recommend_teacher_item img {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 100%;
+        }
+
+        .recommend_teacher_item span {
+            background: rgba(255, 255, 255, 1);
+            border-radius: 13px;
+            border: 1px solid rgba(254, 114, 3, 1);
+            font-size: 0.6rem;
+            font-weight: 500;
+            color: rgba(254, 114, 3, 1);
+            line-height: 1.25rem;
+            width: 3rem;
+            height: 1.25rem;
+            text-align: center;
+            margin-top: 0.75rem;
+        }
+
+        .hot_question {
+            padding: 0.75rem;
+        }
+
+        .hot_question h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: rgba(51, 51, 51, 1);
+            line-height: 1.5rem;
+        }
+
+        .question_list {
+          padding:0;
+          background: #fff;
+        }
+
+        .question_list .question_item {
+          width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding-top: 0.6rem;
+            overflow: hidden;
+            border-bottom: 1px solid #EDEDF0;
+        }
+
+        .question_list .question_item .question_item_title {
+            font-size: 0.85rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1.2rem;
+            width: 100%;
+        }
+
+        .question_list .question_item .question_item_info {
+            display: flex;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .question_list .question_item .question_item_info span {
+            font-size: 0.75rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(151, 158, 166, 1);
+            line-height: 1.2rem;
+        }
+
+        .question_list .question_item .question_item_info img {
+            width: 5rem;
+            height: 3.5rem;
+            object-fit: cover;
+            background: rgba(216, 216, 216, 1);
+            border-radius: 0.2rem;
+            margin-left: 0.5rem;
+        }
+
+        .question_list .question_item .question_item_attr {
+            display: flex;
+            width: 100%;
+            align-items: flex-start;
+            justify-content: flex-end;
+            padding-top: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 0.75rem;
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1rem;
+        }
+
+        .question_list .question_item .question_item_attr .question_item_attr_item {
+            display: flex;
+            justify-content: center;
+            vertical-align: baseline;
+            align-items: center;
+        }
+
+        .question_list .question_item .question_item_attr img {
+            width: 0.9rem;
+            height: 0.9rem;
+            margin-right: 0.4rem;
+        }
+
+        .stroe_ask {
+            position: fixed;
+            z-index: 99;
+            right: 0.75rem;
+            bottom: 3rem;
+        }
+
+        .stroe_ask img {
+            width: 2.65rem;
+            height: 2.65rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="public_header" id="frm_header" style="border-bottom: 1px solid #EDEDF0;">
+            <div class="public_header_search">
+                <img src="../../image/index/index_search.png" alt="">
+                <form id="search_from" target="nm_iframe">
+                    <input spellcheck="false" type="search" id="goToSearch" name="" v-model="searchVal" placeholder="请输入关键字" maxlength="15">
+                </form>
+                <iframe name="nm_iframe" style="display:none;"></iframe>
+                <img v-if="searchVal!=''" style="width:0.8rem;height:0.8rem;margin-left:auto;margin-right:0.75rem;" src="../../image/index/clear_val.png" alt="" tapmode @click="fnClearVal()">
+            </div>
+        </div>
+        <div class="recommend_teacher">
+            <h2>推荐老师</h2>
+            <div class="recommend_teacher_list">
+                <div class="recommend_teacher_item" tapmode @click="fnOpenPublicWin('老师个人主页','index/teacher_home')">
+                    <img src="../../image/index/lecturer.png" alt="">
+                    <h1>Jackson</h1>
+                    <h3>英孚教育</h3>
+                    <p>擅长课程：启蒙英语、少儿培训、口…</p>
+                    <span>关注</span>
+                </div>
+                <div class="recommend_teacher_item" tapmode @click="fnOpenPublicWin('老师个人主页','index/teacher_home')">
+                    <img src="../../image/index/lecturer.png" alt="">
+                    <h1>Jackson</h1>
+                    <h3>英孚教育</h3>
+                    <p>擅长课程：启蒙英语、少儿培训、口…</p>
+                    <span>已关注</span>
+                </div>
+                <div class="recommend_teacher_item" tapmode @click="fnOpenPublicWin('老师个人主页','index/teacher_home')">
+                    <img src="../../image/index/lecturer.png" alt="">
+                    <h1>Jackson</h1>
+                    <h3>英孚教育</h3>
+                    <p>擅长课程：启蒙英语、少儿培训、口…</p>
+                    <span>关注</span>
+                </div>
+                <div class="recommend_teacher_item" tapmode @click="fnOpenPublicWin('老师个人主页','index/teacher_home')">
+                    <img src="../../image/index/lecturer.png" alt="">
+                    <h1>Jackson</h1>
+                    <h3>英孚教育</h3>
+                    <p>擅长课程：启蒙英语、少儿培训、口…</p>
+                    <span>关注</span>
+                </div>
+                <div class="recommend_teacher_item">
+                    <img src="../../image/index/lecturer.png" alt="">
+                    <h1>Jackson</h1>
+                    <h3>英孚教育</h3>
+                    <p>擅长课程：启蒙英语、少儿培训、口…</p>
+                    <span>关注</span>
+                </div>
+                <div class="recommend_teacher_item">
+                    <img src="../../image/index/lecturer.png" alt="">
+                    <h1>Jackson</h1>
+                    <h3>英孚教育</h3>
+                    <p>擅长课程：启蒙英语、少儿培训、口…</p>
+                    <span>关注</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="space"></div>
+        <div class="hot_question">
+            <h2>热门回答</h2>
+            <div class="question_list" v-if="listData.length>0">
+                <div class="question_item" v-for="item in listData" tapmode @click="fnOpenPublicWin('问答标题','index/question_detail',{articleId:item.id})">
+                    <div class="question_item_title overflow_hidden_one">
+                        比地球自转还快的超音速客机！创下多个世界纪录
+                    </div>
+                    <div class="question_item_info">
+                        <span class="overflow_hidden_three">
+                        从2015年4月起，Ant Design在蚂蚁金服中后台产品线迅速推广，对接多条业务线，覆盖系统 800 个以上。定位于中台业务的 Ant Design 兼顾专业和非…
+                    </span>
+                        <img src="../../image/index/Mask.png" alt="">
+                    </div>
+                    <div class="question_item_attr">
+                        <div class="question_item_attr_item" style="margin-right: auto;"><img src="../../image/index/t3.jpg" alt="">常霞</div>
+
+                        <div class="question_item_attr_item" style="margin-right:1.2rem;"><img src="../../image/index/commend_icon.png" alt="">1.23K</div>
+                        <div class="question_item_attr_item"><img src="../../image/index/comment_icon.png" alt="">1.2w</div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="stroe_ask" tapmode @click="fnOpenPublicWin('提问','index/ask_add')"><img src="../../image/index/ask_icon.png" alt=""></div>
+    </div>
+
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/vue.min.js"></script>
+    <script type="text/javascript" src="../../script/service/service-app.js"></script>
+    <script type="text/javascript" src="../../script/service/service-tool.js"></script>
+    <script type="text/javascript" src="../../script/service/service-user.js"></script>
+    <script type="text/javascript" src="../../script/service/service-login.js"></script>
+    <script type="text/javascript" src="../../script/service/service-verify.js"></script>
+    <script>
+        var USER;
+        var $S;
+        var vm;
+        var _footerH;
+        apiready = function() {
+            USER = USER();
+            $S = SERVICE();
+            _footerH = localStorage.safeBottom;
+            fnInit();
+
+        }
+
+        function fnInit() {
+            vm = new Vue({
+                el: ".vueApp",
+                data: {
+                    searchVal: api.pageParam.searchVal || '',
+                    isSerach: api.pageParam.isSerach || '0',
+                     isOpenFrm: false,
+                    listData: [{
+                        id: "1"
+                    }, {
+                        id: "2"
+                    }, {
+                        id: "3"
+                    }, {
+                        id: "4"
+                    }]
+                },
+                mounted: function() {
+                    this.$nextTick(function() {
+                        console.log('661');
+                        if (document.getElementById('search_from')) {
+                            document.getElementById('search_from').onsubmit = function() {
+                                fnKeyboard();
+                                console.log('66');
+                                var searchVal = vm.searchVal;
+                                fnStartSearch(searchVal)
+                            };
+                        }
+                    })
+                },
+                methods: {
+                  fnClearVal: function() {
+                      this.searchVal = "";
+                  }
+
+                }
+            })
+        }
+        function fnStartSearch(searchVal) {
+            console.log('33');
+            fnKeyboard();
+            setTimeout(function() {
+  console.log('44');
+                vm.isOpenFrm = true;
+                vm.$nextTick(function() {
+                    fnOpenSearchFrm(searchVal);
+                })
+
+            }, 500);
+        }
+        function fnOpenSearchFrm(searchVal) {
+        var _top = AD("header").offsetH() * 1;
+        var param = {
+            name: 'index/information_list',
+            url: '../index/information_list.html',
+            useWKWebView: true,
+            bgColor: 'rgba(0,0,0,0)',
+            rect: {
+                x: 0,
+                y: _top,
+                w: "auto",
+                h: api.winHeight - _top - _footerH
+            },
+            pageParam: {
+                searchVal: searchVal,
+                isSerach:"1"
+            }
+        }
+        fnOpenFrame(param)
+    }
+    </script>
+</body>
+
+</html>

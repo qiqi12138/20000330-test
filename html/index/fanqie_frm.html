@@ -1,0 +1,231 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>番茄课</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        .select_icon {
+            width: 100%;
+            position: relative;
+        }
+
+        .select_icon img {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            right: 0;
+            margin: 10px 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="select_icon"> <img src="../../image/index/fanqie_select_icon.png" alt=""></div>
+
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var _footerH;
+    var searchHis;
+    var vm;
+
+    //  var NVNavigationBar;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+        NVNavigationBar_open();
+    }
+
+
+    function NVNavigationBar_open() {
+
+        var NVNavigationBar = api.require('NVNavigationBar');
+        NVNavigationBar.open({
+            rect: {
+                x: 10,
+                y: 0,
+                w: api.frameWidth - 50,
+                h: 40
+            },
+            styles: {
+                orientation: 'horizontal',
+                bg: '#FFFFFF',
+
+                font: {
+                    size: 14,
+                    sizeSelected: 14,
+                    color: '#777777',
+                    colorSelected: '#D92727',
+                    bold: true
+                },
+                itemSize: {
+                    w: 58,
+                    h: 40
+                }
+            },
+            items: [{
+                title: '全部1',
+                bg: '#FFFFFF'
+            }, {
+                title: '英语',
+                bg: '#FFFFFF'
+            }, {
+                title: '数学',
+                bg: '#FFFFFF'
+            }, {
+                title: '政治',
+                bg: '#FFFFFF'
+            }, {
+                title: '化学',
+                bg: '#FFFFFF'
+            }, {
+                title: '物理',
+                bg: '#FFFFFF'
+            }, {
+                title: '音乐',
+                bg: '#FFFFFF'
+            }],
+            selectedIndex: 0,
+            fixedOn: api.frameName,
+            fixed: true,
+            id: 'first'
+        }, function(ret, err) {
+            console.log(JSON.stringify(ret))
+            fnsetFrameGroup();
+            if (ret.eventType == 'click') {
+                fnsetFrameGroupIndex('fanqie_frm_group', ret.index);
+
+            }
+        });
+    }
+
+    function fnsetFrameGroupIndex(name, index) {
+        api.setFrameGroupIndex({
+            name: name,
+            index: index,
+            scroll: true
+        });
+    }
+
+    function fnsetFrameGroup() {
+
+        var header_H = api.pageParam.header_height;
+
+        api.openFrameGroup({
+            name: 'fanqie_frm_group',
+            rect: {
+                x: 0,
+                y: header_H + 40,
+                w: 'auto',
+                h: api.winHeight-header_H - 40 ,
+                marginBottom: 50
+            },
+            scrollEnabled: true,
+            frames: [{
+                name: 'fanqieyuan',
+                url: '../index/search_dynamic.html',
+
+                pageParam: {
+                    name: 'value'
+                }
+            }, {
+                name: 'store',
+                url: '../index/search_dynamic.html',
+                pageParam: {
+                    name: 'value'
+                }
+            }, {
+                name: 'lession',
+                url: '../index/search_dynamic.html',
+                pageParam: {
+                    name: 'value'
+                }
+            }, {
+                name: 'fanqie',
+                url: '../index/search_dynamic.html',
+                pageParam: {
+                    name: 'value'
+                }
+            }, {
+                name: 'dynamic',
+                url: '../index/search_dynamic.html',
+                pageParam: {
+                    name: 'value'
+                }
+            }, {
+                name: 'question',
+                url: '../index/search_dynamic.html',
+                pageParam: {
+                    name: 'value'
+                }
+            }, {
+                name: 'reading',
+                url: '../index/search_dynamic.html',
+                pageParam: {
+                    name: 'value'
+                }
+            }]
+        }, function(ret, err) {
+            if (ret) {
+                console.log(JSON.stringify(ret));
+                if (ret.index > -1) {
+                    fnNvnsetSelected(ret.index);
+
+                }
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+
+    }
+
+    function fnNvnsetSelected(index) {
+        var NVNavigationBar = api.require('NVNavigationBar');
+        NVNavigationBar.setSelected({
+            id: 'first',
+            index: index,
+            selected: true
+        }, function(ret) {
+
+        });
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    }
+
+    function fnBack() {
+        fnDelayCloseWin();
+    }
+</script>
+
+</html>

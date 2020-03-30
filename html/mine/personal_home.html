@@ -1,0 +1,688 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>我的</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/dynamic.css" />
+    <style>
+        html,
+        body {
+            width: 100%;
+            background: rgba(245, 245, 245, 1);
+            height: auto;
+        }
+
+        .mine_bg {
+            width: 100%;
+            height: 62.6667vw;
+            background: url(../../image/mine/mine_head_bg.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .mine_header {
+            height: 2.6rem;
+            padding: 2.2rem 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mine_header .mine_header_left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 2.8rem;
+            font-size: 1rem;
+            color: #2C3540;
+            font-weight: normal;
+        }
+
+        .mine_header .mine_header_right img {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.45rem;
+        }
+
+        .mine_head_portrait {
+            width: 2.6rem;
+            height: 2.6rem;
+            border-radius: 100%;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 1);
+        }
+
+        .mine_header_left_info {
+            display: flex;
+            align-items: center;
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            line-height: 0.85rem;
+            margin-left: 0.5rem;
+        }
+
+        .mine_header_left_info h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 1);
+            line-height: 1.4rem;
+        }
+
+        .mine_header_left_img {
+            width: 0.6rem;
+            height: auto;
+            margin-left: 0.65rem;
+        }
+
+        .mine_head_bot {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2.3rem 0.75rem 2.3rem;
+        }
+
+        .mine_head_bot_item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-self: center;
+            text-align: center;
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            line-height: 0.85rem;
+        }
+
+        .mine_head_bot_item h2 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            line-height: 1.5rem;
+        }
+
+        .index_headers {
+            position: fixed;
+            width: 100%;
+            z-index: 999;
+        }
+
+        .public_header .public_header_text {
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .mine_header_left_info img {
+            width: 0.8rem;
+            height: 0.8rem;
+            margin-left: 0.35rem;
+        }
+        /*tab切换类*/
+
+        .tab-nav {
+            background-color: #ffffff;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+            overflow: scroll;
+            -webkit-align-self: center;
+            align-self: center;
+            padding: 0 1rem;
+        }
+
+        .tab-nav-item {
+            white-space: nowrap;
+            height: 2rem;
+            line-height: 2rem;
+            position: relative;
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            text-align: center;
+            color: rgba(151, 158, 166, 1);
+            margin-left: -1px;
+            -webkit-box-flex: 1;
+            box-flex: 1;
+            margin-right: 1.2rem;
+        }
+
+        .tab-nav-item.nav-active {
+            font-size: 0.7rem;
+            font-family: PingFangSC-Semibold, PingFang SC;
+            font-weight: 500;
+            color: rgba(217, 39, 39, 1);
+        }
+        .is_fixed {
+            position: fixed;
+
+            z-index: 888;
+        }
+        .evaluation {
+            width: 100%;
+            height: 25rem;
+        }
+        .personal_bot_btn {
+            position: fixed;
+            bottom: 0;
+
+            height: 3.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            left: 1rem;
+            right:1rem;
+            bottom: 0.75rem;
+            z-index: 999;
+        }
+
+        .personal_bot_btn_one {
+            width:  48%;
+            height: 2.25rem;
+            background: rgba(253, 244, 244, 1);
+            border-radius: .2rem;
+            font-size: .9rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(217, 39, 39, 1);
+            line-height: 2.25rem;
+            text-align: center;
+        }
+
+        .personal_bot_btn_two {
+            width:  48%;
+            height: 2.25rem;
+            background: rgba(217, 39, 39, 1);
+            border-radius: 4px;
+            font-size: .9rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            line-height: 2.25rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp"  >
+        <div class="mine_bg">
+            <header id="header" style="position:fixed;width:100%;top:0;z-index:999;background:#fff;" v-if="isFixed">
+                <div class="public_header" style="border-bottom:0.5px solid rgba(237,237,240,1);">
+                    <div class="public_header_left" tapmode onclick="fnBack()">
+                        <img src="../../image/index/back.png" alt="">
+                    </div>
+                    <div class="public_header_text" style="color:rgba(51,51,51,1);">个人主页</div>
+                    <div class="public_header_right"></div>
+                </div>
+            </header>
+            <header id="header" v-else>
+                <div class="public_header">
+                    <div class="public_header_left" tapmode onclick="fnBack()">
+                        <img src="../../image/index/back_white.png" alt="">
+                    </div>
+                    <div class="public_header_text">个人主页</div>
+                    <div class="public_header_right"></div>
+                </div>
+            </header>
+            <div class="mine_header">
+                <div class="mine_header_left" tapmode @click="fnOpenPublicWin('个人资料','mine/personal_info')">
+                    <img class="mine_head_portrait" :src="custId!=''?(userInfo.photo!=''?userInfo.photo:'../../image/mine/default_head.png'):'../../image/mine/default_head.png'" alt="">
+                    <div class="mine_header_left_info">
+                        <h2>傅小小</h2> <img src="../../image/mine/sex_male_icon.png" alt="">
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="mine_head_bot">
+                <div class="mine_head_bot_item" tapmode @click="fnOpenPublicWin('关注我的','mine/follow_mine_list')">
+                    <h2>99</h2><span>关注我的</span>
+                </div>
+                <div class="mine_head_bot_item" tapmode @click="fnOpenPublicWin('我关注的','mine/mine_follow_list')">
+                    <h2>99</h2><span>我关注的</span>
+                </div>
+                <div class="mine_head_bot_item" tapmode @click="fnOpenPublicWin('收到的赞','message/praise_list')">
+                    <h2>99</h2><span>获赞</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="tab-nav" id="tab" :class="{'is_fixed' : isFixed}">
+            <div class="tab-nav-item " :class="tabIndex=='0'?'nav-active':''" tapmode @click="fnSetTabIndex('0')">Ta的动态</div>
+            <div class="tab-nav-item " :class="tabIndex=='1'?'nav-active':''" tapmode @click="fnSetTabIndex('1')">Ta的提问</div>
+            <div class="tab-nav-item" :class="tabIndex=='2'?'nav-active':''" tapmode @click="fnSetTabIndex('2')">Ta的回答</div>
+            <div class="tab-nav-item" :class="tabIndex=='3'?'nav-active':''" tapmode @click="fnSetTabIndex('3')">加入的圏子</div>
+            <div class="tab-nav-item" :class="tabIndex=='4'?'nav-active':''" tapmode @click="fnSetTabIndex('4')">参与的项目</div>
+        </div>
+        <div class="evaluation" v-if="tabIndex=='0'">
+            <main class="main">
+                <section class="section">
+                    <div class="container">
+                        <div id="macy-container">
+                            <div class="dynamic" tapmode @click="fnOpenPublicWin('动态详情','index/dynamic_detail',{articleId:1})"><img src="../../image/index/t1.jpg" alt="" class="dynamic-image">
+                                <div class="dynamic_info">
+                                    <p>热带水果了解一下！</p>
+                                    <div class="dynamic_item">
+                                        <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                        <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dynamic" tapmode @click="fnOpenPublicWin('动态详情','index/dynamic_detail',{articleId:1})"><img src="../../image/index/t2.jpg" alt="" class="dynamic-image">
+                                <div class="dynamic_info">
+                                    <p>热带水果了解一下！</p>
+                                    <div class="dynamic_item">
+                                        <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                        <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dynamic"><img src="../../image/index/t5.png" alt="" class="dynamic-image">
+                                <div class="dynamic_info">
+                                    <p>热带水果了解一下1！</p>
+                                    <div class="dynamic_item">
+                                        <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                        <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dynamic"><img src="../../image/index/youxuan.png" alt="" class="dynamic-image">
+                                <div class="dynamic_info">
+                                    <p>热带水果了解一下2！</p>
+                                    <div class="dynamic_item">
+                                        <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                        <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dynamic"><img src="../../image/index/t1.jpg" alt="" class="dynamic-image">
+                                <div class="dynamic_info">
+                                    <p>热带水果了解一下！</p>
+                                    <div class="dynamic_item">
+                                        <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                        <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dynamic"><img src="../../image/index/t2.jpg" alt="" class="dynamic-image">
+                                <div class="dynamic_info">
+                                    <p>热带水果了解一下！</p>
+                                    <div class="dynamic_item">
+                                        <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                        <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dynamic"><img src="../../image/index/t1.jpg" alt="" class="dynamic-image">
+                                <div class="dynamic_info">
+                                    <p>热带水果了解一下！</p>
+                                    <div class="dynamic_item">
+                                        <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                        <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dynamic"><img src="../../image/index/t2.jpg" alt="" class="dynamic-image">
+                                <div class="dynamic_info">
+                                    <p>热带水果了解一下！</p>
+                                    <div class="dynamic_item">
+                                        <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                        <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dynamic"><img src="../../image/index/t1.jpg" alt="" class="dynamic-image">
+                                <div class="dynamic_info">
+                                    <p>热带水果了解一下！</p>
+                                    <div class="dynamic_item">
+                                        <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                        <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dynamic"><img src="../../image/index/t2.jpg" alt="" class="dynamic-image">
+                                <div class="dynamic_info">
+                                    <p>热带水果了解一下！</p>
+                                    <div class="dynamic_item">
+                                        <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                        <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dynamic"><img src="../../image/index/t1.jpg" alt="" class="dynamic-image">
+                                <div class="dynamic_info">
+                                    <p>热带水果了解一下！</p>
+                                    <div class="dynamic_item">
+                                        <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                        <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dynamic"><img src="../../image/index/t2.jpg" alt="" class="dynamic-image">
+                                <div class="dynamic_info">
+                                    <p>热带水果了解一下！</p>
+                                    <div class="dynamic_item">
+                                        <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                        <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dynamic"><img src="../../image/index/t1.jpg" alt="" class="dynamic-image">
+                                <div class="dynamic_info">
+                                    <p>热带水果了解一下！</p>
+                                    <div class="dynamic_item">
+                                        <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                        <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dynamic"><img src="../../image/index/t2.jpg" alt="" class="dynamic-image">
+                                <div class="dynamic_info">
+                                    <p>热带水果了解一下！</p>
+                                    <div class="dynamic_item">
+                                        <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                        <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+        </div>
+        <block v-if="tabIndex==1">
+          <div class="space"></div>
+          <div class="question_list" v-if="listData.length>0">
+              <div class="question_item" v-for="item in listData" tapmode @click="fnOpenPublicWin('问答标题','index/question_detail',{articleId:1})">
+                  <div class="question_item_title overflow_hidden_one">
+                      比地球自转还快的超音速客机！创下多个世界纪录
+                  </div>
+                  <div class="question_item_info" style="margin-top: 0.3rem;" >
+                      <span>
+                      发布时间：2018.05.16
+                  </span></div>
+                  <div class="question_item_info" style="padding-bottom:0.65rem;">
+
+                      <span class="overflow_hidden_three">
+                      从2015年4月起，Ant Design在蚂蚁金服中后台产品线迅速推广，对接多条业务线，覆盖系统 800 个以上。定位于中台业务的 Ant Design 兼顾专业和非…
+                  </span>
+
+                  </div>
+              </div>
+          </div>
+        </block>
+        <block v-if="tabIndex==2">
+          <div class="space"></div>
+          <div class="question_list" v-if="listData.length>0">
+              <div class="question_item" v-for="item in listData" tapmode @click="fnOpenPublicWin('问答标题','index/question_detail',{articleId:1})">
+                  <div class="question_item_title overflow_hidden_one">
+                      比地球自转还快的超音速客机！创下多个世界纪录
+                  </div>
+                  <div class="question_item_info" style="margin-top: 0.3rem;" >
+                      <span>
+                      回答时间：2018.05.16
+                  </span></div>
+                  <div class="question_item_info" style="padding-bottom:0.65rem;">
+
+                      <span class="overflow_hidden_three">
+                      从2015年4月起，Ant Design在蚂蚁金服中后台产品线迅速推广，对接多条业务线，覆盖系统 800 个以上。定位于中台业务的 Ant Design 兼顾专业和非…
+                  </span>
+
+                  </div>
+              </div>
+          </div>
+        </block>  <div class="personal_bot_btn">
+              <span class="personal_bot_btn_one">关注</span> <span class="personal_bot_btn_two">+加好友</span>
+          </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript" src="../../script/macy.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    var _headerH;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+        _headerH = AD('header').offsetH();
+
+        //fnInitPage();
+
+    }
+    var masonry = new Macy({
+        container: '#macy-container',
+        trueOrder: false,
+        waitForImages: false,
+        useOwnImageLoader: false,
+        margin: {
+            y: 5,
+            x: 5,
+        },
+        columns: 2
+
+    });
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                custId: USER.Get("custId", true) || "",
+                userInfo: "",
+                tabIndex: 0,
+                isFixed: false,
+                offsetTop: 0,
+                listData: [{
+                    id: "1"
+                }, {
+                    id: "2"
+                }, {
+                    id: "2"
+                }, {
+                    id: "2"
+                }, {
+                    id: "2"
+                }, {
+                    id: "2"
+                }]
+            },
+            mounted() {
+
+                window.addEventListener('scroll', this.initHeight);
+                this.$nextTick(() => {
+                    //获取对象相对于版面或由 offsetTop 属性指定的父坐标的计算顶端位置
+                    this.offsetTop = document.querySelector('#tab').offsetTop - _headerH;
+
+
+                    console.log(this.offsetTop);
+                })
+            },
+            methods: {
+
+                fnSetTabIndex: function(key) {
+                    this.tabIndex = key;
+                    //  fnLoginBtnStatus();
+                },
+                initHeight() {
+
+                    // 设置或获取位于对象最顶端和窗口中可见内容的最顶端之间的距离 (被卷曲的高度)
+                    var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+                        //如果被卷曲的高度大于吸顶元素到顶端位置 的距离
+
+                    this.isFixed = scrollTop > this.offsetTop ? true : false;
+                    if (this.isFixed) {
+
+                        $api.byId('tab').style.top=_headerH+'px';
+                    }
+
+
+
+                }
+            }
+        })
+    }
+
+
+    function NVNavigationBar_open() {
+
+        var header_H = AD('#header').offsetH();
+
+
+        var NVNavigationBar = api.require('NVNavigationBar');
+        NVNavigationBar.open({
+            rect: {
+                x: 0,
+                y: header_H,
+                w: api.frameWidth,
+                h: 40
+            },
+            styles: {
+                orientation: 'horizontal',
+                bg: '#FFFFFF',
+
+                font: {
+                    size: 14,
+                    sizeSelected: 14,
+                    color: '#777777',
+                    colorSelected: '#D92727',
+                    bold: true
+                },
+                itemSize: {
+                    w: 90,
+                    h: 40
+                }
+            },
+            items: [{
+                title: 'Ta的动态',
+                bg: '#FFFFFF'
+            }, {
+                title: 'Ta的提问',
+                bg: '#FFFFFF'
+            }, {
+                title: 'Ta的回答',
+                bg: '#FFFFFF'
+            }, {
+                title: '加入的圏子',
+                bg: '#FFFFFF'
+            }, {
+                title: '参与的项目',
+                bg: '#FFFFFF'
+            }, ],
+            selectedIndex: 0,
+            fixedOn: api.frameName,
+            fixed: true,
+            id: 'first'
+        }, function(ret, err) {
+            console.log(JSON.stringify(ret))
+            fnsetFrameGroup();
+            if (ret.eventType == 'click') {
+                fnsetFrameGroupIndex('personal_group', ret.index);
+
+            }
+        });
+    }
+
+    function fnsetFrameGroupIndex(name, index) {
+        api.setFrameGroupIndex({
+            name: name,
+            index: index,
+            scroll: true
+        });
+    }
+
+    function fnsetFrameGroup() {
+
+        var header_H = AD('#header').offsetH();
+        api.openFrameGroup({
+            name: 'personal_group',
+            rect: {
+                x: 0,
+                y: header_H + 40,
+                w: 'auto',
+                marginBottom: 0
+            },
+            fixedOn: 'ui_window',
+            scrollEnabled: true,
+            frames: [{
+                name: 'personal_dynamic',
+                url: '../index/search_dynamic.html',
+
+                pageParam: {
+                    name: 'value'
+                }
+            }, {
+                name: 'personal_question',
+                url: '../mine/personal_question_frm.html',
+                pageParam: {
+                    name: 'value'
+                }
+            }, {
+                name: 'personal_answer',
+                url: '../mine/personal_question_frm.html',
+                pageParam: {
+                    name: 'value'
+                }
+            }, {
+                name: 'personal_fanqie',
+                url: '../index/personal_question_frm.html',
+                pageParam: {
+                    name: 'value'
+                }
+            }, {
+                name: 'personal_dynamics',
+                url: '../index/personal_question_frm.html',
+                pageParam: {
+                    name: 'value'
+                }
+            }]
+        }, function(ret, err) {
+            if (ret) {
+                console.log(JSON.stringify(ret));
+                if (ret.index > -1) {
+                    fnNvnsetSelected(ret.index);
+
+                }
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+
+    }
+
+    function fnNvnsetSelected(index) {
+        var NVNavigationBar = api.require('NVNavigationBar');
+        NVNavigationBar.setSelected({
+            id: 'first',
+            index: index,
+            selected: true
+        }, function(ret) {
+
+        });
+    }
+
+    function fnBack() {
+        fnDelayCloseWin(0);
+    }
+</script>
+
+</html>

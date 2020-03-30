@@ -1,0 +1,307 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>收到的赞</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            background: rgba(246, 246, 246, 1);
+        }
+
+        .praise_list {
+            padding: 0 0.75rem;
+            background: #fff;
+        }
+
+        .praise_item {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0.5rem 0;
+            height: 3.6rem;
+        }
+
+        .praise_item_left {
+            width: 2.4rem;
+            min-width: 2.4rem;
+            height: 2.4rem;
+        }
+
+        .praise_item_left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 100%;
+        }
+
+        .praise_item_right {
+            width: 4.3rem;
+            min-width: 4.3rem;
+            height: 3rem;
+            margin-left: auto;
+            align-self: center;
+            text-align: right;
+            line-height: 3rem;
+        }
+
+        .praise_item_right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.2rem;
+        }
+
+        .praise_item_info {
+            margin-left: 0.4rem;
+        }
+
+        .praise_item_info h2 {
+            font-size: 0.9rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 400;
+            color:rgba(0,0,0,1);
+            line-height: 1.25rem;
+        }
+
+        .praise_item_info p {
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color:rgba(155,155,155,1);
+            line-height: 1rem;
+        }
+
+        .praise_item_info span {
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(204, 204, 204, 1);
+            line-height: 0.85rem;
+        }
+
+        .praise_item_right .follow {
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(217, 39, 39, 1);
+            line-height: 1rem;
+            border-radius: 0.65rem;
+            border: 1px solid rgba(217, 39, 39, 1);
+            padding: 0.15rem 0.55rem;
+        }
+
+        .followed {
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            line-height: 1rem;
+            border-radius: 0.65rem;
+            padding: 0.15rem 0.55rem;
+            color: rgba(182, 182, 182, 1);
+            border: 1px solid rgba(199, 199, 204, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="tab-nav" id="tab">
+            <div class="tab-nav-item " :class="tabIndex=='0'?'nav-active':''" tapmode @click="fnSetTabIndex('0')">用户(3)</div>
+            <div class="tab-nav-item " :class="tabIndex=='1'?'nav-active':''" tapmode @click="fnSetTabIndex('1')">外教老师(1)</div>
+            <div class="tab-nav-item" :class="tabIndex=='2'?'nav-active':''" tapmode @click="fnSetTabIndex('2')">机构店(1)</div>
+        </div>
+        <div class="space"></div>
+        <block v-if="tabIndex=='0'">
+            <div class="praise_list">
+                <div class="praise_item public_line" tapmode @click="fnOpenPersonHome()">
+                    <div class="praise_item_left">
+                        <img src="../../image/index/lecturer.png" alt="">
+                    </div>
+                    <div class="praise_item_info">
+                        <h2>柳林东</h2>
+
+                    </div>
+                    <div class="praise_item_right">
+                        <span class="follow">关注</span>
+                    </div>
+                </div>
+                <div class="praise_item">
+                    <div class="praise_item_left">
+                        <img src="../../image/index/lecturer.png" alt="">
+                    </div>
+                    <div class="praise_item_info">
+                        <h2>柳林东</h2>
+
+                    </div>
+                    <div class="praise_item_right">
+                        <span class=" followed">互相关注</span>
+                    </div>
+                </div>
+
+            </div>
+        </block>
+        <block v-if="tabIndex=='1'">
+            <div class="praise_list">
+                <div class="praise_item public_line" tapmode @click="fnOpenPublicWin('老师主页','index/teacher_home')">
+                    <div class="praise_item_left">
+                        <img src="../../image/index/lecturer.png" alt="">
+                    </div>
+                    <div class="praise_item_info">
+                        <h2>柳林东</h2>
+                        <p>大剑桥</p>
+                    </div>
+                    <div class="praise_item_right">
+                        <span class="follow">关注</span>
+                    </div>
+                </div>
+                <div class="praise_item">
+                    <div class="praise_item_left">
+                        <img src="../../image/index/lecturer.png" alt="">
+                    </div>
+                    <div class="praise_item_info">
+                        <h2>柳林东</h2>
+                        <p>瑞思英语</p>
+
+                    </div>
+                    <div class="praise_item_right">
+                        <span class=" followed">互相关注</span>
+                    </div>
+                </div>
+
+            </div>
+        </block>
+        <block v-if="tabIndex=='2'">
+            <div class="organ_list">
+                <div class="organ_item" tapmode @click="fnOpenPublicWin('机构详情','index/organ_detail')">
+                    <div class="organ_cover" style="margin-top:0.25rem;">
+                        <img src="../../image/index/Mask.png" alt="">
+                        <div class="store_label_icon"><img src="../../image/index/store_label_icon.png" alt=""></div>
+                    </div>
+                    <div class="organ_info">
+                        <div class="organ_title overflow_hidden_two">
+                            1北京市融安消防职业技能培训学校(北沙滩校区)
+                        </div>
+                        <div class="organ_time" style="margin-bottom:0;">
+                            <img src="../../image/index/star.png" alt="">
+                            <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                            <span>月售 6506</span>
+                            <span style="margin-left: auto;">距离: 2.0km</span>
+                        </div>
+                        <span class="lecturer overflow_hidden_one" style="width:100%;">中国上海市浦东新区浦建路769号浦东新区浦建</span>
+                        <div class="store_label">
+                            <div class="store_label_item">1对1课程</div>
+                            <div class="store_label_item">适合0-15岁</div>
+                            <div class="store_label_item">线下付尾款</div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="organ_item" tapmode @click="fnOpenPublicWin('机构详情','index/organ_detail')">
+                    <div class="organ_cover" style="margin-top:0.25rem;">
+                        <img src="../../image/index/Mask.png" alt="">
+                        <div class="store_label_icon"><img src="../../image/index/store_label_icon.png" alt=""></div>
+                    </div>
+                    <div class="organ_info">
+                        <div class="organ_title overflow_hidden_two">
+                            1北京市融安消防职业技能培训学校(北沙滩校区)
+                        </div>
+                        <div class="organ_time" style="margin-bottom:0;">
+                            <img src="../../image/index/star.png" alt="">
+                            <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                            <span>月售 6506</span>
+                            <span style="margin-left: auto;">距离: 2.0km</span>
+                        </div>
+                        <span class="lecturer overflow_hidden_one" style="width:100%;">中国上海市浦东新区浦建路769号浦东新区浦建</span>
+                        <div class="store_label">
+                            <div class="store_label_item">1对1课程</div>
+                            <div class="store_label_item">适合0-15岁</div>
+                            <div class="store_label_item">线下付尾款</div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="organ_item" tapmode @click="fnOpenPublicWin('机构详情','index/organ_detail')">
+                    <div class="organ_cover" style="margin-top:0.25rem;">
+                        <img src="../../image/index/Mask.png" alt="">
+                        <div class="store_label_icon"><img src="../../image/index/store_label_icon.png" alt=""></div>
+                    </div>
+                    <div class="organ_info">
+                        <div class="organ_title overflow_hidden_two">
+                            1北京市融安消防职业技能培训学校(北沙滩校区)
+                        </div>
+                        <div class="organ_time" style="margin-bottom:0;">
+                            <img src="../../image/index/star.png" alt="">
+                            <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                            <span>月售 6506</span>
+                            <span style="margin-left: auto;">距离: 2.0km</span>
+                        </div>
+                        <span class="lecturer overflow_hidden_one" style="width:100%;">中国上海市浦东新区浦建路769号浦东新区浦建</span>
+                        <div class="store_label">
+                            <div class="store_label_item">1对1课程</div>
+                            <div class="store_label_item">适合0-15岁</div>
+                            <div class="store_label_item">线下付尾款</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </block>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                tabIndex: 0,
+
+            },
+            methods: {
+
+                fnSetTabIndex: function(key) {
+                    this.tabIndex = key;
+                    //  fnLoginBtnStatus();
+                }
+            }
+        })
+    }
+    function fnOpenPersonHome() {
+        var param = {
+            name: 'personal_home',
+            url: '../mine/personal_home.html',
+        }
+        fnOpenWin(param)
+    }
+
+</script>
+
+</html>

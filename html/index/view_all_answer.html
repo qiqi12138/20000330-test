@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>全部回答</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/lession.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/reading.css" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+      <div class="lession_comment" style="margin-bottom:2.7rem;">
+          <div class="lession_comment_list">
+              <div class="lession_comment_item">
+                  <div class="lession_comment_item_avatar">
+                      <img src="../../image/index/lecturer.png" alt="">
+                  </div>
+                  <div class="lession_comment_item_info">
+                      <div class="lession_comment_item_info_title">
+                          <span>任秀兰</span>
+                          <span>2019.05.17</span>
+                      </div>
+                      <p>这个老师讲的特别好，帮助我解决了困扰我已久的问题，好开心~</p>
+                  </div>
+
+              </div>
+              <div class="lession_comment_item">
+                  <div class="lession_comment_item_avatar">
+                      <img src="../../image/index/lecturer.png" alt="">
+                  </div>
+                  <div class="lession_comment_item_info">
+                      <div class="lession_comment_item_info_title">
+                          <span>任秀兰</span>
+                          <span>1小时前</span>
+                      </div>
+                      <p>这个老师讲的特别好，帮助我解决了困扰我已久的问题，好开心~</p>
+                      <div class="question_imgs">
+                          <div class="question_imgs_item">
+                              <img src="../../image/index/youxuan.png" alt="">
+                          </div>
+                          <div class="question_imgs_item">
+                              <img src="../../image/index/youxuan.png" alt="">
+                          </div>
+                          <div class="question_imgs_item">
+                              <img src="../../image/index/youxuan.png" alt="">
+                          </div>
+                          <div class="question_imgs_item">
+                              <img src="../../image/index/youxuan.png" alt="">
+                          </div>
+                          <div class="question_imgs_item">
+                              <img src="../../image/index/youxuan.png" alt="">
+                          </div>
+                          <div class="question_imgs_item">
+                              <img src="../../image/index/youxuan.png" alt="">
+                          </div>
+                      </div>
+                      <div class="dy_reply">
+                          <div class="dy_reply_one"><span style="color:rgba(254,114,3,1);">小鱼鱼(作者)：</span>蚂蚁金服全新一代数据可视化解决方案， 致力于提供一套简单方便。
+                          </div>
+                          <div class="dy_reply_item" tapmode @click="fnOpenPublicWin('4 条回复','index/view_all_reply')">共4条回复<img src="../../image/index/reply_right_arrow.png" alt=""></div>
+                      </div>
+                  </div>
+              </div>
+              <div class="lession_comment_item">
+                  <div class="lession_comment_item_avatar">
+                      <img src="../../image/index/lecturer.png" alt="">
+                  </div>
+                  <div class="lession_comment_item_info">
+                      <div class="lession_comment_item_info_title">
+                          <span>任秀兰</span>
+                          <span>2019.05.17</span>
+                      </div>
+                      <p>这个老师讲的特别好，帮助我解决了困扰我已久的问题，好开心~</p>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+      <div class="answer_bot" tapmode @click="fnOpenPublicWin('写回答','index/answer_add')">
+            <span>写回答…</span>
+      </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    }
+
+</script>
+
+</html>

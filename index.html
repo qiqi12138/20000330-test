@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title></title>
+    <link href="./css/api.css" rel="stylesheet" type="text/css">
+    <link href="./css/aui.css" rel="stylesheet" type="text/css">
+    <link href="./css/base.css" rel="stylesheet" type="text/css">
+    <link href="./css/public_win.css" rel="stylesheet" type="text/css">
+    <link href="./css/public.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript" src="./script/api.js"></script>
+<script type="text/javascript" src="./script/vue.min.js"></script>
+<script type="text/javascript" src="./script/service/service-app.js"></script>
+<script type="text/javascript" src="./script/service/service-tool.js"></script>
+<script type="text/javascript" src="./script/service/service-guide.js"></script>
+<script type="text/javascript" src="./script/service/service-user.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    apiready = function() {
+        var resultList = api.hasPermission({
+            list: ['storage', 'notification']
+        });
+        if (!resultList[0].granted) {
+            api.requestPermission({
+                list: ['storage']
+            }, function(ret) {
+                if (!ret.list[0].granted && api.systemType != 'ios') {
+                    fnToast('您已禁止了应用的存储权限，会影响您的使用体验')
+                }
+                setTimeout(function() {
+                    if (!resultList[1].granted) {
+                        api.requestPermission({
+                            list: ['notification']
+                        }, function(ret) {
+                            if (!ret.list[0].granted && api.systemType != 'ios') {
+                                fnToast('您已禁止了应用进行推送，可能会错过重要通知')
+                            }
+                        });
+                    }
+                }, 1000)
+            });
+        } else {
+            setTimeout(function() {
+                if (!resultList[1].granted) {
+                    api.requestPermission({
+                        list: ['notification']
+                    }, function(ret) {
+                        if (!ret.list[0].granted && api.systemType != 'ios') {
+                            fnToast('您已禁止了应用进行推送，可能会错过重要通知')
+                        }
+                    });
+                }
+            }, 1000)
+        }
+        $S = SERVICE();
+        USER = USER();
+        localStorage.safeTop = api.safeArea.top; //获取顶部状态栏的高度
+        localStorage.safeBottom = api.safeArea.bottom; //获取底部栏的高度
+        api.setScreenOrientation({
+            orientation: 'portrait_up'
+        });
+        api.setPrefs({
+            key: 'safeTop',
+            value: api.safeArea.top
+        });
+        api.setPrefs({
+            key: 'safeBottom',
+            value: api.safeArea.bottom
+        });
+        api.setPrefs({
+            key: 'first_reboot',
+            value: '1'
+        });
+        fixStatusBarStyle(); //设置状态栏样式
+        fnInitPage(); //页面初始化
+    };
+    var tGuide;
+
+    function fnInitPage() {
+        // 检查程序是否第一次启动（引导页显示判断）
+        if (fnIsFirstLaunch()) {
+            //初始化引导页对象
+            tGuide = GUIDE(function() {
+                fnSetLaunchedStatus();
+                fnOpenMain();
+                setTimeout(function() {
+                    tGuide.Close();
+                }, 1000);
+                //第一次下载进入APP时引导用户登录
+                setTimeout(function() {
+                    fnOpenLogin();
+                }, "1500");
+            });
+            //显示引导页
+            tGuide.Show();
+        } else {
+            fnOpenMain();
+        }
+    }
+
+    function fnOpenMain() {
+        api.openTabLayout({
+            name: 'main',
+            url: 'widget://html/main.html',
+            slidBackEnabled: false,
+            tabBar: {
+                height:49,
+                scrollEnabled: false,
+                selectedColor: '#D92727',
+                fontWeight: '400'  ,
+                background: '#fff',
+                shadow: 'rgba(0,0,0,0.1)',
+                color: '#979EA6',
+                fontSize: 10,
+                preload:0,
+                textOffset:3,
+                list: [{
+                    text: '首页',
+                    iconPath: 'widget://image/tabs/tab11.png',
+                    selectedIconPath: 'widget://image/tabs/tab1_sel.png'
+                }, {
+                    text: '番茄园',
+                    iconPath: 'widget://image/tabs/tab22.png',
+                    selectedIconPath: 'widget://image/tabs/tab2_sel.png'
+                }, {
+                    text: '发布',
+                    iconPath: 'widget://image/tabs/tab33.png',
+                    selectedIconPath: 'widget://image/tabs/tab3_sel.png'
+                }, {
+                    text: '消息',
+                    iconPath: 'widget://image/tabs/tab4.png',
+                    selectedIconPath: 'widget://image/tabs/tab4_sel.png'
+                }, {
+                    text: '我的',
+                    iconPath: 'widget://image/tabs/tab5.png',
+                    selectedIconPath: 'widget://image/tabs/tab5_sel.png'
+                }],
+                frames: [{
+                    name: 'tab_index',
+                    url: 'widget://html/tabs/tab_index.html'
+                } ,{
+                    name: 'tab_fanqie',
+                    url: 'widget://html/tabs/tab_fanqie.html'
+                }
+                ,{
+                     name: 'tab_publish',
+                    url: 'widget://html/tabs/tab_publish.html'
+                }
+                ,{
+                    name: 'tab_message',
+                    url: 'widget://html/tabs/tab_message.html'
+                }
+                ,{
+                    name: 'tab_mine',
+                    url: 'widget://html/tabs/tab_mine.html'
+                }]
+            }
+        });
+        api.addEventListener({
+        name:'tabitembtn'
+    }, function(ret) {
+        console.log('点击了第'+(ret.index+1)+'项');
+        api.setTabBarAttr({
+            index: ret.index
+        });
+    });
+    }
+
+    function fnOpenLogin() {
+
+    }
+
+</script>
+
+</html>

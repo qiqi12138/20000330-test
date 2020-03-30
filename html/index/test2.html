@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>暂未开通</title>
+
+
+    <style>
+        .test_head {
+            padding: 1.2rem 0.75rem;
+            width: 95%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .test_head_left img {
+            width: 0.9rem;
+            height: 0.9rem;
+        }
+
+        .test_head_right img {
+            width: 1.6rem;
+            height: 1.6rem;
+        }
+
+        .take_photo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            bottom: 100px;
+            width: 4rem;
+            left: 41%;
+            height: 4rem;
+            background: rgba(255, 255, 255, 1);
+            opacity: 0.5;
+            border-radius: 100%;
+        }
+
+        .take_photo_item {
+            width: 2.93rem;
+            height: 2.93rem;
+            background: rgba(217, 39, 39, 1);
+            border-radius: 100%;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="test_head">
+            <div class="test_head_left">
+                <img src="../../image/index/close_icon.png" alt="" tapmode onclick="fnBack()">
+            </div>
+            <div class="test_head_right">
+                <img src="../../image/index/flip_icon.png" alt="" tapmode onclick="fnSetCamera()">
+            </div>
+        </div>
+        <div class="take_photo">
+            <div class="take_photo_item"> </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+
+       openNavTabWin();
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>收到的赞</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            background: rgba(246, 246, 246, 1);
+        }
+
+        .mine_lession_attr {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            height: 2.5rem;
+            padding: 0.75rem;
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(123, 130, 139, 1);
+            line-height: 0.85rem;
+        }
+
+        .mine_lession_order {
+            flex: 1;
+        }
+
+        .mine_lession_book {
+
+            width: 5.7rem;
+            height: 1.3rem;
+            margin-right: 0.75rem;
+            border-radius: 0.65rem;
+            border: 1px solid rgba(44, 53, 64, 1);
+            font-size: 0.7rem;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1.3rem;
+            text-align: center;
+
+        }
+
+        .mine_lession_evaluate {
+            width: 4.3rem;
+            height: 1.3rem;
+            margin-left: auto;
+            border-radius: 0.65rem;
+            border: 1px solid rgba(217, 39, 39, 1);
+            font-size: 0.7rem;
+            color: rgba(217, 39, 39, 1);
+            line-height: 1.3rem;
+            text-align: center;
+        }
+
+        .organ_list {
+            padding: 0 0;
+            background: #fff;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="tab-nav" id="tab">
+            <div class="tab-nav-item " :class="tabIndex=='0'?'nav-active':''" tapmode @click="fnSetTabIndex('0')">试听课</div>
+            <div class="tab-nav-item " :class="tabIndex=='1'?'nav-active':''" tapmode @click="fnSetTabIndex('1')">线下课</div>
+            <div class="tab-nav-item" :class="tabIndex=='2'?'nav-active':''" tapmode @click="fnSetTabIndex('2')">番茄课</div>
+        </div>
+        <div class="space"></div>
+        <block v-if="tabIndex=='0'">
+            <div class="organ_list" v-if="listData.length>0">
+                <div class="mine_lession_item" v-for="item in listData" tapmode @click="fnOpenPublicWin('课程详情','index/lession_detail',{articleId:item.id})">
+                    <div class="organ_item public_line" style="padding:0.75rem;">
+                        <div class="organ_cover" style="margin-top:0.25rem;">
+                            <img src="../../image/index/Mask.png" alt="">
+                        </div>
+                        <div class="organ_info aui-flex-box" style="border-bottom:none;">
+                            <div class="organ_title overflow_hidden_one" style="width:100%;">
+                               雅思词汇语法单项班雅思词汇语法单项提升课
+                            </div>
+                            <div class="organ_time" style="margin-bottom:0;">
+                                <img src="../../image/index/star.png" alt="">
+                                <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                                <span>月售 6506</span>
+
+                            </div>
+                            <h2>¥282 <span>¥666</span></h2>
+
+                        </div>
+                    </div>
+                    <div class="mine_lession_attr">
+                        <span class="mine_lession_order">已预约</span>
+                        <div class="mine_lession_book" tapmode @click="fnOpenPublicWin('试听信息','mine/mine_lession_audition')">
+                             查看预约信息
+                        </div>
+                        <div class="mine_lession_evaluate" tapmode @click="fnOpenPublicWin('评价','mine/mine_lession_evaluate')" v-if="item.id==1">
+                            去评价
+                        </div>
+                        <div class="mine_lession_evaluate" tapmode @click="fnOpenPublicWin('查看评价','mine/mine_lession_evaluate_view')" v-if="item.id==2">
+                            查看评价
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                </div>
+
+            </div>
+        </block>
+        <block v-if="tabIndex=='1'">
+          <div class="organ_list" v-if="listData.length>0">
+              <div class="mine_lession_item" v-for="item in listData" tapmode @click="fnOpenPublicWin('课程详情','index/store_lession_detail',{articleId:item.id})">
+                  <div class="organ_item public_line" style="padding:0.75rem;">
+                    <div class="organ_cover" style="margin-top:0.25rem;">
+                          <img src="../../image/index/Mask.png" alt="">
+                      </div>
+                      <div class="organ_info aui-flex-box" style="border-bottom:none;">
+                          <div class="organ_title overflow_hidden_one" style="width:100%;">
+                              雅思词汇语法单项班雅思词汇语法单项提升课
+                          </div>
+                          <div class="organ_time" style="margin-bottom:0;">
+                              <img src="../../image/index/star.png" alt="">
+                              <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                              <span>月售 6506</span>
+
+                          </div>
+                          <h2>¥282 <span>¥666</span></h2>
+                      </div>
+                  </div>
+                  <div class="mine_lession_attr">
+                      <span class="mine_lession_order">已预约</span>
+
+                      <div class="mine_lession_evaluate" tapmode @click="fnOpenPublicWin('评价','mine/mine_lession_evaluate')" v-if="item.id==1">
+                          去评价
+                      </div>
+                      <div class="mine_lession_evaluate" tapmode @click="fnOpenPublicWin('查看评价','mine/mine_lession_evaluate_view')" v-if="item.id==2">
+                          查看评价
+                      </div>
+                  </div>
+                  <div class="space"></div>
+              </div>
+
+          </div>
+        </block>
+        <block v-if="tabIndex=='2'">
+          <div class="organ_list" v-if="listData.length>0">
+              <div class="mine_lession_item" v-for="item in listData" tapmode @click="fnOpenPublicWin('课程详情','index/fanqie_lession_detail',{articleId:item.id})">
+                  <div class="organ_item public_line" style="padding:0.75rem;">
+                      <div class="organ_cover" style="margin-top:0.25rem;">
+                          <img src="../../image/index/Mask.png" alt="">
+                      </div>
+                      <div class="organ_info aui-flex-box" style="border-bottom:none;">
+                          <div class="organ_title overflow_hidden_one" style="width:100%;">
+                              雅思词汇语法单项班雅思词汇语法单项提升课
+                          </div>
+                          <div class="organ_time" style="margin-bottom:0;">
+                              <img src="../../image/index/star.png" alt="">
+                              <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                              <span>月售 6506</span>
+
+                          </div>
+                          <h2>¥282 <span>¥666</span></h2>
+                      </div>
+                  </div>
+                  <div class="mine_lession_attr">
+                      <span class="mine_lession_order">已购买&学习中</span>
+
+                      <div class="mine_lession_evaluate" tapmode @click="fnOpenPublicWin('评价','mine/mine_lession_evaluate')" v-if="item.id==1">
+                          去评价
+                      </div>
+                      <div class="mine_lession_evaluate" tapmode @click="fnOpenPublicWin('查看评价','mine/mine_lession_evaluate_view')" v-if="item.id==2">
+                          查看评价
+                      </div>
+                  </div>
+                  <div class="space"></div>
+              </div>
+
+          </div>
+        </block>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                tabIndex: 0,
+                listData: [{
+                    id: "1"
+                }, {
+                    id: "2"
+                }]
+            },
+            methods: {
+
+                fnSetTabIndex: function(key) {
+                    this.tabIndex = key;
+                    //  fnLoginBtnStatus();
+                }
+            }
+        })
+    }
+</script>
+
+</html>

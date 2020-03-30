@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>我的钱包</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            background: rgba(246, 246, 246, 1);
+        }
+        .wallet {
+            width: 100%;
+            height: 6.95rem;
+            background: #fff;
+            padding: 0.75rem;
+        }
+        .wallet_head {
+
+            height: 5.45rem;
+            background: url(../../image/mine/wallet_bg.png) no-repeat;
+            /*background: linear-gradient(134deg, rgba(255, 218, 49, 1) 30%, rgba(254, 114, 3, 1) 100%, rgba(254, 114, 3, 1) 100%);*/
+            background-size:  cover;
+            border-radius: 0.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: .6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            line-height: 0.85rem;
+        }
+
+        .wallet_head_item {
+            width: 50%;
+            height: 2.5rem;
+            text-align: center;
+        }
+
+        .wallet_head_item_info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wallet_head_item_info img {
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+
+        .wallet_head_item_prince {
+            font-size: 1.28rem;
+            font-family: Oswald-Medium, Oswald;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            line-height: 1.92rem;
+        }
+
+        .wallet_head_item_prince span {
+            font-size: 0.6rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+      <div class="wallet">
+        <div class="wallet_head">
+            <div class="wallet_head_item"  tapmode @click="fnOpenPublicWin('充值列表','index/recharge')">
+                <div class="wallet_head_item_info">
+                    番茄币充值 <img src="../../image/mine/white_arrow.png" alt="">
+                </div>
+                <div class="wallet_head_item_prince">
+                    200.00<span>个</span>
+                </div>
+            </div>
+            <div class="wallet_head_item"  tapmode @click="fnOpenPublicWin('提现','mine/cash_out')">
+                <div class="wallet_head_item_info">
+                    收益余额提现 <img src="../../image/mine/white_arrow.png" alt="">
+                </div>
+                <div class="wallet_head_item_prince">
+                    200.00<span>元</span>
+                </div>
+            </div>
+
+        </div>
+      </div>
+
+        <div class="space"></div>
+        <div class="public_info_list">
+            <div class="public_info_item public_line" tapmode @click="fnOpenPublicWin('消费记录','mine/consume_list')">
+                <span class="public_info_item_title">消费记录</span>
+                <img class="public_info_item_img" src="../../image/index/go_page.png" alt="">
+            </div>
+            <div class="public_info_item public_line" tapmode @click="fnOpenPublicWin('我的账单','mine/mine_bill')">
+                <span class="public_info_item_title">我的账单</span>
+                <img class="public_info_item_img" src="../../image/index/go_page.png" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    }
+</script>
+
+</html>

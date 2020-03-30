@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>修改手机号</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/login.css" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            background: rgba(246, 246, 246, 1);
+        }
+
+        .mobile_phone_tips {
+            font-size: 0.65rem;
+            color: rgba(153, 153, 153, 1);
+            line-height: 0.9rem;
+            padding: 0.75rem;
+        }
+
+        .public_info_list .public_info_item .verify_code_btn {
+            font-size: 0.7rem;
+            color: rgba(25, 149, 248, 1);
+            line-height: 1rem;
+        }
+
+        .public_info_list .public_info_item .verify_code_btn.disable {
+            color: #999;
+        }
+
+        .login_btn {
+            margin: 0 0.75rem;
+            margin-top: 1.5rem;
+            width: auto;
+        }
+
+        .public_info_list .public_info_item.public_line:after {
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="mobile_phone_tips">验证新手机号</div>
+        <div class="public_info_list" id="new_mobile_phone">
+            <div class="public_info_item public_line" id="tel_login">
+                <input spellcheck="false" class="public_info_item_input" type="tel" v-model="telephone" maxlength="11" data-type="_telphone" data-verify="true" data-null="true" data-regular="true" name="手机号" placeholder="请输入手机号">
+            </div>
+            <div class="public_info_item">
+                <input spellcheck="false" class="public_info_item_input" type="tel" oninput="value=value.replace(/[^\d0-9]/g,'')" v-model="verify_code" maxlength="6" data-type="_code" data-verify="true" data-null="true" data-regular="true" name="验证码" placeholder="请输入验证码">
+                <span :class="isSendCode?'verify_code_btn':'verify_code_btn disable'" tapmode @click="isSendCode?fnGetCode():''">{{sendBtnText}}</span></p>
+            </div>
+        </div>
+        <div :class="isAvailable?'login_btn':'login_btn not_click'" tapmode @click="isAvailable?fnVerifyPhone():''">完成</div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-font.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var $S, USER;
+    var vm;
+    apiready = function() {
+        $S = SERVICE();
+        USER = USER();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                telephone: "",
+                verify_code: "",
+                isAvailable: false, //登录按钮是否可用
+                sendBtnText: "获取验证码",
+                isSendCode: true
+            },
+            methods: {
+                fnGetCode: function() {
+                    fnGetVerifyCode()
+                },
+                fnSetTel: function(tel) {
+                    var reg = /^(\d{3})\d{4}(\d{4})$/;
+                    return tel.replace(reg, "$1****$2");
+                }
+            },
+            watch: { //监听手机号和密码的值，来判断开启和关闭登录按钮的点击状态
+                verify_code: function() {
+                    fnLoginBtnStatus(this);
+                },
+                telephone: function() {
+                    fnLoginBtnStatus(this);
+                }
+            }
+        })
+    }
+
+    //修改登录按钮的启用状态
+    function fnLoginBtnStatus(el) {
+        if (!isEmpty(vm.telephone) && !isEmpty(vm.verify_code)) {
+            vm.isAvailable = true;
+        } else {
+            vm.isAvailable = false;
+        }
+    }
+    //获取验证码
+    function fnGetVerifyCode() {
+        if (fnVerify("tel_login")) {
+            $S.ShowProgress();
+            var postData = {
+                phone: vm.telephone,
+                loginType: "8" //1注册 2修改密码 3忘记密码 4校验原手机号 5微信绑定手机号 6QQ 7微博 8更换新手机号 9快捷登录
+            }
+            $S.POST("verifyCode/sendCode", postData, function(ret, err) {
+                if (ret && ret.status == '200') {
+                    vm.isSendCode = false;
+                    fnVerifyTime('60', vm);
+                }
+                $S.CloseProgress();
+            })
+        }
+    }
+    //登录
+    function fnVerifyPhone() {
+        if (fnVerify("new_mobile_phone")) {
+            $S.ShowProgress();
+            var postData = {
+                "phone": vm.telephone,
+                "code": vm.verify_code,
+            };
+            $S.POST("apiTbAppUser/updateBindingMobile", postData, function(ret, err) {
+                if (ret && ret.status == '200') {
+                    fnToast("更换手机号成功");
+                    api.execScript({
+                        name: 'mine',
+                        script: 'fnInitPage();'
+                    });
+                    api.execScript({
+                        name: 'mine/setting_win',
+                        frameName: 'mine/setting',
+                        script: 'fnSetPhone("' + vm.telephone + '");'
+                    });
+                    api.closeToWin({
+                        name: 'mine/setting_win'
+                    });
+                }
+                $S.CloseProgress();
+            })
+        }
+    }
+</script>
+
+</html>

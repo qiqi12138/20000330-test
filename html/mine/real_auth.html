@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>认证</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/login.css" />
+    <style>
+        .crew_auth_tips {
+            font-size: 0.65rem;
+            color: rgba(153, 153, 153, 1);
+            line-height: 0.9rem;
+            padding: 0.75rem;
+        }
+
+        .public_info_list .public_info_item .verify_code_btn {
+            font-size: 0.7rem;
+            color: rgba(25, 149, 248, 1);
+            line-height: 1rem;
+        }
+
+        .public_info_list .public_info_item .verify_code_btn.disable {
+            color: #999;
+        }
+
+        .crew_auth_detail .login_btn {
+            margin: 0 0.75rem;
+            margin-top: 1.5rem;
+            width: auto;
+        }
+
+        .crew_auth_result {
+            padding: 1.8rem 0.75rem;
+            text-align: center;
+        }
+
+        .crew_auth_result .crew_auth_result_img {
+            width: 10rem;
+            height: auto;
+            margin: 0 auto;
+            margin-bottom: 1rem;
+        }
+
+        .crew_auth_result .crew_auth_result_text {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(51, 51, 51, 1);
+            line-height: 1.25rem;
+        }
+
+        .crew_auth_result .crew_auth_result_tips {
+            font-size: 0.7rem;
+            color: rgba(153, 153, 153, 1);
+            line-height: 1rem;
+            padding-top: 0.25rem;
+        }
+
+        .crew_auth_result .login_btn {
+            margin-top: 1.25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="crew_auth_detail" v-if="authStatus=='0'">
+            <div class="crew_auth_tips">验证手机号</div>
+            <div class="public_info_list" id="crew_auth">
+                <div class="public_info_item public_line" id="tel_login">
+                    <input spellcheck="false" class="public_info_item_input" type="tel" v-model="telephone" maxlength="11" data-type="_telphone" data-verify="true" data-null="true" data-regular="true" name="手机号" placeholder="请输入手机号">
+                </div>
+                <div class="public_info_item public_line">
+                    <input spellcheck="false" class="public_info_item_input" type="tel" oninput="value=value.replace(/[^\d0-9]/g,'')" v-model="verify_code" maxlength="6" data-type="_code" data-verify="true" data-null="true" data-regular="true" name="验证码" placeholder="请输入验证码">
+                    <span :class="isSendCode?'verify_code_btn':'verify_code_btn disable'" tapmode @click="isSendCode?fnGetCode():''">{{sendBtnText}}</span></p>
+                </div>
+                <div class="public_info_item">
+                    <input spellcheck="false" type="text" v-model="card" maxlength="18" data-type="_card" data-verify="true" data-null="true" data-regular="true" name="身份证号" placeholder="请输入本人身份证号" oninput="value=value.replace(/[^\dxX0-9]/g,'')">
+                </div>
+            </div>
+            <div :class="isAvailable?'login_btn':'login_btn not_click'" tapmode @click="isAvailable?fnCrewAuth():''">认证</div>
+        </div>
+        <div class="crew_auth_result" v-else>
+            <img class="crew_auth_result_img" :src="authStatus=='1'?'../../image/mine/auth_success.png':'../../image/mine/auth_fail.png'" alt="">
+            <div class="crew_auth_result_text" v-text="authStatus=='1'?'认证通过！':'认证失败！'"></div>
+            <div class="crew_auth_result_tips" v-text="authStatus=='1'?'中远海运企业认证船员':'系统中未检测到相关人员信息，请确认后重试'"></div>
+            <div class="login_btn" tapmode @click="authStatus=='1'?fnBack():fnSetAuthStatus('0')" v-text="authStatus=='1'?'认证成功':'重新认证'"></div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var $S, USER;
+    var vm;
+    apiready = function() {
+        $S = SERVICE();
+        USER = USER();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                telephone: "",
+                verify_code: "",
+                card: "",
+                isAvailable: false, //登录按钮是否可用
+                sendBtnText: "获取验证码",
+                isSendCode: true,
+                authStatus: "0" //0未认证1已认证2认证失败
+            },
+            methods: {
+                fnGetCode: function() {
+                    fnGetVerifyCode()
+                },
+                fnSetTel: function(tel) {
+                    var reg = /^(\d{3})\d{4}(\d{4})$/;
+                    return tel.replace(reg, "$1****$2");
+                },
+                fnSetAuthStatus: function(key) {
+                    this.authStatus = key;
+                }
+            },
+            watch: { //监听手机号和密码的值，来判断开启和关闭登录按钮的点击状态
+                verify_code: function() {
+                    fnLoginBtnStatus();
+                },
+                telephone: function() {
+                    fnLoginBtnStatus();
+                },
+                card: function() {
+                    fnLoginBtnStatus();
+                }
+            }
+        })
+    }
+
+    //修改登录按钮的启用状态
+    function fnLoginBtnStatus() {
+        if (!isEmpty(vm.telephone) && !isEmpty(vm.verify_code) && !isEmpty(vm.card)) {
+            vm.isAvailable = true;
+        } else {
+            vm.isAvailable = false;
+        }
+    }
+    //获取验证码
+    function fnGetVerifyCode() {
+        if (fnVerify("tel_login")) {
+            $S.ShowProgress();
+            // var postData = {
+            //     phone: vm.telephone,
+            //     loginType: "9" //1注册 2修改密码 3忘记密码 4校验原手机号 5微信绑定手机号 6QQ 7微博 8更换新手机号 9快捷登录
+            // }
+            // $S.POST("verifyCode/sendCode", postData, function(ret, err) {
+            //     if (ret && ret.status == '200') {
+            //         vm.isSendCode = false;
+            //         fnVerifyTime('60', vm);
+            //     }
+            //     $S.CloseProgress();
+            // })
+        }
+    }
+    //登录
+    function fnCrewAuth() {
+        if (fnVerify("crew_auth")) {
+            // $S.ShowProgress();
+            // var postData = {
+            //     "phone": vm.telephone,
+            //     "code": vm.verify_code,
+            // };
+            // $S.POST("apiTbAppUser/updateBindingMobile", postData, function(ret, err) {
+            //     if (ret && ret.status == '200') {
+            vm.fnSetAuthStatus('1');
+            api.execScript({
+                name: 'main',
+                frameName: 'tab_mine',
+                script: 'fnInitPage();'
+            });
+            //     }
+            //     $S.CloseProgress();
+            // })
+        }
+    }
+
+    function fnBack() {
+        fnDelayCloseWin();
+    }
+</script>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>消息</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/message.css" />
+
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <header style="background: #fff;">
+            <div class="public_header public_line">
+                <div class="public_header_text">消息</div>
+            </div>
+        </header>
+        <div class="message_head">
+            <div class="message_head_item" tapmode @click="fnOpenPublicWin('收到的收藏','message/collection_list')">
+                <img src="../../image/message/collection_icon.png" alt="">
+                <span>收藏</span>
+            </div>
+            <div class="message_head_item" tapmode @click="fnOpenPublicWin('收到的关注','message/follow_list')">
+                <img src="../../image/message/follow_icon.png" alt="">
+                <span>收到的关注</span>
+            </div>
+            <div class="message_head_item" tapmode @click="fnOpenPublicWin('评论','message/comment_list')">
+                <img src="../../image/message/comment_icon.png" alt="">
+                <span>评论</span>
+            </div>
+            <div class="message_head_item" tapmode @click="fnOpenPublicWin('收到的赞','message/praise_list')">
+                <img src="../../image/message/praised_icon.png" alt="">
+                <span>获赞</span>
+            </div>
+
+        </div>
+        <div class="space"></div>
+        <div class="message">
+            <div class="message_item" tapmode @click="fnOpenPublicWin('通知消息','message/message_list',{'messageType':'1'})">
+                <div class="message_icon">
+                    <img src="../../image/message/notice_icon.png" alt="">
+                    <span class="message_icon_red">1</span>
+                </div>
+                <span class="message_item_text ">通知消息</span>
+                <div class="message_time ">
+                    10:54
+                </div>
+            </div>
+            <div class="message_item" tapmode @click="fnOpenPublicWin('我的好友','message/contact_list')">
+                <div class="message_icon">
+                    <img src="../../image/message/friend_icon.png" alt="">
+                    <span class="message_icon_red">1</span>
+                </div>
+                <span class="message_item_text overflow_hidden_one">我的好友</span>
+            </div>
+            <div class="message_item" tapmode @click="fnOpenChat()">
+                <div class="message_icon_avatar">
+                    <img src="../../image/index/lecturer.png" alt="">
+                </div>
+                <div class="message_info message_item_text">
+                    <span class="overflow_hidden_one">杨超</span>
+                    <p class="overflow_hidden_one"> 聊天的最后一句，超过一行使用... </p>
+                </div>
+                <div class="message_time ">
+                    下午3:17
+                </div>
+            </div>
+            <div class="message_item" tapmode @click="fnOpenChat2()">
+                <div class="message_icon_avatar">
+                    <img src="../../image/index/lecturer.png" alt="">
+                </div>
+                <div class="message_info message_item_text">
+                   <div class="message_item_text_flex">
+                       <span class="overflow_hidden_one">杨超</span> <img src="../../image/index/official_icon.png" alt="">
+                   </div>
+
+                    <p class="overflow_hidden_one"> 聊天的最后一句，超过一行使用... </p>
+                </div>
+                <div class="message_time ">
+                    下午3:17
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    }
+    function fnOpenChat(){
+      var param = {
+          name: 'chat',
+          url: '../message/chat.html',
+      }
+      fnOpenWin(param)
+    }
+    function fnOpenChat2(){
+      var param = {
+          name: 'customer_chat',
+          url: '../message/customer_chat.html',
+      }
+      fnOpenWin(param)
+    }
+
+</script>
+
+</html>

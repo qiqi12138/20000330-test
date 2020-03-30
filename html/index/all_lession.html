@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <script src="https://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/store.css" />
+
+    <title>列表切换</title>
+    <style>
+        html,
+        body {
+            background: rgba(246, 246, 246, 1);
+        }
+
+        .flex-box {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+        .container {
+            margin: 0 auto;
+            background-size: 100% 100%;
+        }
+        /*滚动条垂直方向的宽度*/
+
+         ::-webkit-scrollbar {
+            width: 2px;
+        }
+        /* 垂直滚动条的滑动块 */
+
+         ::-webkit-scrollbar-thumb:vertical {
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+            background-color: rgba(129, 129, 129, 0.5);
+        }
+
+        .list-class-box {
+            position: relative;
+            z-index: 9;
+        }
+
+        .list-class-1 {
+            height: 2rem;
+        }
+
+        .list-class-1 h2 {
+            font-size: 0.75rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(151, 158, 166, 1);
+            line-height: 1rem;
+        }
+
+        .list-class-1>li {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            min-width: 0;
+            text-align: center;
+        }
+
+        #list-text-2 {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            z-index: 9;
+            font-size: 0.75rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        #list-text-2 ul {
+            width: 50%;
+            height: 22rem;
+            overflow: auto;
+        }
+
+        #list-text-2 ul li {
+            text-align: center;
+            padding: 0.9rem;
+        }
+
+        #list-text-2 .text-1 {
+            background-color: white;
+        }
+
+        #list-text-2 .text-2 {
+            background-color: #F6F6F6;
+            padding-left: 1rem;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        #list-text-2 .text-2 li {}
+
+        .list-class-1>li>i {
+            color: #ccc;
+            margin-left: 0.5rem;
+        }
+
+        .cata_on {
+            color: rgba(217, 39, 39, 1) !important;
+        }
+
+        .oneclass {
+            color: rgba(217, 39, 39, 1) !important;
+        }
+
+        .twoclass {
+            color: rgba(217, 39, 39, 1) !important;
+        }
+
+        .widthclass {
+            width: 100% !important;
+            background-color: white !important;
+        }
+
+        #text-mask {
+            display: none;
+        }
+
+        .cata_screen {
+            padding: 0 1.2rem;
+            padding-top: 0.45rem;
+            width: 100%;
+            background: #fff;
+        }
+
+        .perfect_info_list {
+            background: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .perfect_info_item {
+            width: 33%;
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .perfect_info_item span {
+            width: 4.7rem;
+            height: 1.65rem;
+            background: rgba(253, 244, 244, 1);
+            border-radius: 0.2rem;
+            border: 1px solid rgba(217, 39, 39, 1);
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(217, 39, 39, 1);
+            line-height: 1.65rem;
+            letter-spacing: 1px;
+        }
+
+        .perfect_info_item .not_check {
+            background: rgba(244, 244, 244, 1);
+            color: rgba(51, 51, 51, 1);
+            border-style: none;
+        }
+
+        .label_title {
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(119, 119, 119, 1);
+            line-height: 0.85rem;
+            letter-spacing: 1px;
+            text-align: left;
+            padding: 0.75rem 0;
+        }
+
+        .lession_bot {
+            position: absolute;
+            bottom: 0;
+            height: 3.05rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+        }
+
+        .resetBtn {
+            width: 6.05rem;
+            height: 2rem;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 0.2rem;
+            border: 1px solid rgba(95, 112, 133, 1);
+            text-align: center;
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(95, 112, 133, 1);
+            line-height: 2rem;
+            margin-right: 0.75rem;
+        }
+
+        .confirmBtn {
+            width: 10.45rem;
+            height: 2rem;
+            background: rgba(217, 39, 39, 1);
+            border-radius: 0.2rem;
+            text-align: center;
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            line-height: 2rem;
+        }
+
+        .space_one {
+            height: 2.15rem;
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 0.75rem;
+            background: rgba(246, 246, 246, 1);
+        }
+
+        .space_label {
+            display: flex;
+        }
+
+        .space_label_item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.1rem 0.4rem;
+            height: 0.95rem;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 1px;
+            border: 1px solid rgba(217, 39, 39, 1);
+            margin-right: 0.75rem;
+        }
+
+        .space_label_item img {
+            width: 0.55rem;
+            height: 0.55rem;
+            object-fit: cover;
+            margin-left: 0.15rem;
+        }
+
+        .space_label_item span {
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(217, 39, 39, 1);
+            line-height: 0.95rem;
+        }
+
+        .reset_one {
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: 0.85rem;
+            margin-left: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="public_header" style="border-bottom: 1px solid #EDEDF0;background:#fff;">
+            <div class="public_header_search">
+                <img src="../../image/index/index_search.png" alt="">
+                <form id="search_from" target="nm_iframe">
+                    <input spellcheck="false" type="search" id="goToSearch" name="" v-model="searchVal" placeholder="请输入关键字" maxlength="15">
+                </form>
+                <iframe name="nm_iframe" style="display:none;"></iframe>
+                <img v-if="searchVal!=''" style="width:0.8rem;height:0.8rem;margin-left:auto;margin-right:0.75rem;" src="../../image/index/clear_val.png" alt="" tapmode @click="fnClearVal()">
+            </div>
+
+        </div>
+        <!--遮罩层-->
+        <div class="mask" id="text-mask"></div>
+        <div class="container" style="background:#fff;">
+            <!--分类-->
+            <div class="list-class-box" id="list-class-box">
+                <template>
+                <ul class="list-class-1 flex-box">
+                    <li v-for="cata in catalog">
+                        <h2  v-on:click="exchange(cata)" :class="cata.cond?'cata_on':''">{{cata.name}}
+                            <block v-if="cata.id==3" >
+                              <span  v-if="!cata.cond"  >
+                                  <i class="icon iconfont icon-xingzhuang" aria-hidden="true"></i>
+                              </span>
+                              <span v-else>
+                                   <i class="icon iconfont icon-xingzhuang" aria-hidden="true"></i>
+                              </span>
+                            </block>
+                            <block v-else>
+                            <span  v-if="!cata.cond"  >
+                                <i class="icon iconfont icon-arrLeft-fill" aria-hidden="true"></i>
+                            </span>
+                            <span v-else>
+                                 <i class="icon iconfont icon-triangle-down" aria-hidden="true"></i>
+                            </span>
+                              </block>
+                        </h2>
+                        <div v-if="cata.cond">
+                            <div id="list-text-2" class="flex-box">
+                                    <ul class="text-1" v-if="cata.levels==2">
+                                        <li v-for="one in cata.ones" >
+                                            <div v-if="!one.cond">
+                                                <h3 v-on:click="choice(one,cata.ones)">{{one.name}}</h3>
+                                            </div>
+                                            <div v-else>
+                                                <h3 class="oneclass"><i  class="icon iconfonts icon-shuxian"></i>{{one.name}}</h3>
+                                            </div>
+                                            <div v-if="one.cond">
+                                                <ul class="text-2">
+                                                    <li v-for="two in one.twos" v-on:click="determine(cata,two,one.twos)" v-bind:class="{ twoclass:two.cond}"><i v-if="two.cond" class="icon iconfonts icon-shuxian"></i>{{two.name}}</li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <ul class="text-1 widthclass" v-else-if="cata.levels==0" >
+                                      <div class="cata_screen"><div class="label_title">标签类别</div>
+                                        <div class="perfect_info_list public_line">
+                                            <div class="perfect_info_item">
+                                                <span>试听</span>
+                                            </div>
+                                            <div class="perfect_info_item">
+                                                <span class="not_check">满减</span>
+                                            </div>
+                                            <div class="perfect_info_item">
+                                                <span class="not_check">试听</span>
+                                            </div>
+                                            <div class="perfect_info_item">
+                                                <span class="not_check">满减</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="label_title">优惠</div>
+                                          <div class="perfect_info_list">
+                                              <div class="perfect_info_item">
+                                                  <span>试听</span>
+                                              </div>
+                                              <div class="perfect_info_item">
+                                                  <span class="not_check">满减</span>
+                                              </div>
+                                              <div class="perfect_info_item">
+                                                  <span class="not_check">试听</span>
+                                              </div>
+                                              <div class="perfect_info_item">
+                                                  <span class="not_check">满减</span>
+                                              </div>
+
+                                          </div>
+                                          <div class="lession_bot">
+                                            <span class="resetBtn">重置</span><span class="confirmBtn" tapmode @click="fnSetTabIndex()">确定</span>
+                                          </div>
+                                      </div>
+                                    </ul>
+                                    <ul v-else class="text-1" v-bind:class="{ widthclass:cata.levels==1}">
+                                        <li v-for="one in cata.ones"  v-bind:class="{ twoclass:one.cond}">
+                                            <h3 v-on:click="list(cata,one)"><i v-if="one.cond" class="icon iconfonts icon-shuxian"></i>{{one.name}}</h3>
+                                        </li>
+                                    </ul>
+                            </div>
+                        </div>
+
+                    </li>
+
+                </ul>
+            </template>
+
+            </div>
+            <div class="space" v-if="!tabIndex"></div>
+            <div class="space_one"  v-if="tabIndex">
+                <div class="space_label">
+                    <div class="space_label_item">
+                        <span>1对1教学</span> <img src="../../image/index/red_close_icon.png" alt="">
+                    </div>
+                    <div class="space_label_item">
+                        <span>适合0-15岁</span> <img src="../../image/index/red_close_icon.png" alt="">
+                    </div>
+                </div>
+                <div class="reset_one">
+                    重制
+                </div>
+            </div>
+            <div class="organ_list" v-if="listData.length>0">
+                <div class="organ_item" v-for="item in listData" tapmode @click="fnOpenPublicWin('课程详情','index/lession_detail',{articleId:item.id})">
+                    <div class="organ_cover" style="margin-top:0.25rem;">
+                        <img src="../../image/index/Mask.png" alt="">
+                    </div>
+                    <div class="organ_info aui-flex-box">
+                        <div class="organ_title overflow_hidden_two">
+                            雅思词汇语法单项班雅思词汇语法单项提升课
+                        </div>
+                        <div class="organ_time" style="margin-bottom:0;">
+                            <img src="../../image/index/star.png" alt="">
+                            <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                            <span>月售 6506</span>
+                            <span style="margin-left: auto;">距离: 2.0km</span>
+                        </div>
+                        <h2>¥282 <span style="font-family:PingFangSC-Regular,PingFang SC;">¥666</span></h2>
+                        <span class="lecturer overflow_hidden_one " style="width:100%;">北京市融安消防职业技能培训学校(北沙滩校区)</span>
+                        <div class="store_label">
+                            <div class="store_label_item">1对1课程</div>
+                            <div class="store_label_item">适合0-15岁</div>
+                            <div class="store_label_item">线下付尾款</div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/vue.min.js"></script>
+    <script type="text/javascript" src="../../script/service/service-app.js"></script>
+    <script type="text/javascript" src="../../script/service/service-tool.js"></script>
+    <script type="text/javascript" src="../../script/service/service-user.js"></script>
+    <script type="text/javascript" src="../../script/service/service-login.js"></script>
+    <script type="text/javascript" src="../../script/service/service-verify.js"></script>
+    <script>
+        var USER;
+        var $S;
+        var vm;
+        apiready = function() {
+            USER = USER();
+            $S = SERVICE();
+            fnInit();
+
+        }
+
+        function fnInit() {
+            vm = new Vue({
+                el: ".vueApp",
+                data: {
+                    searchVal: api.pageParam.searchVal || '',
+                    isSerach: api.pageParam.isSerach || '0',
+                    tabIndex:!1,
+                    listData: [{
+                        id: "1"
+                    }, {
+                        id: "2"
+                    }],
+                    catalog: [{
+                        id: 0,
+                        levels: 2,
+                        name: "附近",
+                        aclass: "fa fa-caret-down",
+                        cond: false,
+                        ones: [{
+                            id: 0,
+                            name: "不限",
+                            cond: true,
+                            twos: []
+
+
+
+
+                        }, {
+                            id: 0,
+                            name: "附近",
+                            cond: false,
+                            twos: [{
+                                id: 0,
+                                name: "智能",
+                                cond: true
+                            }, {
+                                id: 0,
+                                name: "1km",
+                                cond: false
+                            }, {
+                                id: 0,
+                                name: "2km",
+                                cond: false
+                            }, {
+                                id: 0,
+                                name: "3km",
+                                cond: false
+                            }, {
+                                id: 0,
+                                name: "4km",
+                                cond: false
+                            }]
+                        }, {
+                            id: 0,
+                            name: "热门位置",
+                            cond: false,
+                            twos: [{
+                                id: 0,
+                                name: "位置-1",
+                                cond: false
+                            }, {
+                                id: 0,
+                                name: "位置-2",
+                                cond: false
+                            }]
+                        }, {
+                            id: 0,
+                            name: "区域",
+                            cond: false,
+                            twos: [{
+                                id: 0,
+                                name: "区域-1",
+                                cond: false
+                            }]
+                        }, {
+                            id: 0,
+                            name: "地铁",
+                            cond: false,
+                            twos: [{
+                                id: 0,
+                                name: "地铁-1",
+                                cond: false
+                            }]
+                        }, ]
+
+                    }, {
+                        id: 1,
+                        levels: 1,
+                        name: "全部",
+                        aclass: "icon iconfont icon-xing",
+                        cond: false,
+                        ones: [{
+                            id: 0,
+                            name: "全部",
+                            cond: true
+                        }, {
+                            id: 0,
+                            name: "线下英语",
+                            cond: false
+                        }, {
+                            id: 0,
+                            name: "线上英语",
+                            cond: false
+                        }]
+
+                    }, {
+                        id: 2,
+                        levels: 1,
+                        name: "智能排序",
+                        aclass: "fa fa-caret-down",
+                        cond: false,
+                        ones: [{
+                            id: 0,
+                            name: "智能排序",
+                            cond: true
+                        }, {
+                            id: 0,
+                            name: "销量优先",
+                            cond: false
+                        }, {
+                            id: 0,
+                            name: "好评优先",
+                            cond: false
+                        }, {
+                            id: 0,
+                            name: "低价优先",
+                            cond: false
+                        }, {
+                            id: 0,
+                            name: "高价优先",
+                            cond: false
+                        }]
+
+                    }, {
+                        id: 3,
+                        levels: 0,
+                        name: "筛选",
+                        aclass: "icon iconfont icon-xingzhuang",
+                        cond: false,
+                        ones: [{
+                            id: 0,
+                            name: "全部活动",
+                            cond: true
+                        }, {
+                            id: 0,
+                            name: "1",
+                            cond: false
+                        }, {
+                            id: 0,
+                            name: "2",
+                            cond: false
+                        }, {
+                            id: 0,
+                            name: "3",
+                            cond: false
+                        }, ]
+
+                    }, ]
+                },
+                methods: {
+                  fnSetTabIndex: function() {
+                      this.tabIndex = !this.tabIndex;
+                      //  fnLoginBtnStatus();
+                  },
+                    exchange: function(text) {
+                        //                    console.log(this.catalog);
+                        if (text.cond) {
+                            text.cond = false;
+                            $("#text-mask").hide();
+                        } else {
+                            for (var i = 0; i < this.catalog.length; i++) {
+                                this.catalog[i].cond = false;
+                            }
+                            text.cond = true;
+                            $("#text-mask").show();
+                        }
+                    },
+                    choice: function(text, texts) {
+                        if (text.cond) {
+                            text.cond = false
+                        } else {
+                            for (var i = 0; i < texts.length; i++) {
+                                texts[i].cond = false
+                            }
+                            text.cond = true;
+                        }
+                    },
+                    list: function(text, ztext) {
+                        text.name = ztext.name;
+                        for (var i = 0; i < text.ones.length; i++) {
+                            text.ones[i].cond = false;
+                        }
+                        ztext.cond = true;
+                        for (var i = 0; i < this.catalog.length; i++) {
+                            this.catalog[i].cond = false;
+                        }
+                        $("#text-mask").hide();
+                    },
+                    determine: function(text, ztext, xc) {
+                        console.log(xc);
+                        for (var i = 0; i < text.ones.length; i++) {
+                            for (var z = 0; z < text.ones[i].twos.length; z++) {
+                                text.ones[i].twos[z].cond = false;
+                            }
+                        }
+                        ztext.cond = true;
+                        text.name = ztext.name;
+                        for (var i = 0; i < this.catalog.length; i++) {
+                            this.catalog[i].cond = false;
+                        }
+                        $("#text-mask").hide();
+                    }
+                },
+            })
+        }
+    </script>
+</body>
+
+</html>

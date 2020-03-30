@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>公共win</title>
+    <link href="../css/aui.css" rel="stylesheet" type="text/css">
+    <link href="../css/base.css" rel="stylesheet" type="text/css">
+    <!-- <link href="../css/public_win.css" rel="stylesheet" type="text/css">
+    <link href="../css/public.css" rel="stylesheet" type="text/css"> -->
+    <style media="screen">
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            background: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <header v-if="type!=''">
+            <div :class="isLine?'public_header public_line':'public_header'">
+                <div class="public_header_left" tapmode onclick="fnBack()">
+                    <img src="../image/index/back.png" alt="">
+                </div>
+                <div class="public_header_text">{{title}}</div>
+                <div class="public_header_right" v-if="isBtn" tapmode @click="fnSubmit()">
+                    <img v-if="btnType=='image'" :src="['../image/'+btnName+'.png']">
+                    <span class="public_header_right_text" v-else-if="btnType=='title'" :style="{color:btnColor}">{{btnName}}</span>
+                </div>
+                <div class="public_header_right" v-if="!isBtn"></div>
+            </div>
+        </header>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/vue.min.js"></script>
+<script type="text/javascript" src="../script/service/service-app.js"></script>
+<script type="text/javascript" src="../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../script/service/service-font.js"></script>
+<script type="text/javascript" src="../script/service/service-user.js"></script>
+<script type="text/javascript">
+    var vm;
+    var parameter;
+    var USER, $S;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        localStorage.safeTop = api.safeArea.top; //获取顶部状态栏的高度
+        localStorage.safeBottom = api.safeArea.bottom; //获取底部栏的高度
+        fixStatusBar();
+        api.setPrefs({
+            key: 'safeTop',
+            value: api.safeArea.top
+        });
+        api.setPrefs({
+            key: 'safeBottom',
+            value: api.safeArea.bottom
+        });
+        parameter = api.pageParam;
+        fnInit();
+        api.addEventListener({
+            name: 'keyback'
+        }, function(ret, err) {
+            fnBack();
+        });
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: parameter,
+            mounted: function() {
+                this.$nextTick(function() {
+                    fixStatusBar();
+                    fixFooterBtn();
+                    //渲染之后打开页面，为了准确获取header的高
+                    var _headerH = 0;
+                    if (this.type != '') {
+                        _headerH = AD('header').offsetH();
+                    }
+                    parameter.headerH = parameter.headerH || _headerH;
+                    var _footerH = localStorage.safeBottom;
+                    if (this.isFooter) {
+                        _footerH = AD('footer').offsetH();
+                    }
+                    parameter.footerH = parameter.footerH || _footerH;
+                    var frmUrl = './' + parameter.name + '.html';
+                    if (parameter.name.indexOf("http") > -1) {
+                        frmUrl = parameter.name;
+                    }
+                    var param = {
+                        name: parameter.name,
+                        url: frmUrl,
+                        useWKWebView: true,
+                        bgColor: 'rgba(0,0,0,0)',
+                        rect: {
+                            x: 0,
+                            y: _headerH,
+                            w: "auto",
+                            h: api.winHeight - _headerH - _footerH
+                        },
+                        softInputMode: 'resize',
+                        pageParam: parameter
+                    }
+                    fnOpenFrame(param);
+                })
+            },
+            methods: {
+                fnSubmit: function() {
+                    console.log(api.winName + "----" + parameter.name)
+                    if (this.headerFn && this.headerFn != "") {
+                        api.execScript({
+                            name: api.winName,
+                            frameName: parameter.name,
+                            script: this.headerFn + '();'
+                        });
+                    }
+
+                }
+            }
+        })
+    }
+    //页面返回
+    function fnBack() {
+        fnDelayCloseWin(0);
+    }
+</script>
+
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>个人信息</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            background: #F6F6F6;
+        }
+
+        .public_info_list .public_info_item .public_info_item_value {
+            color: rgba(204, 204, 204, 1);
+        }
+
+        .info_space {
+            height: 1.95rem;
+            background: rgba(248, 248, 248, 1);
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+            padding: 0.75rem 0 0.2rem 0.75rem;
+        }
+
+        .perfect_info_list {
+            background: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.35rem 0 0.75rem;
+        }
+
+        .perfect_info_item {
+            width: 33%;
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .perfect_info_item span {
+            width: 4.7rem;
+            height: 1.65rem;
+            background: rgba(253, 244, 244, 1);
+            border-radius: 0.2rem;
+            border: 1px solid rgba(217, 39, 39, 1);
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(217, 39, 39, 1);
+            line-height:  1.65rem;
+            letter-spacing: 1px;
+        }
+        .perfect_info_item .not_check {
+          background:rgba(244,244,244,1);
+          color:rgba(51,51,51,1);
+          border-style: none;
+        }
+        .save_btn {
+            margin:2rem 0.75rem 0.75rem 0.75rem;
+            height: 2.25rem;
+            background: #D92727;
+            border-radius: 0.2rem;
+            font-size: 0.8rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            line-height: 2.25rem;
+            text-align: center;
+        }
+        .jump_btn {
+          margin:0 0.75rem 0.75rem 0.75rem;
+          height: 2.25rem;
+          background:rgba(255,255,255,1);
+          border:1px solid rgba(151,158,166,1);
+          border-radius: 0.2rem;
+          font-size: 0.8rem;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 500;
+          color:rgba(151,158,166,1);
+          line-height: 2.25rem;
+          text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="public_info_list" v-if="userInfo!=''">
+
+            <div class="public_info_item public_line">
+                <span class="public_info_item_title">孩子的小名</span>
+                <input type="text" name="" value="" placeholder="请输入孩子的小名">
+                <img class="public_info_item_img" src="../../image/index/go_page.png" alt="">
+            </div>
+            <div class="public_info_item public_line">
+                <span class="public_info_item_title">孩子的年龄</span>
+                <input type="text" name="" value="" placeholder="请输入孩子年岭">
+                <img class="public_info_item_img" src="../../image/index/go_page.png" alt="">
+            </div>
+            <div class="public_info_item public_line">
+                <span class="public_info_item_title">您和孩子关系</span>
+                <input type="text" name="" value="" placeholder="选出或输入您和学生的关系">
+                <img class="public_info_item_img" src="../../image/index/go_page.png" alt="">
+            </div>
+        </div>
+        <div class="info_space">
+            兴趣爱好（至少1项）
+        </div>
+        <div class="perfect_info_list">
+            <div class="perfect_info_item">
+                <span>学前教育</span>
+            </div>
+            <div class="perfect_info_item">
+                <span class="not_check">英语启蒙</span>
+            </div>
+            <div class="perfect_info_item">
+                <span class="not_check">英语启蒙</span>
+            </div>
+            <div class="perfect_info_item">
+                <span class="not_check">日语</span>
+            </div>
+            <div class="perfect_info_item">
+                <span class="not_check">日语</span>
+            </div>
+            <div class="perfect_info_item">
+                <span class="not_check">日语</span>
+            </div>
+            <div class="perfect_info_item">
+                <span class="not_check">日语</span>
+            </div>
+            <div class="perfect_info_item">
+                <span class="not_check">日语</span>
+            </div>
+            <div class="perfect_info_item">
+                <span class="not_check">日语</span>
+            </div>
+        </div>
+          <div  class="save_btn" tapmode>保存</div>
+          <div  class="jump_btn" tapmode>跳过</div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-pic.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+        fnInitPage();
+        api.addEventListener({
+            name: 'imgURL'
+        }, function(ret, err) {
+            if (ret && ret.value.type == 'personalInfo') {
+                fnOpenClipPic(ret.value.imgURL[0].path);
+            }
+        });
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                listData: [{
+                    text: "头像", //该栏显示的信息名称
+                    value: "../../image/mine/default_head.png", //该栏显示的信息对应的数据
+                    editType: "1", //该栏显示的信息对应的数据类型
+                    verifyType: "", //该栏显示的信息对应的数据校验类型
+                    isSpace: true,
+                    nickName: "李富贵"
+                }, {
+                    text: "姓名",
+                    value: "林礼",
+                    editType: "2",
+                    verifyType: "",
+                }, {
+                    text: "性别",
+                    value: "男",
+                    editType: "3",
+                    verifyType: "",
+                }],
+                // newListData: [],
+                userInfo: {
+                    nickName: "李富贵",
+                    sex: 1
+                },
+            },
+            mounted: function() {
+                this.$nextTick(function() {
+                    // this.newListData = [];
+                    // this.fnNewListData();
+                })
+            },
+            methods: {
+                fnSexText: function(key) {
+                    if (key == '1') {
+                        return '男';
+                    } else if (key == '2') {
+                        return '女';
+                    } else {
+                        return '';
+                    }
+                },
+                fnNewListData: function() {
+                    if (vm.listData.length > 0) {
+                        for (var i = 0; i < vm.listData.length; i++) {
+                            if (vm.listData[i].isSpace) {
+                                vm.newListData.push(vm.listData.splice(0, i + 1));
+                                vm.fnNewListData();
+                                return;
+                            }
+                        }
+                        vm.newListData.push(vm.listData.splice(0, vm.listData.length));
+                        console.log(JSON.stringify(vm.newListData))
+                    }
+                }
+            }
+        })
+    }
+
+    function fnInitPage() {
+        if (fnCheckIsOpenLogin()) {
+            $S.ShowProgress();
+            $S.POST("apiTbAppUser/findUserBasic", "", function(ret, err) {
+                if (ret && ret.status == '200') {
+                    vm.userInfo = ret.data;
+                    api.execScript({
+                        name: 'main',
+                        frameName: 'tab_mine',
+                        script: 'fnInitPage();'
+                    });
+                }
+                $S.CloseProgress();
+            })
+        }
+    }
+
+    function fnEditNickname() {
+        var pageData = {
+            nickName: vm.userInfo.nickName,
+            isBtn: false,
+            btnType: "title",
+            btnName: "保存",
+            headerFn: "fnSaveNickname()"
+        };
+        fnOpenPublicWin("修改昵称", "mine/modify_name", pageData)
+    }
+
+    function fnUpdateInfor(type, value) {
+        $S.ShowProgress();
+        var postData = {}
+        postData[type] = value
+        $S.POST("apiTbAppUser/updateUserBasic", postData, function(ret, err) {
+            if (ret && ret.status == '200') {
+                fnToast("信息修改成功");
+                fnInitPage();
+            }
+            $S.CloseProgress();
+        })
+    }
+
+    function fnSelectSex() {
+        var params = {
+            name: 'select_model',
+            url: '../mine/select_model.html',
+            rect: {
+                x: 0,
+                y: 0,
+                w: 'auto',
+                h: 'auto'
+            },
+            pageParam: {
+                modelType: '4',
+                winName: api.winName,
+                frameName: api.frameName
+            }
+        }
+        fnOpenFrame(params);
+    }
+
+    function fnSelectData(sender, code) {
+        vm.userInfo.sex = code;
+        fnUpdateInfor("sex", code);
+    }
+</script>
+
+</html>

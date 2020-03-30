@@ -1,0 +1,281 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>番茄课</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        .public_header .public_header_right {
+            min-width: 1.5rem;
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            ;
+            align-items: center;
+            margin-left: 0.75rem;
+        }
+
+        .public_header .public_header_right img {
+            width: 0.6rem;
+            height: 0.5rem;
+            margin-left: 0.15rem;
+        }
+
+        .public_header .public_header_right span {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: rgba(151, 158, 166, 1);
+            line-height: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+
+            <div class="public_header" id="public_header">
+                <div class="public_header_search">
+                    <img src="../../image/index/index_search.png" alt="">
+                    <form id="search_from" target="nm_iframe">
+                        <input spellcheck="false" type="search" id="goToSearch" name="" v-model="searchVal" placeholder="请输入内容" maxlength="15">
+                    </form>
+                    <iframe name="nm_iframe" style="display:none;"></iframe>
+                    <img v-if="searchVal!=''" style="width:0.8rem;height:0.8rem;margin-left:auto;" src="../../image/index/clear_val.png" alt="" tapmode @click="fnClearVal()">
+                </div>
+                <div class="public_header_right" tapmode @click="fnCheckIsOpenLogin('1')?fnOpenPublicWin('消息','mine/message'):''">
+                    <span>筛选</span>
+                    <img src="../../image/index/select_icon.png" alt="">
+
+                </div>
+            </div>
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var _footerH;
+    var searchHis;
+    var vm;
+
+    //  var NVNavigationBar;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        searchHis = api.getPrefs({
+            sync: true,
+            key: 'search_news'
+        }) || "";
+        searchHis = searchHis != "" ? searchHis.split(",") : [];
+
+        fnInit();
+
+        //  NVNavigationBar = api.require('NVNavigationBar');
+        NVNavigationBar_open();
+    }
+
+    function fnOpen() {
+
+
+    }
+
+    function NVNavigationBar_open() {
+        var header_H = 0;
+        var p_header_H = AD('#public_header').offsetH();
+
+        var NVNavigationBar = api.require('NVNavigationBar');
+        NVNavigationBar.open({
+            rect: {
+                x: 0,
+                y: header_H+p_header_H,
+                w: api.frameWidth,
+                h: 40
+            },
+            styles: {
+                orientation: 'horizontal',
+                bg: '#FFFFFF',
+
+                font: {
+                    size: 14,
+                    sizeSelected: 14,
+                    color: '#777777',
+                    colorSelected: '#D92727',
+                    bold: true
+                },
+                itemSize: {
+                    w: 58,
+                    h: 40
+                }
+            },
+            items: [{
+                title: '全部',
+                bg: '#FFFFFF'
+            }, {
+                title: '英语',
+                bg: '#FFFFFF'
+            }, {
+                title: '数学',
+                bg: '#FFFFFF'
+            }, {
+                title: '政治',
+                bg: '#FFFFFF'
+            }, {
+                title: '化学',
+                bg: '#FFFFFF'
+            }, {
+                title: '物理',
+                bg: '#FFFFFF'
+            }, {
+                title: '音乐',
+                bg: '#FFFFFF'
+            }],
+            selectedIndex: 0,
+            fixedOn: api.frameName,
+            fixed: true,
+            id: 'first'
+        }, function(ret, err) {
+            console.log(JSON.stringify(ret))
+            fnsetFrameGroup();
+            if (ret.eventType == 'click') {
+                fnsetFrameGroupIndex('groupfq', ret.index);
+
+            }
+        });
+    }
+
+    function fnsetFrameGroupIndex(name, index) {
+        api.setFrameGroupIndex({
+            name: name,
+            index: index,
+            scroll: true
+        });
+    }
+
+    function fnsetFrameGroup() {
+      var header_H = 90;
+      var p_header_H = AD('#public_header').offsetH();
+
+        api.openFrameGroup({
+            name: 'groupfq',
+            rect: {
+                x: 0,
+                y: header_H+p_header_H + 40,
+                w: 'auto',
+                marginBottom: 0
+            },
+            scrollEnabled: true,
+            frames: [{
+                name: 'organ',
+                url: '../index/search_fanqie.html',
+
+                pageParam: {
+                    name: 'value'
+                }
+            }, {
+                name: 'store',
+                url: '../index/search_fanqie.html',
+                pageParam: {
+                    name: 'value'
+                }
+            }, {
+                name: 'lession',
+                url: '../index/search_fanqie.html',
+                pageParam: {
+                    name: 'value'
+                }
+            }, {
+                name: 'fanqie',
+                url: '../index/search_fanqie.html',
+                pageParam: {
+                    name: 'value'
+                }
+            }, {
+                name: 'dynamic',
+                url: '../index/search_fanqie.html',
+                pageParam: {
+                    name: 'value'
+                }
+            }, {
+                name: 'question',
+                url: '../index/search_fanqie.html',
+                pageParam: {
+                    name: 'value'
+                }
+            }, {
+                name: 'reading',
+                url: '../index/search_fanqie.html',
+                pageParam: {
+                    name: 'value'
+                }
+            }]
+        }, function(ret, err) {
+            if (ret) {
+                console.log(JSON.stringify(ret));
+                if (ret.index > -1) {
+                    fnNvnsetSelected(ret.index);
+
+                }
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+
+    }
+
+    function fnNvnsetSelected(index) {
+        var NVNavigationBar = api.require('NVNavigationBar');
+        NVNavigationBar.setSelected({
+            id: 'first',
+            index: index,
+            selected: true
+        }, function(ret) {
+
+        });
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                searchVal: "",
+                searchHisList: searchHis.reverse(),
+                isOpenFrm: false
+            },
+            mounted: function() {
+                this.$nextTick(function() {
+                    if (document.getElementById('search_from')) {
+                        document.getElementById('search_from').onsubmit = function() {
+                            fnKeyboard();
+                            var searchVal = vm.searchVal;
+                            fnStartSearch(searchVal)
+                        };
+                    }
+                })
+            }
+        })
+    }
+
+    function fnBack() {
+        fnDelayCloseWin();
+    }
+</script>
+
+</html>

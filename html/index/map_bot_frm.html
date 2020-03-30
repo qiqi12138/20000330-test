@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>暂未开通</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="organ_list" >
+      <div class="organ_item" tapmode @click="fnOpenStore()">
+          <div class="organ_cover">
+              <img src="../../image/index/Mask.png" alt="">
+              <div class="store_label_icon"><img src="../../image/index/store_label_icon.png" alt=""></div>
+          </div>
+          <div class="organ_info">
+              <div class="organ_title overflow_hidden_two">
+                  1北京市融安消防职业技能培训学校(北沙滩校区)
+              </div>
+              <div class="organ_time" style="margin-bottom:0;">
+                  <img src="../../image/index/star.png" alt="">
+                  <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                  <span>月售 6506</span>
+                  <span style="margin-left: auto;">距离: 2.0km</span>
+              </div>
+              <span class="lecturer overflow_hidden_one" style="width:100%;">中国上海市浦东新区浦建路769号浦东新区浦建</span>
+              <div class="store_label">
+                  <div class="store_label_item">1对1课程</div>
+                  <div class="store_label_item">适合0-15岁</div>
+
+
+              </div>
+          </div>
+
+      </div>
+  </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    }
+    function fnOpenStore(){
+       openNavTabWin();
+    }
+</script>
+
+</html>

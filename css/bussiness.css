@@ -1,0 +1,20 @@
+html {
+    background-color: #F7F6F6;
+}
+.item-box {
+    position: relative;
+    margin: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 4px;
+    background-color: #fff;
+}
+p.item-title {
+    font-size: 17px;
+    color: #333;
+    font-weight: bolder;
+}
+p.small {
+    color: #999;
+    font-size: 13px;
+    margin-top: 10px;
+}

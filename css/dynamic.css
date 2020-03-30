@@ -1,0 +1,87 @@
+.main {
+  padding: 0.4rem 0.25rem 2.7rem 0.25rem;
+  background: rgba(246,246,246,1);
+}
+
+.section:not(:last-child) {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+#macy-container::before {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#macy-container::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.dynamic {
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.dynamic-image {
+  max-width: 100%;
+  width: 100%;
+  display: block;
+  height: auto;
+}
+
+.dynamic_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 0.25rem;
+}
+
+.dynamic_item_nick img {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 100%;
+}
+
+.dynamic_info p {
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+  line-height: 0.8rem;
+}
+
+.dynamic_info {
+  padding: 0.5rem;
+}
+
+.dynamic_item_nick {
+  display: flex;
+}
+
+.dynamic_item_nick span {
+  font-size: 0.55rem;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+  line-height: 1rem;
+  margin-left: 0.25rem;
+}
+
+.dynamic_item_commend {
+  display: flex;
+  align-items: center;
+}
+
+.dynamic_item_commend img {
+  width: 0.7rem;
+  height: 0.7rem;
+}
+
+.dynamic_item_commend span {
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+  line-height: 0.9rem;
+  margin-left: 0.25rem;
+}

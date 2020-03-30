@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>充值列表</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        .recharge_list {
+            padding: 0 0.75rem;
+        }
+
+        .recharge_item {
+            display: flex;
+            justify-content: space-between;
+            height: 2.8rem;
+            align-items: center;
+        }
+
+        .recharge_item_info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            font-size: .59rem;
+            font-weight: 400;
+            color: rgba(151, 158, 166, 1);
+            line-height: .85rem;
+        }
+
+        .recharge_item_info h2 {
+            font-size: .69rem;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: .96rem;
+        }
+
+        .recharge_price {
+            font-size: .91rem;
+            font-weight: 400;
+            color: rgba(217, 39, 39, 1);
+            line-height: 1.28rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+      <div class="tab-nav" id="tab">
+          <div class="tab-nav-item " :class="tabIndex=='0'?'nav-active':''" tapmode @click="fnSetTabIndex('0')">收入</div>
+          <div class="tab-nav-item " :class="tabIndex=='1'?'nav-active':''" tapmode @click="fnSetTabIndex('1')">支出</div>
+
+      </div>
+        <div class="recharge_list">
+            <div class="recharge_item public_line">
+                <div class="recharge_item_info">
+                    <h2>推荐有奖佣金(用户昵称购买课程)</h2>
+                    <span>2019.12.02</span>
+                </div>
+                <div class="recharge_price">
+                  +81.00
+                </div>
+            </div>
+            <div class="recharge_item public_line">
+                <div class="recharge_item_info">
+                    <h2>积分兑换余额</h2>
+                    <span>2019.12.02</span>
+                </div>
+                <div class="recharge_price">
+                    +8.00
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+              tabIndex:0
+
+            },
+            methods: {
+
+                fnSetTabIndex: function(key) {
+                    this.tabIndex = key;
+                    //  fnLoginBtnStatus();
+                }
+            }
+        })
+    }
+</script>
+
+</html>

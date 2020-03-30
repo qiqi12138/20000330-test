@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>暂未开通</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        .pay_status {
+            display: flex;
+            flex-direction: column;
+            padding-top: 2.8rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pay_status p {
+            margin: 0.75rem 0;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1.65rem;
+        }
+
+        .pay_status img {
+            width: 6.45rem;
+            height: 4.8rem;
+        }
+
+        .pay_status span {
+            margin-top: 0.4rem;
+            font-size: .7rem;
+            font-weight: 400;
+            color: rgba(123, 130, 139, 1);
+            line-height: 1rem;
+        }
+
+        .view_btn {
+            position: fixed;
+            left: 0.75rem;
+            right: 0.75rem;
+            bottom: 0.75rem;
+            height: 2.25rem;
+            line-height: 2.25rem;
+            text-align: center;
+            background: rgba(217, 39, 39, 1);
+            border-radius: 0.2rem;
+            font-size: .8rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .cashout_detail {
+            padding: 0.75rem 1rem;
+            margin-top: 2rem;
+        }
+
+        .cashout_detail_item {
+            display: flex;
+            justify-content: space-between;
+            color: rgba(151, 158, 166, 1);
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            line-height: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .cashout_detail_item h2 {
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="pay_status">
+            <img src="../../image/index/pay_success.png" alt="">
+            <p>申请提现成功！</p>
+            <span>提现申请提交成功，请耐心等待到账</span>
+            <div class="view_btn">完成</div>
+        </div>
+        <div class="cashout_detail">
+            <div class="cashout_detail_item">
+                <h2>提现金额</h2>
+                <span>¥1.00</span>
+            </div>
+            <div class="cashout_detail_item">
+                <h2>提现手续费</h2>
+                <span>¥1.00</span>
+            </div>
+            <div class="cashout_detail_item">
+                <h2>提现到账金额</h2>
+                <span>¥1.00</span>
+            </div>
+            <div class="cashout_detail_item">
+                <h2>到账微信</h2>
+                <span>Wy12340</span>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    }
+</script>
+
+</html>

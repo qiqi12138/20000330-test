@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>我的团队</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            background: rgba(246, 246, 246, 1);
+        }
+
+        .team_list {
+            padding: 0 0.75rem;
+            background: #fff;
+        }
+
+        .team_item {
+            height: 5.65rem;
+            padding: 0.75rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .team_info {
+            display: flex;
+            align-items: center;
+        }
+
+        .team_info_mid {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.65rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(151, 158, 166, 1);
+            line-height: 0.9rem;
+        }
+
+        .team_info img {
+            width: 2.5rem;
+            height: 2.5rem;
+            object-fit: cover;
+            min-width: 2.5rem;
+            border-radius: 100%;
+        }
+
+        .team_info_mid {
+            margin-left: 0.5rem;
+        }
+
+        .team_info_mid h2 {
+            font-size: 0.9rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1.25rem;
+        }
+
+        .team_info_mid span {
+            font-size: 0.65rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(151, 158, 166, 1);
+            line-height: 0.9rem;
+            margin-top: 0.15rem;
+        }
+
+        .team_info_person {
+            font-size: 0.65rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: 0.9rem;
+            margin-left: auto;
+        }
+
+        .team_price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(123, 130, 139, 1);
+            line-height: 0.85rem;
+        }
+
+        .team_price_right {
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: 0.85rem;
+        }
+
+        .team_price_right span {
+            font-size: 0.85rem;
+            color: rgba(217, 39, 39, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="tab-nav" id="tab">
+            <div class="tab-nav-item " :class="tabIndex=='0'?'nav-active':''" tapmode @click="fnSetTabIndex('0')">级队员(2)</div>
+            <div class="tab-nav-item " :class="tabIndex=='1'?'nav-active':''" tapmode @click="fnSetTabIndex('1')">二级队员(0)</div>
+        </div>
+        <block v-if="tabIndex=='0'">
+            <div class="team_list">
+                <div class="team_item public_line">
+                    <div class="team_info">
+                        <img src="../../image/index/lecturer.png" alt="">
+                        <div class="team_info_mid">
+                            <h2>阿芳</h2>
+                            <span>注册时间:2019.12.15 11:54</span>
+                        </div>
+                        <span class="team_info_person">推广 1人</span>
+                    </div>
+                    <div class="team_price">
+                        <span>累计消费：100 元</span>
+                        <div class="team_price_right">
+                            累计获得佣金：<span>23.5<em style="font-size:0.6rem;">元</em></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="team_item public_line">
+                    <div class="team_info">
+                        <img src="../../image/index/lecturer.png" alt="">
+                        <div class="team_info_mid">
+                            <h2>阿芳</h2>
+                            <span>注册时间:2019.12.15 11:54</span>
+                        </div>
+                        <span class="team_info_person">推广 1人</span>
+                    </div>
+                    <div class="team_price">
+                        <span>累计消费：100 元</span>
+                        <div class="team_price_right">
+                            累计获得佣金：<span>23.5<em style="font-size:0.6rem;">元</em></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    </block>
+    <block v-if="tabIndex=='1'">
+
+    </block>
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                tabIndex: 0,
+
+            },
+            methods: {
+
+                fnSetTabIndex: function(key) {
+                    this.tabIndex = key;
+                    //  fnLoginBtnStatus();
+                }
+            }
+        })
+    }
+
+    function fnOpenPersonHome() {
+        var param = {
+            name: 'personal_home',
+            url: '../mine/personal_home.html',
+        }
+        fnOpenWin(param)
+    }
+</script>
+
+</html>

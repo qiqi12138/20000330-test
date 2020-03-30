@@ -1,0 +1,325 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>我的</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .mine_bg {
+            width: 100%;
+            height: 56.6667vw;
+            background: url(../../image/mine/mine_head_bg.png) no-repeat;
+            background-size: cover;
+            position: relative;
+            margin-bottom: 2.55rem;
+        }
+
+        .mine_header {
+            height: 2.6rem;
+            padding: 2.2rem 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mine_header .mine_header_left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 2.8rem;
+            font-size: 1rem;
+            color: #2C3540;
+            font-weight: normal;
+        }
+
+        .mine_header .mine_header_right img {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.45rem;
+        }
+
+        .mine_head_portrait {
+            width: 2.6rem;
+            height: 2.6rem;
+            border-radius: 100%;
+            object-fit: cover;
+        }
+
+        .mine_header_left_info {
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            line-height: 0.85rem;
+            margin-left: 0.5rem;
+        }
+
+        .mine_header_left_info h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 1);
+            line-height: 1.4rem;
+        }
+
+        .mine_header_left_img {
+            width: 0.6rem;
+            height: auto;
+            margin-left: 0.65rem;
+        }
+
+        .mine_order {
+            position: absolute;
+            bottom: -2.05rem;
+            height: 3.4rem;
+            left: 0.75rem;
+            right: 0.75rem;
+            background: #fff;
+            box-shadow: 0px 4px 8px 0px rgba(199, 204, 205, 0.2);
+            border-radius: 0.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.65rem;
+            overflow: hidden;
+        }
+
+        .mine_order_item {
+            display: flex;
+        }
+
+        .mine_order img {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: 0.6rem;
+        }
+
+        .mine_order span {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1.5rem;
+        }
+
+        .mine_head_bot {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1.1rem 0.3rem 1.75rem;
+        }
+
+        .mine_head_bot_item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-self: center;
+            text-align: center;
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            line-height: 0.85rem;
+        }
+
+        .mine_head_bot_item h2 {
+            font-family: Oswald-Medium, Oswald;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            line-height: 1.2rem;
+        }
+
+        .mine_function {
+            padding: 1rem 0rem;
+        }
+
+        .mine_function_list {
+
+            display: flex;
+            justify-content:  space-between;;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .mine_function h2 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1.1rem;
+            padding-left: 0.75rem;
+        }
+
+        .mine_function_item {
+            width: 25%;
+           margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: 0.85rem;
+            text-align: center;
+        }
+
+        .mine_function_item img {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="mine_bg">
+            <header>
+                <div class="mine_header">
+                    <div class="mine_header_left" tapmode @click="fnOpenPublicWin('个人资料','mine/personal_info')">
+                        <img class="mine_head_portrait" :src="custId!=''?(userInfo.photo!=''?userInfo.photo:'../../image/mine/default_head.png'):'../../image/mine/default_head.png'" alt="">
+                        <div class="mine_header_left_info">
+                            <h2>傅小小</h2><span>ID:8902315690</span>
+                        </div>
+                        <img class="mine_header_left_img" src="../../image/mine/white_right_arrow.png" alt="">
+                    </div>
+                    <div class="mine_header_right" tapmode @click="fnOpenPublicWin('设置','mine/setting')">
+                        <img src="../../image/mine/mine_head_set_icon.png" alt="">
+                    </div>
+                </div>
+                <div class="mine_head_bot">
+                    <div class="mine_head_bot_item" tapmode @click="fnOpenPublicWin('我的关注','mine/mine_follow_list')">
+                        <h2>99</h2><span>关注</span>
+                    </div>
+                    <div class="mine_head_bot_item" tapmode @click="fnOpenPublicWin('我的发布','mine/mine_release_list')">
+                        <h2>99</h2><span>我的发布</span>
+                    </div>
+                    <div class="mine_head_bot_item" tapmode @click="fnOpenPublicWin('我的收藏','mine/mine_collection_list')">
+                        <h2>99</h2><span>我的收藏</span>
+                    </div>
+                    <div class="mine_head_bot_item" tapmode @click="fnOpenPublicWin('我的卡卷','mine/mine_coupon')">
+                        <h2>99</h2><span>我的卡卷</span>
+                    </div>
+                </div>
+            </header>
+            <div class="mine_order">
+                <div class="mine_order_item" tapmode @click="fnOpenPublicWin('我的订单','mine/mine_order')">
+                    <img src="../../image/mine/mine_order_icon.png" alt="">
+                    <span>我的订单</span>
+                </div>
+                <div class="mine_order_item" tapmode @click="fnOpenPublicWin('我的课程','mine/mine_lession')">
+                    <img src="../../image/mine/mine_lession_icon.png" alt="">
+                    <span>我的课程</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="mine_function">
+            <h2>更多功能</h2>
+            <div class="mine_function_list">
+                <div class="mine_function_item" tapmode @click="fnOpenPublicWin('钱包','mine/mine_wallet')">
+                    <img src="../../image/mine/mine_wallet_icon.png" alt="">
+                    <span>我的钱包</span>
+                </div>
+                <div class="mine_function_item" tapmode @click="fnOpenIntegral()">
+                    <img src="../../image/mine/mine_integral_icon.png" alt="">
+                    <span>我的积分</span>
+                </div>
+                <div class="mine_function_item" tapmode @click="fnOpenPublicWin('机构入驻','mine/organ_join')">
+                    <img src="../../image/mine/mine_organ_icon.png" alt="">
+                    <span>机构入驻</span>
+                </div>
+                <div class="mine_function_item" tapmode @click="fnOpenPublicWin('讲师入驻','mine/teacher_join')">
+                    <img src="../../image/mine/mine_teacher_icon.png" alt="">
+                    <span>讲师入驻</span>
+                </div>
+                <div class="mine_function_item" tapmode @click="fnOpenPublicWin('推荐有奖','mine/mine_recommend')">
+                    <img src="../../image/mine/mine_recommend_icon.png" alt="">
+                    <span>推荐有奖</span>
+                </div>
+                <div class="mine_function_item" tapmode @click="fnOpenPublicWin('意见反馈','mine/feedback',{isLine:false})">
+                    <img src="../../image/mine/mine_feedback_icon.png" alt="">
+                    <span>意见反馈</span>
+                </div>
+                <div class="mine_function_item" tapmode @click="fnOpenPublicWin('帮助中心','mine/faq',{isLine:false})">
+                    <img src="../../image/mine/mine_faq_icon.png" alt="">
+                    <span>帮助中心</span>
+                </div>
+                <div class="mine_function_item">
+                    <img src="../../image/mine/mine_contact_icon.png" alt="">
+                    <span>联系我们</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+        fnInitPage();
+        api.addEventListener({
+            name: 'loginStatus'
+        }, function(ret, err) {
+            vm.custId = USER.Get("custId", true) || "";
+            fnInitPage();
+        });
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                custId: USER.Get("custId", true) || "",
+                userInfo: "",
+            }
+        })
+    }
+
+    function fnInitPage() {
+        if (fnCheckIsOpenLogin()) {
+            $S.ShowProgress();
+            $S.POST("apiTbAppUser/findUserBasic", "", function(ret, err) {
+                if (ret && ret.status == '200') {
+                    vm.userInfo = ret.data;
+                    fnWhenLoginSucess(ret.data);
+                }
+                $S.CloseProgress();
+            })
+        }
+    }
+
+    function fnOpenIntegral() {
+        var param = {
+            name: 'mine_integral',
+            url: '../mine/mine_integral.html',
+        }
+        fnOpenWin(param)
+    }
+</script>
+
+</html>

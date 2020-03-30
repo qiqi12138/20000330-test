@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>全部回答</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/lession.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/reading.css" />
+    <style>
+        html,
+        body {
+            background: rgba(246, 246, 246, 1);
+        }
+
+        .lession_comment {
+            padding-top: 0;
+        }
+
+        .reply_bot {
+            position: fixed;
+            background: #fff;
+            bottom: 0;
+            width: 100%;
+            height: 2.7rem;
+            padding: 0.55rem 0.75rem;
+            border-top: 1px solid rgba(237, 237, 240, 1);
+            display: flex;
+            align-items: center;
+        }
+
+        .reply_input {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            border-radius: 0.85rem;
+            border: 0.5px solid rgba(199, 199, 204, 1);
+            height: 1.65rem;
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+            line-height: 1.65rem;
+            padding-left: 0.7rem;
+            margin-right: 1rem;
+        }
+
+        .reply_input img {
+            width: 0.95rem;
+            height: 0.95rem;
+            margin-left: auto;
+            margin-right: 0.75rem;
+        }
+
+        .sendBtn {
+            width: 3rem;
+            height: 1.5rem;
+            background: rgba(217, 39, 39, 1);
+            border-radius: 0.1rem;
+            font-size: 0.65rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            line-height: 1.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="lession_comment">
+            <div class="lession_comment_list">
+                <div class="lession_comment_item">
+                    <div class="lession_comment_item_avatar">
+                        <img src="../../image/index/lecturer.png" alt="">
+                    </div>
+                    <div class="lession_comment_item_info">
+                        <div class="lession_comment_item_info_title">
+                            <span>任秀兰</span>
+                            <span>1小时前</span>
+                        </div>
+                        <p>这个老师讲的特别好，帮助我解决了困扰我已久的问题，好开心~</p>
+                        <div class="question_imgs">
+                            <div class="question_imgs_item">
+                                <img src="../../image/index/youxuan.png" alt="">
+                            </div>
+                            <div class="question_imgs_item">
+                                <img src="../../image/index/youxuan.png" alt="">
+                            </div>
+                            <div class="question_imgs_item">
+                                <img src="../../image/index/youxuan.png" alt="">
+                            </div>
+                            <div class="question_imgs_item">
+                                <img src="../../image/index/youxuan.png" alt="">
+                            </div>
+                            <div class="question_imgs_item">
+                                <img src="../../image/index/youxuan.png" alt="">
+                            </div>
+                            <div class="question_imgs_item">
+                                <img src="../../image/index/youxuan.png" alt="">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lession_comment" style="   background: rgba(246, 246, 246, 1);">
+            <div class="lession_comment_list">
+                <div class="lession_comment_item" tapmode @click="openEditFrame()">
+                    <div class="lession_comment_item_avatar">
+                        <img src="../../image/index/lecturer.png" alt="">
+                    </div>
+                    <div class="lession_comment_item_info">
+                        <div class="lession_comment_item_info_title">
+                            <span class="reply_nickname">任秀兰 · 英语</span>
+                            <span>2019.05.17</span>
+                        </div>
+                        <p>这个老师讲的特别好，帮助我解决了困扰我已久的问题，好开心~</p>
+                    </div>
+
+                </div>
+
+                <div class="lession_comment_item" tapmode @click="openEditFrame()">
+                    <div class="lession_comment_item_avatar">
+                        <img src="../../image/index/lecturer.png" alt="">
+                    </div>
+                    <div class="lession_comment_item_info">
+                        <div class="lession_comment_item_info_title">
+                            <span class="reply_nickname">任秀兰 · 英语</span>
+                            <span>2019.05.17</span>
+                        </div>
+                        <p>回复<span style="color:#FE7203;">@丁丁</span>这个老师讲的特别好，帮助我解决了困扰我已久的问题，好开心~</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="reply_bot" tapmode @click="fnOpenPublicWin('写回答','index/answer_add')">
+        <div class="reply_input"><input type="text" placeholder="有啥想说的就说出来..." name="" value="" ><img src="../../image/message/chat_emotion_icon.png" alt="">
+        </div>
+        <div class="sendBtn">
+            发送
+        </div>
+    </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    var UIInputBox;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+
+        //  UIInputBox = api.require('UIInputBox');
+        //fnOpenChatBox();
+
+
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    }
+
+    function fnOpenChatBox() {
+
+        UIInputBox.open({
+            placeholder: '',
+            maxRows: 4,
+            emotionPath: 'widget://res/img/emotion',
+
+            styles: {
+                inputBar: {
+                    borderColor: '#d9d9d9',
+                    bgColor: '#f2f2f2'
+                },
+                inputBox: {
+                    borderColor: '#B3B3B3',
+                    bgColor: '#FFFFFF'
+                },
+                emotionBtn: {
+                    normalImg: 'widget://res/img/chatBox_face1.png'
+                },
+                keyboardBtn: {
+                    normalImg: 'widget://res/img/chatBox_key1.png'
+                },
+                indicator: {
+                    color: '#c4c4c4',
+                    activeColor: '#9e9e9e'
+                },
+                sendBtn: {
+                    titleColor: '#4cc518',
+                    bg: '#999999',
+                    activeBg: '#46a91e',
+                    titleSize: 14
+                }
+            }
+
+        }, function(ret, err) {
+            if (ret) {
+                alert(JSON.stringify(ret));
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+    }
+    function openEditFrame() {
+          api.openFrame({
+              name: 'edit_frm',
+              url: '../message/edit_frm.html',
+              rect: {
+                  x: 0,
+                  y: 0,
+                  w: 'auto',
+                  h: 'auto'
+              },
+              bgColor: 'rgba(0,0,0,0.5)' // 设置Frame的透明度
+
+          });
+      }
+</script>
+
+</html>

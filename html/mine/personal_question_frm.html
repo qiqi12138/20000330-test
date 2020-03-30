@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>暂未开通</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            background: rgba(246, 246, 246, 1);
+        }
+
+        .personal_bot_btn {
+            position: fixed;
+            bottom: 0;
+
+            height: 3.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            left: 1rem;
+            right:1rem;
+            bottom: 0.75rem;
+            z-index: 999;
+        }
+
+        .personal_bot_btn_one {
+            width:  48%;
+            height: 2.25rem;
+            background: rgba(253, 244, 244, 1);
+            border-radius: .2rem;
+            font-size: .9rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(217, 39, 39, 1);
+            line-height: 2.25rem;
+            text-align: center;
+        }
+
+        .personal_bot_btn_two {
+            width:  48%;
+            height: 2.25rem;
+            background: rgba(217, 39, 39, 1);
+            border-radius: 4px;
+            font-size: .9rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            line-height: 2.25rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="space"></div>
+        <div class="question_list" v-if="listData.length>0">
+            <div class="question_item" v-for="item in listData" tapmode @click="fnOpenPublicWin('问答标题','index/question_detail',{articleId:1})">
+                <div class="question_item_title overflow_hidden_one">
+                    比地球自转还快的超音速客机！创下多个世界纪录
+                </div>
+                <div class="question_item_info" style="margin-top: 0.3rem;" >
+                    <span>
+                    回答时间：2018.05.16
+                </span></div>
+                <div class="question_item_info" style="padding-bottom:0.65rem;">
+
+                    <span class="overflow_hidden_three">
+                    从2015年4月起，Ant Design在蚂蚁金服中后台产品线迅速推广，对接多条业务线，覆盖系统 800 个以上。定位于中台业务的 Ant Design 兼顾专业和非…
+                </span>
+
+                </div>
+            </div>
+        </div>
+        <div class="personal_bot_btn">
+            <span class="personal_bot_btn_one">关注</span> <span class="personal_bot_btn_two">+加好友</span>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                listData: [{
+                    id: "1"
+                }, {
+                    id: "2"
+                }, {
+                    id: "2"
+                }, {
+                    id: "2"
+                }, {
+                    id: "2"
+                }, {
+                    id: "2"
+                }]
+
+            }
+        })
+    }
+</script>
+
+</html>

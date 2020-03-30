@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>个人信息</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            background: #F6F6F6;
+        }
+
+
+
+        .public_info_list .public_info_item .public_info_item_img {
+            width: 0.8rem;
+            height: 0.8rem;
+            object-fit: cover;
+            margin-left: 0.75rem;
+        }
+
+        .save_btn {
+            position: fixed;
+            bottom: 0.75rem;
+            left: 0.75rem;
+            right: 0.75rem;
+            height: 2.25rem;
+            background: #D92727;
+            border-radius: 0.2rem;
+            font-size: 0.8rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            line-height: 2.25rem;
+            text-align: center;
+        }
+
+
+        .public_info_list .public_info_item input,
+        .public_info_list .public_info_item textarea {
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(123, 130, 139, 1);
+            line-height: 1rem;
+            text-align: left;
+            flex: 1;
+            padding-left: 0.9rem;
+            padding-right: 0.7rem;
+        }
+
+        .feedback_content {
+            padding: 0.85rem 0.75rem;
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.4rem;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 0.2rem;
+        }
+
+        .feedback_content textarea {
+            height: 5.85rem;
+            line-height: 1.05rem;
+            overflow: scroll;
+        }
+
+        .feedback_content span {
+            display: block;
+            text-align: right;
+            font-size: 0.75rem;
+            color: rgba(196, 200, 214, 1);
+            line-height: 1.05rem;
+            padding-top: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="space"></div>
+        <div class="feedback_content">
+            <textarea maxlength="500" placeholder="描述您的建议" v-model="context"></textarea>
+            <span style="color:rgba(204,204,204,1);">{{context.length}}/500</span>
+        </div>
+
+        <div class="public_info_list">
+            <div class="public_info_item public_line">
+                <span class="public_info_item_title">联系方式</span>
+                <input type="text" name="cName" value="" v-model="cName" placeholder="请输入联系方式">
+                <img v-if="cName!=''" class="public_info_item_img" src="../../image/index/clear_val.png" alt="" tapmode @click="fnClearName()">
+            </div>
+        </div>
+
+
+        <div class="save_btn" tapmode>提交</div>
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-pic.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                context: "",
+                cName: ""
+            },
+            methods: {
+                fnClearName: function() {
+                    this.cName = "";
+                }
+            }
+        })
+    }
+</script>
+
+</html>

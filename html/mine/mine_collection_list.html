@@ -1,0 +1,388 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>课程详情</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/store.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/dynamic.css" />
+    <style>
+    html,
+    body {
+        background: rgba(246, 246, 246, 1);
+    }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp">
+
+
+        <div class="space"></div>
+        <div class="lession_detail">
+            <div class="tab-nav" id="tab" :class="{'is_fixed' : isFixed}">
+                <div class="tab-nav-item " :class="tabIndex=='0'?'nav-active':''" tapmode @click="fnSetTabIndex('0')">回答</div>
+                <div class="tab-nav-item " :class="tabIndex=='1'?'nav-active':''" tapmode @click="fnSetTabIndex('1')">动态</div>
+                <div class="tab-nav-item" :class="tabIndex=='2'?'nav-active':''" tapmode @click="fnSetTabIndex('2')">课程</div>
+                <div class="tab-nav-item" :class="tabIndex=='3'?'nav-active':''" tapmode @click="fnSetTabIndex('3')">机构店</div>
+            </div>
+            <div class="tabBox">
+              <block v-if="tabIndex=='0'">
+                <div class="question_list" v-if="listData.length>0">
+                    <div class="question_item" v-for="item in listData" tapmode @click="fnOpenPublicWin('问答标题','index/question_detail',{articleId:1})">
+                        <div class="question_item_title overflow_hidden_one">
+                            比地球自转还快的超音速客机！创下多个世界纪录
+                        </div>
+                        <div class="question_item_info" >
+                            <span>
+                              回答时间：2018.05.16
+                          </span></div>
+                        <div class="question_item_info" style="padding-bottom:0.65rem;">
+
+                            <span class="overflow_hidden_three">
+                              从2015年4月起，Ant Design在蚂蚁金服中后台产品线迅速推广，对接多条业务线，覆盖系统 800 个以上。定位于中台业务的 Ant Design 兼顾专业和非…
+                          </span>
+
+                        </div>
+                    </div>
+                </div>
+              </block>
+                <div v-if="tabIndex=='2'">
+                    <div class="organ_list" v-if="listData.length>0">
+                        <div class="organ_item" v-for="item in listData" tapmode @click="fnOpenPublicWin('详情','index/fanqie_lession_detail',{articleId:1})">
+                            <div class="organ_cover">
+                                <img src="../../image/index/Mask.png" alt="">
+                            </div>
+                            <div class="organ_info aui-flex-box">
+                                <div class="organ_title overflow_hidden_two">
+                                    雅思词汇语法单项班雅思词汇语法单项提升课
+                                </div>
+                                <div class="organ_time" style="margin-bottom:0;">
+                                    <img src="../../image/index/star.png" alt="">
+                                    <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                                    <span>月售 6506</span>
+                                    <span style="margin-left: auto;">  <h2><span>¥666</span>¥282</h2>
+                                    </span>
+                                </div>
+
+                                <span class="lecturer overflow_hidden_one " style="width:100%;">北京市融安消防职业技能培训学校(北沙滩校区)</span>
+                                <div class="store_label">
+                                    <div class="store_label_item">1对1课程</div>
+                                    <div class="store_label_item">适合0-15岁</div>
+                                    <div class="store_label_item">线下付尾款</div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="evaluation" v-if="tabIndex=='1'">
+                    <main class="main">
+                        <section class="section">
+                            <div class="container">
+                                <div id="macy-container">
+                                    <div class="dynamic" tapmode @click="fnOpenPublicWin('动态详情','index/dynamic_detail',{articleId:1})"><img src="../../image/index/t1.jpg" alt="" class="dynamic-image">
+                                        <div class="dynamic_info">
+                                            <p>热带水果了解一下！</p>
+                                            <div class="dynamic_item">
+                                                <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                                <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dynamic" tapmode @click="fnOpenPublicWin('动态详情','index/dynamic_detail',{articleId:1})"><img src="../../image/index/t2.jpg" alt="" class="dynamic-image">
+                                        <div class="dynamic_info">
+                                            <p>热带水果了解一下！</p>
+                                            <div class="dynamic_item">
+                                                <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                                <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dynamic"><img src="../../image/index/t5.png" alt="" class="dynamic-image">
+                                        <div class="dynamic_info">
+                                            <p>热带水果了解一下1！</p>
+                                            <div class="dynamic_item">
+                                                <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                                <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dynamic"><img src="../../image/index/youxuan.png" alt="" class="dynamic-image">
+                                        <div class="dynamic_info">
+                                            <p>热带水果了解一下2！</p>
+                                            <div class="dynamic_item">
+                                                <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                                <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dynamic"><img src="../../image/index/t1.jpg" alt="" class="dynamic-image">
+                                        <div class="dynamic_info">
+                                            <p>热带水果了解一下！</p>
+                                            <div class="dynamic_item">
+                                                <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                                <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dynamic"><img src="../../image/index/t2.jpg" alt="" class="dynamic-image">
+                                        <div class="dynamic_info">
+                                            <p>热带水果了解一下！</p>
+                                            <div class="dynamic_item">
+                                                <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                                <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dynamic"><img src="../../image/index/t1.jpg" alt="" class="dynamic-image">
+                                        <div class="dynamic_info">
+                                            <p>热带水果了解一下！</p>
+                                            <div class="dynamic_item">
+                                                <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                                <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dynamic"><img src="../../image/index/t2.jpg" alt="" class="dynamic-image">
+                                        <div class="dynamic_info">
+                                            <p>热带水果了解一下！</p>
+                                            <div class="dynamic_item">
+                                                <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                                <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dynamic"><img src="../../image/index/t1.jpg" alt="" class="dynamic-image">
+                                        <div class="dynamic_info">
+                                            <p>热带水果了解一下！</p>
+                                            <div class="dynamic_item">
+                                                <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                                <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dynamic"><img src="../../image/index/t2.jpg" alt="" class="dynamic-image">
+                                        <div class="dynamic_info">
+                                            <p>热带水果了解一下！</p>
+                                            <div class="dynamic_item">
+                                                <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                                <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dynamic"><img src="../../image/index/t1.jpg" alt="" class="dynamic-image">
+                                        <div class="dynamic_info">
+                                            <p>热带水果了解一下！</p>
+                                            <div class="dynamic_item">
+                                                <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                                <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dynamic"><img src="../../image/index/t2.jpg" alt="" class="dynamic-image">
+                                        <div class="dynamic_info">
+                                            <p>热带水果了解一下！</p>
+                                            <div class="dynamic_item">
+                                                <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                                <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dynamic"><img src="../../image/index/t1.jpg" alt="" class="dynamic-image">
+                                        <div class="dynamic_info">
+                                            <p>热带水果了解一下！</p>
+                                            <div class="dynamic_item">
+                                                <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                                <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dynamic"><img src="../../image/index/t2.jpg" alt="" class="dynamic-image">
+                                        <div class="dynamic_info">
+                                            <p>热带水果了解一下！</p>
+                                            <div class="dynamic_item">
+                                                <div class="dynamic_item_nick"><img src="../../image/index/lecturer.png" alt=""><span>周莘羽</span></div>
+                                                <div class="dynamic_item_commend"><img src="../../image/index/xin_red.png" alt=""><span style="color:rgba(217,39,39,1);">9.9k</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+
+                </div>
+
+                <block v-if="tabIndex=='3'">
+                    <div class="organ_list">
+                        <div class="organ_item" tapmode @click="fnOpenPublicWin('机构店详情','index/store_detail')">
+                            <div class="organ_cover">
+                                <img src="../../image/index/Mask.png" alt="">
+                                <div class="store_label_icon"><img src="../../image/index/store_label_icon.png" alt=""></div>
+                            </div>
+                            <div class="organ_info">
+                                <div class="organ_title overflow_hidden_two">
+                                    1北京市融安消防职业技能培训学校(北沙滩校区)
+                                </div>
+                                <div class="organ_time" style="margin-bottom:0;">
+                                    <img src="../../image/index/star.png" alt="">
+                                    <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                                    <span>月售 6506</span>
+                                    <span style="margin-left: auto;">距离: 2.0km</span>
+                                </div>
+                                <span class="lecturer overflow_hidden_one" style="width:100%;">中国上海市浦东新区浦建路769号浦东新区浦建</span>
+                                <div class="store_label">
+                                    <div class="store_label_item">1对1课程</div>
+                                    <div class="store_label_item">适合0-15岁</div>
+                                    <div class="store_label_item">线下付尾款</div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="organ_item" tapmode @click="fnOpenPublicWin('机构详情','index/organ_detail')">
+                            <div class="organ_cover">
+                                <img src="../../image/index/Mask.png" alt="">
+                                <div class="store_label_icon"><img src="../../image/index/store_label_icon.png" alt=""></div>
+                            </div>
+                            <div class="organ_info">
+                                <div class="organ_title overflow_hidden_two">
+                                    1北京市融安消防职业技能培训学校(北沙滩校区)
+                                </div>
+                                <div class="organ_time" style="margin-bottom:0;">
+                                    <img src="../../image/index/star.png" alt="">
+                                    <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                                    <span>月售 6506</span>
+                                    <span style="margin-left: auto;">距离: 2.0km</span>
+                                </div>
+                                <span class="lecturer overflow_hidden_one" style="width:100%;">中国上海市浦东新区浦建路769号浦东新区浦建</span>
+                                <div class="store_label">
+                                    <div class="store_label_item">1对1课程</div>
+                                    <div class="store_label_item">适合0-15岁</div>
+                                    <div class="store_label_item">线下付尾款</div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="organ_item" tapmode @click="fnOpenPublicWin('机构详情','index/organ_detail')">
+                            <div class="organ_cover">
+                                <img src="../../image/index/Mask.png" alt="">
+                                <div class="store_label_icon"><img src="../../image/index/store_label_icon.png" alt=""></div>
+                            </div>
+                            <div class="organ_info">
+                                <div class="organ_title overflow_hidden_two">
+                                    1北京市融安消防职业技能培训学校(北沙滩校区)
+                                </div>
+                                <div class="organ_time" style="margin-bottom:0;">
+                                    <img src="../../image/index/star.png" alt="">
+                                    <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                                    <span>月售 6506</span>
+                                    <span style="margin-left: auto;">距离: 2.0km</span>
+                                </div>
+                                <span class="lecturer overflow_hidden_one" style="width:100%;">中国上海市浦东新区浦建路769号浦东新区浦建</span>
+                                <div class="store_label">
+                                    <div class="store_label_item">1对1课程</div>
+                                    <div class="store_label_item">适合0-15岁</div>
+                                    <div class="store_label_item">线下付尾款</div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </block>
+            </div>
+        </div>
+
+
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript" src="../../script/macy.js"></script>
+
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+
+    }
+    var masonry = new Macy({
+        container: '#macy-container',
+        trueOrder: false,
+        waitForImages: false,
+        useOwnImageLoader: false,
+        margin: {
+            y: 5,
+            x: 5,
+        },
+        columns: 2
+
+    });
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                tabIndex: 0,
+                isFixed: false,
+                offsetTop: 0,
+                listData: [{
+                    id: "1"
+                }, {
+                    id: "2"
+                },  ]
+            },
+            mounted() {
+                window.addEventListener('scroll', this.initHeight);
+                this.$nextTick(() => {
+                    //获取对象相对于版面或由 offsetTop 属性指定的父坐标的计算顶端位置
+                    this.offsetTop = document.querySelector('#tab').offsetTop;
+                })
+            },
+            methods: {
+
+                fnSetTabIndex: function(key) {
+                    this.tabIndex = key;
+                    //  fnLoginBtnStatus();
+                },
+                initHeight() {
+                    // 设置或获取位于对象最顶端和窗口中可见内容的最顶端之间的距离 (被卷曲的高度)
+                    var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+                        //如果被卷曲的高度大于吸顶元素到顶端位置 的距离
+                    this.isFixed = scrollTop > this.offsetTop ? true : false;
+
+                }
+            },
+            destroyed() {
+                window.removeEventListener('scroll', this.handleScroll)
+            }
+        })
+
+
+    }
+</script>
+
+</html>

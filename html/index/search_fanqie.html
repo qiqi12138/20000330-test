@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>搜索番茄课</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+        html,
+        body {
+            background: rgba(246, 246, 246, 1);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="space"></div>
+        <div class="index_online" style="background:#fff;">
+            <div class="index_online_list" v-if="listData.length>0">
+
+                <div class="index_online_item" v-for="item in listData" tapmode @click="fnOpenPublicWin('课程详情','index/fanqie_lession_detail',{articleId:1})">
+                    <div class="index_online_item_cover">
+                        <img src="../../image/index/onlin_course.png" alt="">
+                    </div>
+                    <div class="index_online_item_info">
+                        <div class="index_online_item_info_title overflow_hidden_two">
+                            寒假目标一本班【高三】化学二轮复习备考
+                        </div>
+
+                        <div class="index_online_attr aui-flex-box aui-margin-b-10">
+                            <span class="lecturer">讲师：伊丽莎白</span>
+                            <h2><i>¥666</i>  ¥282</h2>
+                        </div>
+                        <div class="score">
+                            <div class="icon  iconfont icon-xing stars" style="font-size: 0.5rem;letter-spacing:0.1rem;"><span style="width:50%;"></span></div>
+                            <span style="font-size:0.6rem;font-weight:400;color:rgba(217,39,39,1);">4.7</span>
+                            <div class="score-right">销量：456</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div v-if="listData.length==0">
+            <div class="no_data">
+                <img :src="isSerach=='1'?'../../image/no_page/no_search.png':'../../image/no_page/no_information.png'" alt="">
+                <p v-text="isSerach=='1'?'没有搜到相关内容，换个关键词试试吧':'暂无资讯'"></p>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+        api.addEventListener({
+            name: 'searchVal'
+        }, function(ret, err) {
+            if (ret) {
+                if (ret.value.winName == api.winName) {
+                    vm.searchVal = ret.value.searchVal;
+                    fnInitPage();
+                }
+            }
+        });
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                searchVal: api.pageParam.searchVal || '',
+                isSerach: api.pageParam.isSerach || '0',
+                listData: [{
+                    id: "1"
+                }, {
+                    id: "2"
+                }],
+            }
+        })
+    }
+
+    function fnInitPage() {
+        $S.ShowProgress();
+        var postData = {};
+        $S.POST("", postData, function(ret, err) {
+            if (ret && ret.status == '200') {
+
+            }
+            $S.CloseProgress();
+        })
+    }
+</script>
+
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>消息</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/base.css" />
+    <style>
+        .public_header_text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .public_header_text img {
+            width: 2.6rem;
+            height: 0.8rem;
+            margin-left: 0.4rem;
+        }
+
+        html,
+        body {
+            background: rgba(246, 246, 246, 1);
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <header style="background: #fff;">
+            <div class="public_header public_line">
+                <div class="public_header_left" tapmode onclick="fnBack()">
+                    <img src="../../image/index/back.png" alt="">
+                </div>
+                <div class="public_header_text">英孚教育<img src="../../image/index/official_icon.png" alt=""></div>
+                <div class="public_header_right" tapmode @click="fnOpenPublicWin('更多','message/chat_more')"><img src="../../image/index/tab_more_icon.png" alt=""></div>
+            </div>
+        </header>
+        <div class="chat_detail">
+            <section class="aui-chat">
+                <div class="aui-chat-header">2016年7月13日</div>
+                <div class="aui-chat-item aui-chat-left">
+                    <div class="aui-chat-media">
+                        <img src="../../image/index/lecturer.png" />
+                    </div>
+                    <div class="aui-chat-inner">
+
+                        <div class="aui-chat-content">
+                            <div class="aui-chat-arrow"></div>
+                            欢迎关注英孚教育！
+                        </div>
+
+                    </div>
+                </div>
+                <div class="aui-chat-item aui-chat-left">
+                    <div class="aui-chat-media">
+                        <img src="../../image/index/lecturer.png" />
+                    </div>
+                    <div class="aui-chat-inner">
+
+                        <div class="aui-chat-content">
+                            <div class="aui-chat-arrow"></div>
+                          您好~有什么能帮助您的吗？
+                        </div>
+
+                    </div>
+                </div>
+                <div class="aui-chat-item aui-chat-right">
+                    <div class="aui-chat-media">
+                      <img src="../../image/index/lecturer.png" />
+                    </div>
+                    <div class="aui-chat-inner">
+                        <div class="aui-chat-content">
+                            <div class="aui-chat-arrow"></div>
+                            你好！
+                        </div>
+                        <div class="aui-chat-status">
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
+        </div>
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    var UIChatBox;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+        UIChatBox = api.require('UIChatBox');
+
+        fnOpenChatBox();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    }
+
+    function fnOpenChatBox() {
+        UIChatBox.open({
+            placeholder: '请输入内容',
+            autoFocus: false,
+            emotionPath: 'widget://image/emotion',
+            styles: {
+                topDivider: { //(可选项)顶部分割线配置
+                    width: 1, //(可选项)顶部分割线的粗细，默认：0
+                    color: '#C9C9C9' //(可选项)顶部分割线的颜色；默认：#000 ;支持图片设置(fs:// & widget://)
+                },
+                inputBar: { //（可选项）JSON对象；输入区域（输入框及两侧按钮）整体样式
+
+                    bgColor: '#F6F6F6', //（可选项）字符串类型；输入框区域的整体背景色，支持 rgb，rgba，#；默认：'#f2f2f2'
+                    textColor: '#000', //（可选项）字符串类型；输入文字的颜色；默认：#000
+                    textSize: 16, //（可选项）数字类型；默认：16
+                    textMarginLeft: 12 //（可选项）数字类型；光标距离左边框的距离，默认：5
+                },
+                inputBox: { //（可选项）JSON对象；输入框样式
+                    borderColor: '#F6F6F6', //（可选项）字符串类型；输入框的边框颜色，支持 rgb，rgba，#；默认：'#B3B3B3'
+                    bgColor: '#FFFFFF', //（可选项）字符串类型；输入框的背景色，支持 rgb，rgba，#；默认：'#f2f2f2'
+                    boardBgColor: '#f2f2f2', //（可选项）字符串类型；面板的背景色(表情面板，附加面板)，支持 rgb，rgba，#；默认：'#f2f2f2'
+                    topMargin: 8, //（可选项）数字类型；输入框距离顶部的边距；默认：10
+                    borderCorner: 4, //(可选项)数字类型；默认：5
+                },
+                extrasBtn: {
+                    normalImg: 'widget://image/message/chat_photo_icon.png'
+                },
+                emotionBtn: { //（可选项）JSON对象；表情按钮样式；不传则不显示表情按钮
+                    normalImg: 'widget://image/message/chat_emotion_icon.png' //（可选项）字符串类型；表情按钮常态的背景图片（本地路径，fs://、widget://）；默认：笑脸小图标,
+                },
+                indicator: {
+                    target: 'both',
+                    color: '#c4c4c4',
+                    activeColor: '#9e9e9e'
+                },
+                sendBtn: {
+                    titleColor: '#fff',
+                    bg: '#D92727',
+                    activeBg: '#F8F8F8',
+                    titleSize: 14
+                }
+            },
+            extras: {
+                titleSize: 10,
+                titleColor: '#a3a3a3',
+                btns: [{
+                    title: '图片',
+                    normalImg: 'widget://image/album1.png',
+                    activeImg: 'widget://image/album2.png'
+                }, {
+                    title: '发送地址',
+                    normalImg: 'widget://image/loc1.png',
+                    activeImg: 'widget://image/loc2.png'
+                }, {
+                    title: '图片',
+                    normalImg: 'widget://image/album1.png',
+                    activeImg: 'widget://image/album2.png'
+                }, {
+                    title: '发送地址',
+                    normalImg: 'widget://image/loc1.png',
+                    activeImg: 'widget://image/loc2.png'
+                }, {
+                    title: '图片',
+                    normalImg: 'widget://image/album1.png',
+                    activeImg: 'widget://image/album2.png'
+                }, {
+                    title: '发送地址',
+                    normalImg: 'widget://image/loc1.png',
+                    activeImg: 'widget://image/loc2.png'
+                }, {
+                    title: '图片',
+                    normalImg: 'widget://image/album1.png',
+                    activeImg: 'widget://image/album2.png'
+                }, {
+                    title: '发送地址',
+                    normalImg: 'widget://image/loc1.png',
+                    activeImg: 'widget://image/loc2.png'
+                }, {
+                    title: '图片',
+                    normalImg: 'widget://image/album1.png',
+                    activeImg: 'widget://image/album2.png'
+                }, {
+                    title: '发送地址',
+                    normalImg: 'widget://image/loc1.png',
+                    activeImg: 'widget://image/loc2.png'
+                }, {
+                    title: '图片',
+                    normalImg: 'widget://image/album1.png',
+                    activeImg: 'widget://image/album2.png'
+                }, {
+                    title: '发送地址',
+                    normalImg: 'widget://image/loc1.png',
+                    activeImg: 'widget://image/loc2.png'
+                }]
+            }
+        }, function(ret, err) {
+
+        });
+    }
+
+    function fnOpenChat() {
+        var param = {
+            name: 'chat',
+            url: '../message/chat.html',
+        }
+        fnOpenWin(param)
+    }
+
+    function fnBack() {
+        fnDelayCloseWin(0);
+    }
+</script>
+
+</html>

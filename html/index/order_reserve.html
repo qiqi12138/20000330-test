@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>预约试听</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/login.css" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            background: rgba(246, 246, 246, 1);
+        }
+
+        .public_info_list .public_info_item.public_line:after {
+            left: 0;
+            right: 0;
+        }
+
+        .public_info_list .public_info_item .public_info_item_img {
+            width: 0.8rem;
+            height: 0.8rem;
+            object-fit: cover;
+            margin-left: 0.05rem;
+        }
+
+        .feedback_btn {
+            height: 2.25rem;
+            background: rgba(217, 39, 39, 1);
+            border-radius: 0.2rem;
+            font-size: 0.8rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            line-height: 2.25rem;
+            text-align: center;
+            position: fixed;
+            bottom: 0.75rem;
+            left: 0.75rem;
+            right: 0.75rem;
+        }
+
+        .feedback_content {
+            padding: 0.85rem 0.75rem;
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 0.2rem;
+        }
+
+        .feedback_content textarea {
+            height: 5.85rem;
+            line-height: 1.05rem;
+            overflow: scroll;
+            font-size: 0.85rem;
+        }
+
+        .public_info_list .public_info_item {
+            background: #fff;
+            padding: 0 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 2.8rem;
+            /*line-height: 2.5rem;*/
+            overflow: hidden;
+        }
+
+        .public_info_list .public_info_item input {
+            font-size: 0.85rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(151, 158, 166, 1);
+            /*line-height: 0.65rem;*/
+            text-align: left;
+            flex: 1;
+            padding-left: 0;
+        }
+
+        input::-webkit-input-placeholder {
+            font-size: 0.85rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+            line-height: 1.2rem;
+        }
+
+        input:-moz-placeholder {
+            font-size: 0.85rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+            line-height: 1.2rem;
+        }
+
+        input::-moz-placeholder {
+            font-size: 0.85rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+            line-height: 1.2rem;
+        }
+
+        input:-ms-input-placeholder {
+            line-height: 1.2rem;
+            font-size: 0.85rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+        }
+
+        textarea {
+            line-height: 1.2rem;
+            color: rgba(153, 153, 153, 1);
+            font-size: 0.85rem;
+            width: 100%;
+            word-break: break-all;
+        }
+
+        textarea::-webkit-input-placeholder {
+            line-height: 1.2rem;
+            color: rgba(153, 153, 153, 1);
+            font-size: 0.85rem;
+        }
+
+        textarea:-moz-placeholder {
+            line-height: 1.2rem;
+            color: rgba(153, 153, 153, 1);
+            font-size: 0.85rem;
+        }
+
+        input::-moz-placeholder,
+        textarea::-moz-placeholder {
+            line-height: 1.2rem;
+            color: rgba(153, 153, 153, 1);
+            font-size: 0.85rem;
+        }
+
+        textarea:-ms-input-placeholder {
+            line-height: 1.2rem;
+            color: rgba(153, 153, 153, 1);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="space"></div>
+        <div class="public_info_list" id="change_pass">
+            <div class="public_info_item public_line">
+                <input spellcheck="false" class="public_info_item_input" type="text" v-model="password" minlength="6" maxlength="16" data-type="_password" data-verify="true" data-null="true" data-regular="true" name="密码" placeholder="请输入您的姓名">
+                <img class="public_info_item_img" src="../../image/index/clear_val.png" alt="" tapmode @click="fnIsShowPass()">
+            </div>
+            <div class="public_info_item public_line">
+                <input spellcheck="false" class="public_info_item_input" type="text" v-model="passwordNew" minlength="6" maxlength="16" data-type="_password" data-verify="true" data-null="true" data-regular="true" name="新密码" placeholder="请输入孩子年龄">
+                <img class="public_info_item_img" src="../../image/index/clear_val.png" alt="" tapmode @click="fnIsShowPassNew()">
+            </div>
+            <div class="public_info_item">
+                <input spellcheck="false" class="public_info_item_input" type="text" v-model="passwordNewRepeat" minlength="6" maxlength="16" data-type="_password" data-verify="true" data-null="true" data-regular="true" name="新密码" placeholder="请输入您的联系方式">
+                <img class="public_info_item_img" src="../../image/index/clear_val.png" alt="" tapmode @click="fnIsShowPassNewRepeat()">
+            </div>
+            <div class="space"></div>
+            <div class="feedback_content">
+
+                <textarea maxlength="500" placeholder="给我们留言(选填)"></textarea>
+            </div>
+        </div>
+        <div class="feedback_btn" tapmode>提交</div>
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-font.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var $S, USER;
+    var vm;
+    apiready = function() {
+        $S = SERVICE();
+        USER = USER();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                password: "",
+                passwordNew: "",
+                passwordNewRepeat: "",
+                isAvailable: false, //登录按钮是否可用
+                isShowPass: false,
+                isShowPassNew: false,
+                isShowPassNewRepeat: false
+            },
+            methods: {
+                fnIsShowPass: function() {
+                    this.isShowPass = !this.isShowPass
+                },
+                fnIsShowPassNew: function() {
+                    this.isShowPassNew = !this.isShowPassNew
+                },
+                fnIsShowPassNewRepeat: function() {
+                    this.isShowPassNewRepeat = !this.isShowPassNewRepeat
+                }
+            },
+            watch: { //监听手机号和密码的值，来判断开启和关闭登录按钮的点击状态
+                password: function() {
+                    fnLoginBtnStatus();
+                },
+                passwordNew: function() {
+                    fnLoginBtnStatus();
+                },
+                passwordNewRepeat: function() {
+                    fnLoginBtnStatus();
+                }
+            }
+        })
+    }
+    //修改登录按钮的启用状态
+    function fnLoginBtnStatus() {
+        if (!isEmpty(vm.passwordNew) && !isEmpty(vm.password) && !isEmpty(vm.passwordNewRepeat)) {
+            vm.isAvailable = true;
+        } else {
+            vm.isAvailable = false;
+        }
+    }
+
+    function fnChangePass() {
+        if (fnVerify("change_pass")) {
+            if (vm.passwordNew != vm.passwordNewRepeat) {
+                fnToast("两次输入的密码不一致");
+                return;
+            }
+            $S.ShowProgress();
+            var postData = {
+                "password": $S.MD5S(vm.password),
+                "newPassword": $S.MD5S(vm.passwordNew),
+            };
+            $S.POST("apiTbAppUser/updatePassword", postData, function(ret, err) {
+                if (ret && ret.status == '200') {
+                    fnToast("密码修改成功");
+                    fnDelayCloseWin(800)
+                }
+                $S.CloseProgress();
+            })
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>协议</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            background: rgba(248, 248, 248, 1);
+            padding: 0.5rem ;
+        }
+
+        .agreement_detail {
+            font-size: 0.85rem;
+            color: rgba(102, 102, 102, 1);
+            line-height: 1.6rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 0.2rem;
+            border: 1px solid rgba(237, 237, 240, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="agreement_detail">
+            继续深入贯彻落实《国务院办公厅关于强化学校体育促进学生身心健康全面发展的意见》精神。加大推进学校体育场馆向社会开放的工作力度，不断深化学校体育供给侧改革，推进全民健身工作。开展中小学体育教学指导委员会换届工作。 不断推进学校体育的教学、训练、竞赛等方面的改革发展工作。开展学生体质健康督查。召开“一校一品”教育改革现场会。积极推进和加强中小学、高校的评价体系与学生体质健康挂钩建设。推进高师体育教育专业改革。加强教师的培训工作。加强学校风险防控体系建设。
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    }
+</script>
+
+</html>

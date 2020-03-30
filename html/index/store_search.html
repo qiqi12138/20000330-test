@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>店内搜索</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/base.css" />
+    <style>
+        html,
+        body {
+            background: rgba(246, 246, 246, 1);
+        }
+
+        .index_header {
+            position: relative;
+        }
+
+        .public_header .public_header_search {
+            padding: 0 0.75rem;
+            justify-content: flex-start;
+        }
+
+        .public_header .public_header_right .public_header_right_search_text {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: rgba(51, 51, 51, 1);
+            line-height: 1rem;
+            margin-left: 0.75rem;
+        }
+
+        .search_history {
+            padding-bottom: 0.1rem;
+        }
+
+        .search_history .search_history_title {
+            padding: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: rgba(51, 51, 51, 1);
+            line-height: 1.1rem;
+        }
+
+        .search_history .search_history_title img {
+            width: 1.1rem;
+            height: 1.1rem;
+        }
+
+        .search_history_list {
+            padding-left: 0.75rem;
+            padding-right: 0.25rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .search_history_list .search_history_item {
+            background: rgba(244, 244, 244, 1);
+            border-radius: 0.2rem;
+            font-size: 0.75rem;
+            color: #303033;
+            line-height: 1.1rem;
+            padding: 0.25rem 0.75rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .search_hot {
+            padding-bottom: 0.1rem;
+        }
+
+        .search_hot .search_hot_title {
+            padding: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: rgba(51, 51, 51, 1);
+            line-height: 1.1rem;
+        }
+
+        .search_hot_list {
+            padding-left: 0.75rem;
+            padding-right: 0.25rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .search_hot_list .search_hot_item {
+            background: rgba(244, 244, 244, 1);
+            border-radius: 0.2rem;
+            font-size: 0.75rem;
+            color: #303033;
+            line-height: 1.1rem;
+            padding: 0.25rem 0.75rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <header class="index_header">
+            <div class="public_header">
+                <div class="public_header_left" tapmode onclick="fnBack()">
+                    <img src="../../image/index/back.png" alt="">
+                </div>
+                <div class="public_header_search">
+                    <img src="../../image/index/index_search.png" alt="">
+                    <form id="search_from" target="nm_iframe">
+                        <input spellcheck="false" type="search" autofocus="autofocus" id="goToSearch" name="" v-model="searchVal" placeholder="内容" maxlength="15">
+                    </form>
+                    <iframe name="nm_iframe" style="display:none;"></iframe>
+                    <!-- <img v-if="searchVal!=''" style="width:0.8rem;height:0.8rem;" src="../../image/consult/clear_val.png" alt="" tapmode @click="fnClearVal()"> -->
+                </div>
+                <div class="public_header_right" tapmode @click="fnStartSearch()">
+                    <span class="public_header_right_search_text">搜本店</span>
+                </div>
+            </div>
+        </header>
+
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var _footerH;
+
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+
+        _footerH = localStorage.safeBottom;
+        fnInit();
+
+
+
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                searchVal: "",
+
+                isOpenFrm: true
+            },
+            mounted: function() {
+                this.$nextTick(function() {
+                    if (document.getElementById('search_from')) {
+                        document.getElementById('search_from').onsubmit = function() {
+                            fnKeyboard();
+                            var searchVal = vm.searchVal;
+                            fnStartSearch(searchVal)
+                        };
+                    }
+                })
+            }
+        })
+    }
+
+    function fnStartSearch(searchVal) {
+        fnKeyboard();
+        setTimeout(function() {
+
+            vm.isOpenFrm = true;
+            vm.$nextTick(function() {
+                fnOpenSearchFrm(searchVal);
+            })
+
+
+        }, 500);
+    }
+
+    function fnOpenSearchFrm(searchVal) {
+
+        var param = {
+            name: 'index/store_search_res',
+            url: '../index/store_search_res.html',
+
+
+            pageParam: {
+                searchVal: searchVal,
+                isSerach: "1"
+            }
+        }
+        fnOpenWin(param)
+    }
+
+
+    function fnBack() {
+        fnDelayCloseWin();
+    }
+</script>
+
+</html>

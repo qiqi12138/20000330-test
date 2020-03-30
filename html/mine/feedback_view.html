@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>意见反馈</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: rgba(247, 246, 246, 1);
+        }
+
+        .feedback_info {
+            padding: 0.75rem 0;
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+            line-height: 1rem;
+        }
+
+        .feedback_info span {
+            padding-left: 0.75rem;
+            padding-bottom: 0.2rem;
+        }
+
+        .feedback_content {
+            padding: 0.75rem 0.75rem 0.5rem 0.75rem;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 0.2rem;
+        }
+
+        .feedback_content p {
+            font-size: 0.75rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1.2rem;
+        }
+
+        .feedback_content span {
+            display: block;
+            text-align: right;
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(123, 130, 139, 1);
+            line-height: 0.85rem;
+            padding-top: 0.5rem;
+        }
+
+        .feedback_contact {
+            height: 2.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0.75rem;
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+            line-height: 1rem;
+            margin-top: 0.4rem;
+            background: #fff;
+        }
+
+        .feedback_contact h2 {
+            font-size: 0.85rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(51, 51, 51, 1);
+            line-height: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="feedback_info">
+            <span>平台回复</span>
+            <div class="feedback_content">
+                <p>从 2015 年 4 月起，Ant Design 在蚂蚁金服中后台产品线迅速推广，对接多条业务线，覆盖系统 800 个以上。定位于中台业务的 Ant Design 兼顾专业和非专业的设计人员，具有学习成本低、上手速度快、实现效果好等特点，并且提供从界面设计到前端开发的全链路生态，可以大大提升设计和开发的效率。</p>
+                <span style="color:rgba(204,204,204,1);">2019.12.11</span>
+            </div>
+            <span style="padding-top:0.75rem;">我的建议</span>
+
+            <div class="feedback_content">
+                <p>意为探索用户体验与工程实践，由蚂蚁金服集团每年举办 1-2 次，包括专业分享、产品展台、Workshop 等内容。</p>
+                <span style="color:rgba(204,204,204,1);">2019.12.11</span>
+            </div>
+            <div class="feedback_contact">
+                <h2>联系方式</h2>
+                <span>17766333366</span>
+            </div>
+
+
+
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-pic.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                context: "",
+                email: ""
+            }
+        })
+    }
+</script>
+
+</html>

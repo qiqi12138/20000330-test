@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="../../mui/mui.picker.css">
+    <link rel="stylesheet" type="text/css" href="../../mui/mui.poppicker.css">
+    <link rel="stylesheet" type="text/css" href="../../mui/mui.min.css">
+    <title>编辑选择</title>
+    <style>
+        html,
+        body {
+            position: relative;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .timeSel {
+            display: none;
+            background: #fff;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 180px;
+        }
+        /*.timeSel.layer {
+            display: block;
+            height: 238px;
+        }*/
+
+        .mui-poppicker,
+        .mui-poppicker-body {
+            border: 0;
+            box-shadow: none;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            border-bottom: 0.5px solid #E8E8E8;
+        }
+
+        .header p {
+            line-height: 18px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mui-backdrop {
+            display: none;
+        }
+        /*.mui-poppicker-header*/
+
+        .mui-dtpicker-header {
+            display: none;
+        }
+
+        .mui-dtpicker-title {
+            display: none;
+        }
+
+        .mui-dtpicker {
+            border: 0;
+            box-shadow: none;
+        }
+
+        .mui-pciker-rule-ft {
+            border-top: solid 0.5px #e8e8e8;
+            border-bottom: solid 0.5px #e8e8e8;
+        }
+
+        #actionSheet {
+            display: none;
+        }
+
+        ..mui-poppicker-header {
+            height: 38px;
+        }
+
+        .mui-btn.mui-poppicker-btn-ok,
+        .mui-btn.mui-poppicker-btn-cancel {
+            height: 28px;
+            line-height: 28px;
+            width: 50px;
+        }
+
+        .mui-btn.mui-poppicker-btn-ok {
+            background-color: #1995F8;
+            color: #fff;
+            border-color: #1995F8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="timeSel">
+        <div class="header">
+            <p tapmode onclick="api.closeFrame();">取消</p>
+            <p style="color: #1995F8;" tapmode onclick="fnSubmit();">确定</p>
+        </div>
+    </div>
+    <!-- <div id="actionSheet" v-cloak class="mui-popover mui-popover-action mui-popover-bottom mui-active">
+        <ul class="mui-table-view">
+            <li v-for="item,index in list" class="mui-table-view-cell">
+                <a :data-index="index" href="#">{{item.name}}</a>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#actionSheet"><b>取消</b></a>
+            </li>
+        </ul>
+    </div> -->
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/jquery.min.js"></script>
+<script type="text/javascript" src="../../mui/mui.min.js"></script>
+<script type="text/javascript" src="../../mui/mui.picker.js"></script>
+<script type="text/javascript" src="../../mui/mui.poppicker.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../mui/city.data.js"></script>
+<script type="text/javascript" src="../../mui/city.data-3.js"></script>
+<script type="text/javascript" src="../../mui/politics.js"></script>
+<script>
+    var picker, vm;
+    var modelType = ''; // 1 actionSheet 2 timepicker 3选择性别
+    var selList;
+    apiready = function() {
+        mui.init({
+            swipeBack: false
+        });
+        modelType = api.pageParam.modelType;
+        if (modelType == 2) {
+            // 时间选择
+            fnOpenSelect();
+        } else if (modelType == 3) {
+            // 性别选择
+            selList = [{
+                "value": 1,
+                "text": "男"
+            }, {
+                "value": 2,
+                "text": "女"
+            }];
+            initVue();
+        }else if (modelType == 4) {
+            // 性别选择
+            selList = [{
+                "value": 1,
+                "text": "父亲"
+            }, {
+                "value": 2,
+                "text": "母亲"
+            }];
+            initVue();
+        }  else {
+            selList = politics;
+                // popPicker
+            initVue();
+        }
+    }
+
+    function initVue() {
+        // $('#actionSheet').css('display', 'block');
+        // vm = new Vue({
+        //     el: '#actionSheet',
+        //     data: {
+        //         list: api.pageParam.list
+        //     }
+        // });
+        // 选中,取消事件
+        // mui('body').on('tap', '.mui-popover-action li>a', function() {
+        //     if(this.hash == '#actionSheet') {
+        //         // 取消
+        //         api.closeFrame();
+        //     }else {
+        //         // 选中
+        //         var index = this.dataset.index;
+        //         fnSubmit(index);
+        //     }
+        // })
+        // var a = [{ value: 'ywj',
+        //         text: '董事长 叶文洁' }];
+        picker = new mui.PopPicker({
+            layer: 1
+        });
+        picker.setData(selList);
+        picker.show(function(items) {
+            if (items) {
+                var values = [],
+                    texts = [],
+                    list = [];
+                for (var i = 0; i < items.length; i++) {
+                    var temp = {
+                        value: items[i].value,
+                        text: items[i].text
+                    };
+                    values.push(temp.value);
+                    texts.push(temp.text);
+                    list.push(temp);
+                }
+                values = values.join(';');
+                texts = texts.join(';');
+                fnSubmit(list, values, texts);
+            } else {
+                api.closeFrame();
+            }
+        });
+    }
+
+    function fnOpenSelect() {
+        $('.timeSel').css('display', 'block');
+        var options = {
+            'type': 'date'
+        };
+        picker = new mui.DtPicker(options);
+        picker.show(function(rs) {
+            /*
+             * rs.value 拼合后的 value
+             * rs.text 拼合后的 text
+             * rs.y 年，可以通过 rs.y.vaue 和 rs.y.text 获取值和文本
+             * rs.m 月，用法同年
+             * rs.d 日，用法同年
+             * rs.h 时，用法同年
+             * rs.i 分（minutes 的第二个字母），用法同年
+             */
+            console.log('选择结果: ' + rs.text)
+        });
+    }
+    // 检查选择结果
+    function checkSelect() {
+        return true;
+    }
+    // 选择后的回调
+    function fnSubmit(list, values, texts) {
+        if (checkSelect()) {
+            var selectData = '';
+            if (modelType == '2') {
+                // 时间 --> 格式 2019-08-09 12:12:12
+                selectData = picker.getSelected().value;
+            } else {
+                // actionSheet
+                // var item = vm.list[index];
+                selectData = texts + '","' + values;
+            }
+            api.execScript({
+                name: api.pageParam.winName,
+                frameName: api.pageParam.frameName,
+                script: 'fnSelectData("' + selectData + '");'
+            });
+            api.closeFrame();
+        }
+    }
+</script>
+
+</html>

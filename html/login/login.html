@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/login.css" />
+
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="login_bg">
+            <div class="login_top">
+                <header>
+                    <div class="public_header">
+                        <div class="public_header_left" tapmode onclick="fnBack()">
+                            <img src="../../image/login/close.png" alt="">
+                        </div>
+                        <div class="public_header_text"></div>
+                        <div class="public_header_right"></div>
+                    </div>
+                </header>
+                <div class="login_title">
+                    <span>{{loginType=='1'?'快捷登录':'登录'}}</span>
+                </div>
+            </div>
+            <div>
+                <header></header>
+                <div style="height:8.5rem;"></div>
+            </div>
+            <div class="login_info" id="login">
+                <div class="login_info_item" id="tel_login">
+                    <div class="login_info_item_input login_info_item_title public_line">
+                        <img src="../../image/login/phone_iconx.png" class="img1" alt="">
+                        <input spellcheck="false" type="tel" v-model="telephone" maxlength="11" data-type="_telphone" data-verify="true" data-null="true" data-regular="true" name="手机号" placeholder="请输入您的手机号" oninput="value=value.replace(/[^\d0-9]/g,'')">
+                    </div>
+                </div>
+                <div class="login_info_item" v-if="loginType=='1'">
+                    <div class="login_info_item_input login_info_item_title public_line">
+                        <img src="../../image/login/verify_iconx.png" class="img2"  alt="">
+                        <input spellcheck="false" type="tel" oninput="value=value.replace(/[^\d0-9]/g,'')" v-model="verify_code" maxlength="6" data-type="_code" data-verify="true" data-null="true" data-regular="true" name="验证码" placeholder="请输入验证码">
+                        <span class="login_input_btn" tapmode @click="isSendCode?fnGetCode():''">{{sendBtnText}}</span>
+                    </div>
+                </div>
+                <div class="login_info_item" v-else-if="loginType=='2'">
+                    <div class="login_info_item_input login_info_item_title public_line">
+                        <img src="../../image/login/password_iconx.png" class="img1" alt="">
+                        <input spellcheck="false" type="password" v-model="password" minlength="6" maxlength="16" data-type="_password" data-verify="true" data-null="true" data-regular="true" name="密码" placeholder="密码位数在6-16之间">
+                        <span class="login_forget_password" tapmode @click="fnOpenPublicWin('','login/forget_password')">忘记密码?</span>
+                    </div>
+                </div>
+            </div>
+
+            <div :class="isAvailable?'login_btn':'login_btn not_click'" tapmode @click="isAvailable?fnLogin():''">登录</div>
+            <div class="login_other_info">
+                <span>还没有账号?<span class="to_register"  tapmode @click="fnOpenPublicWin('','login/register')">点击注册</span></span>
+
+                <span tapmode @click="fnSetLoginType('1')" v-if="loginType=='2'">快捷登录</span>
+
+                <span tapmode @click="fnSetLoginType('2')" v-else-if="loginType=='1'">账号密码登录</span>
+
+            </div>
+            <div class="login_bottom" :style="'margin-top:'+loginSpace+'px'">
+                <div class="other_login_mode">
+                    <div class="other_login_mode_title">
+                        <em></em><span>第三方登录</span><em></em>
+                    </div>
+                    <div class="other_login_mode_list">
+                        <div class="other_login_mode_item" tapmode @click="isAgreement?fnOpenPublicWin('','login/card_login'):fnToast('请阅读并同意用户协议及隐私政策')">
+                            <img src="../../image/login/wx1.png" alt="">
+                            <span>微信</span>
+                        </div>
+                        <div class="other_login_mode_item" tapmode @click="isAgreement?fnThirdPartyLogin():fnToast('请阅读并同意用户协议及隐私政策')">
+                            <img src="../../image/login/apple.png" alt="">
+                            <span>Apple</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="login_tips">
+
+                    <p>登录注册即同意<span tapmode @click="fnOpenAgreement('1')">用户协议</span></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+        var _loginSpace = api.winHeight - (localStorage.safeBottom || 0) - AD(".login_bg").offsetH();
+        vm.loginSpace = _loginSpace > 0 ? _loginSpace : 20;
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                loginSpace: "",
+                telephone: "",
+                password: "",
+                verify_code: "",
+                isAvailable: false, //登录按钮是否可用
+                sendBtnText: "获取验证码",
+                isSendCode: true,
+                loginType: "1", //1快捷登录 2密码登录
+                isAgreement: false,
+            },
+            methods: {
+                fnGetCode: function() {
+                    fnGetVerifyCode()
+                },
+                fnSetLoginType: function(key) {
+                    this.loginType = key;
+                    fnLoginBtnStatus();
+                },
+                fnIsAgreement: function() {
+                    this.isAgreement = !this.isAgreement;
+                }
+            },
+            watch: { //监听手机号和密码的值，来判断开启和关闭登录按钮的点击状态
+                telephone: function() {
+                    fnLoginBtnStatus();
+                },
+                verify_code: function() {
+                    fnLoginBtnStatus();
+                },
+                password: function() {
+                    fnLoginBtnStatus();
+                }
+            }
+        })
+    }
+
+    //修改登录按钮的启用状态
+    function fnLoginBtnStatus() {
+        if (vm.loginType == '1') {
+            if (!isEmpty(vm.telephone) && !isEmpty(vm.verify_code)) {
+                vm.isAvailable = true;
+            } else {
+                vm.isAvailable = false;
+            }
+        } else if (vm.loginType == '2') {
+            if (!isEmpty(vm.telephone) && !isEmpty(vm.password)) {
+                vm.isAvailable = true;
+            } else {
+                vm.isAvailable = false;
+            }
+        }
+    }
+
+    function fnGetVerifyCode() {
+        if (fnVerify("tel_login")) {
+            $S.ShowProgress();
+            var postData = {
+                phone: vm.telephone,
+                loginType: "9" //1注册 2修改密码 3忘记密码 4校验原手机号 5微信绑定手机号 6QQ 7微博 8更换新手机号 9快捷登录
+            }
+            $S.POST("verifyCode/sendCode", postData, function(ret, err) {
+                if (ret && "200" == ret.status) {
+                    vm.isSendCode = false;
+                    fnVerifyTime('60', vm);
+                }
+                $S.CloseProgress();
+            })
+        }
+    }
+    //登录
+    function fnLogin() {
+        if (fnVerify("login")) {
+            if (!vm.isAgreement) {
+                fnToast("请阅读并同意用户协议及隐私政策");
+                return;
+            }
+            $S.ShowProgress();
+            var postUrl = "",
+                postData = {};
+            if (vm.loginType == '1') {
+                postUrl = "apiTbAppUser/codeLogin";
+                postData = {
+                    "phone": vm.telephone,
+                    "code": vm.verify_code
+                }
+            } else if (vm.loginType == '2') {
+                postUrl = "apiTbAppUser/passwordLogin";
+                postData = {
+                    "account": vm.telephone,
+                    "password": $S.MD5S(vm.password),
+                };
+            }
+            $S.POST(postUrl, postData, function(ret, err) {
+                if (ret && ret.status == "200") {
+                    fnToast("登录成功");
+                    fnWhenLoginSucess(ret.data);
+                    fnDelayCloseWin(300);
+                    api.sendEvent({
+                        name: 'loginStatus',
+                        extra: {
+                            login: true,
+                        }
+                    });
+                }
+                $S.CloseProgress();
+            })
+        }
+    }
+
+    function fnBack() {
+        fnDelayCloseWin();
+    }
+
+    function fnOpenAgreement(type) {
+        var pageTitle = type == '1' ? '平台用户使用协议' : '隐私政策';
+        pageData = {
+            type: type
+        }
+        fnOpenPublicWin(pageTitle, "login/agreement", pageData);
+    }
+    //第三方登录
+    var _pData = {}; //用于提交个人信息的参数
+    function fnThirdPartyLogin() {
+        //key 1:微信登录; 2:QQ登录; 3:微博登录
+        // fnLoginType('1', function(_param, ret1, err1) {
+        //     console.log(JSON.stringify(_param));
+        //     console.log(JSON.stringify(ret1))
+        //     console.log(JSON.stringify(err1));
+        //     _pData.nickName = ret1.nickname;
+        //     _pData.photo = ret1.headimgurl;
+        //     console.log(JSON.stringify(_pData))
+        //         //用于判断第三方是否绑定过手机号
+        //     $S.ShowProgress();
+        //     var postData = {
+        //         "thirdType": "101", //微信:101 qq:102 微博:103
+        //         "thirdPartyId": _param.openId,
+        //         "mustBindPhone": "0"
+        //     };
+        //     $S.POST("apiTbAppUser/thirdPartyLogin", postData, function(ret, err) {
+        //         if (ret && ret.status == "200") {
+        //             if (ret.data.isBindingMobile == "0") {
+        //                 console.log("未绑定过手机号");
+        //                 //打开绑定手机号页面
+        fnToast("授权成功，需进行手机号绑定");
+        setTimeout(function() {
+            //打开新页面
+            var pageData = {
+                // "thirdPartyId": postData.thirdPartyId,
+                // "nickName": _pData.nickName,
+                // "photo": _pData.photo
+            }
+            fnOpenPublicWin('', 'login/bind_phone', pageData)
+        }, "200")
+
+        //             } else if (ret.data.isBindingMobile == "1") {
+        //                 console.log("绑定过手机号");
+        //                 fnToast("登录成功");
+        //                 fnWhenLoginSucess(ret.data);
+        //                 fnDelayCloseWin(300);
+        //                 api.sendEvent({
+        //                     name: 'loginStatus',
+        //                     extra: {
+        //                         login: true,
+        //                     }
+        //                 })
+        //             }
+        //         }
+        //         $S.CloseProgress();
+        //     })
+        // })
+    }
+</script>
+
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>意见反馈</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: rgba(247, 246, 246, 1);
+        }
+
+        .feedback_content {
+            padding: 0.85rem 0.75rem;
+            padding-bottom: 0.75rem;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 0.2rem;
+        }
+
+        .feedback_content textarea {
+            height: 5.85rem;
+            line-height: 1.05rem;
+            overflow: scroll;
+        }
+
+        .feedback_content span {
+            display: block;
+            text-align: right;
+            font-size: 0.75rem;
+            color: rgba(196, 200, 214, 1);
+            line-height: 1.05rem;
+            padding-top: 0.5rem;
+        }
+
+        .feedback_btn {
+            height: 2.25rem;
+            background: rgba(217, 39, 39, 1);
+            border-radius: 0.2rem;
+            font-size: 0.8rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            line-height: 2.25rem;
+            text-align: center;
+            position: fixed;
+            bottom: 0.75rem;
+            left: 0.75rem;
+            right: 0.75rem;
+        }
+
+        .feedback_imgs {
+            display: flex;
+            flex-wrap: wrap;
+            background: #fff;
+        }
+
+        .feedback_imgs_item {
+            position: relative;
+            width: 5.5rem;
+            height: 5.5rem;
+            margin-top: 0.8rem;
+            margin-right: 0.5rem;
+        }
+
+        .feedback_imgs_item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.2rem;
+        }
+
+        .feedback_imgs_item_close {
+            position: absolute;
+            width: 0.8rem;
+            height: 0.8rem;
+            object-fit: cover;
+            top: 0.3rem;
+            right: 0.3rem;
+        }
+
+        .answer_head {
+          background: #fff;
+            padding: 0.75rem;
+            font-size: 0.8rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: rgba(51, 51, 51, 1);
+            line-height: 1.25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="answer_head">
+            京都24景点，评分和感受都在这里啦，京都景点攻略#
+        </div>
+        <div class="space"></div>
+        <div class="feedback_content">
+            <textarea maxlength="500" placeholder="填写问答内容…" v-model="context"></textarea>
+            <div class="feedback_imgs">
+                <div class="feedback_imgs_item">
+                    <img src="../../image/index/lecturer.png" alt="">
+                    <div class="feedback_imgs_item_close">
+                        <img src="../../image/message/report_close_icon.png" alt="">
+                    </div>
+                </div>
+
+                <div class="feedback_imgs_item" tapmode @click="fnOpenPhoto('personalInfo', '1')">
+                    <img src="../../image/message/report_add.png" alt="">
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="feedback_btn" tapmode @click="fnSubmitFeedback()">发布</div>
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-pic.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                context: "",
+                email: ""
+            }
+        })
+    }
+
+    function fnSubmitFeedback() {
+        if (vm.context.replace(/(\n+)|(\s+)/g, "") == "") {
+            vm.context = "";
+            fnToast("请输入您的问答内容～");
+            return;
+        }
+        if (fnVerify("feedback_email")) {
+            $S.ShowProgress();
+            var postData = {
+                "entityName": "complaintSuggestions",
+                "context": vm.context,
+                "contactEmail": vm.email,
+            };
+            $S.POST("common/insert", postData, function(ret, err) {
+                if (ret && ret.status == '200') {
+                    fnToast("提交成功");
+                    fnDelayCloseWin(300);
+                }
+                $S.CloseProgress();
+            })
+        }
+    }
+</script>
+
+</html>

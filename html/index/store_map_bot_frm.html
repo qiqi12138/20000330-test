@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>暂未开通</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+.store_map_bot {
+  display: flex;
+  height: 54px;
+  padding: 0 0.75rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.store_map_bot h2 {
+  font-size:0.85rem;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+color:rgba(51,51,51,1);
+line-height:1.2rem;
+}
+.store_map_bot span {
+  width:2.9rem;
+height:1.3rem;
+border-radius:0.65rem;
+border:1px solid rgba(217,39,39,1);
+font-size:0.7rem;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+color:rgba(217,39,39,1);
+line-height:1.3rem;
+text-align: center;
+}
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+      <footer>
+       <div class="store_map_bot">
+         <h2>北京市海淀区新中关英孚教育</h2><span tapmode @click="fnOpenApp()">导航</span>
+       </div>
+     </footer>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    }
+    function fnOpenApp() {
+
+      api.openApp({
+            androidPkg: 'android.intent.action.VIEW' ,
+            appParam:{
+                     origin:'中关村',
+                     destination:'五道口',
+                      region:'北京',
+                      mode:'driving',
+                      src:api.appName
+              },
+              uri:'intent://map/direction?origin=中关村&destination=五道口&mode=driving&region=北京&src=osm#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end',
+              iosUrl:'baidumap://map/direction'
+      },function(ret,err){
+
+      });
+
+    }
+</script>
+
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>main</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/vue.min.js"></script>
+<script type="text/javascript" src="../script/service/service-app.js"></script>
+<script type="text/javascript" src="../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../script/service/service-user.js"></script>
+<script type="text/javascript" src="../script/service/service-login.js"></script>
+<script type="text/javascript" src="../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var tabFrame = ["", "", ""]
+    var ajpush;
+    var USER;
+    var $S;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+
+        localStorage.safeTop = api.safeArea.top; //获取顶部状态栏的高度
+        localStorage.safeBottom = api.safeArea.bottom; //获取底部栏的高度
+        //2次点击返回按钮监听事件
+        ExitAppByKeyBack2();
+        //底部导航栏点击事件
+        api.addEventListener({
+            name: 'tabitembtn'
+        }, function(ret) {
+            console.log(ret.index);
+            var index = ret.index;
+            if (index == 2) {
+                var params = {
+                    name: 'tab_publish',
+                    url: './tabs/tab_publish.html',
+                    slidBackEnabled: false
+                };
+                fnOpenWin(params);
+            } else {
+            api.setTabBarAttr({
+                index: index
+            });
+            }
+            if (index == 1) {
+                api.setFrameGroupAttr({
+                    name: 'fanqie_group',
+                    hidden: false
+                });
+                var fqTabIndex = localStorage.fqTabIndex;
+
+                if (fqTabIndex == 1) {
+                    api.setFrameGroupAttr({
+                        name: 'fanqie_frm_group',
+                        hidden: false
+                    });
+                } else if (fqTabIndex == 2) {
+                    api.setFrameGroupAttr({
+                        name: 'reading_frm_group',
+                        hidden: false
+                    });
+                } else {
+                    api.setFrameGroupAttr({
+                        name: 'fanqie_frm_group',
+                        hidden: true
+                    });
+                    api.setFrameGroupAttr({
+                        name: 'reading_frm_group',
+                        hidden: true
+                    });
+
+                }
+
+
+
+            } else {
+                api.setFrameGroupAttr({
+                    name: 'fanqie_group',
+                    hidden: true
+                });
+                api.setFrameGroupAttr({
+                    name: 'fanqie_frm_group',
+                    hidden: true
+                });
+                api.setFrameGroupAttr({
+                    name: 'reading_frm_group',
+                    hidden: true
+                });
+
+            }
+        });
+        ajpush = api.require('ajpush');
+        var systemType = api.systemType
+        if (systemType != 'ios') {
+            ajpush.init(function(ret) {
+                if (ret && ret.status) {
+                    fnBindTag();
+                }
+            });
+        } else {
+            fnBindTag()
+        }
+        api.addEventListener({
+            name: 'loginStatus'
+        }, function(ret, err) {
+            fnBindTag()
+        });
+    }
+
+
+
+    function fnBindTag() {
+        var _tag = "";
+        if (fnCheckIsOpenLogin()) {
+            _tag = USER.Get('custId', true) || "";
+        }
+        var param = {
+            alias: _tag,
+            tags: ['tag1', 'tag2']
+        };
+        ajpush.bindAliasAndTags(param, function(ret) {
+            if (ret.statusCode == "6002") {
+                // setTimeout(function() {
+                //     fnBindTag();
+                // }, "2000")
+            }
+        });
+        fnMessage();
+    }
+
+    function fnMessage() {
+        var systemType = api.systemType;
+        if (systemType == 'ios') {
+            var messageId;
+            var messageCode;
+            var detailId;
+            var consultInfo;
+            //后台运行监听
+            ajpush.setListener(function(ret) {
+                // alert(JSON.stringify(ret))
+                var _title = "fanqie";
+                if (ret.title && ret.title != "") {
+                    _title = ret.title;
+                }
+                if (ret.extra.ext) {
+                    var _pushValue = ret.extra.ext;
+                    messageId = JSON.parse(_pushValue).messageInfoId;
+                    messageCode = JSON.parse(_pushValue).messageInfoTypeCode;
+                    detailId = JSON.parse(_pushValue).messageInfoBusinessId;
+                    consultInfo = JSON.parse(_pushValue).consultInfo;
+                }
+                api.notification({
+                    notify: {
+                        title: "",
+                        content: ret.content
+                    }
+                }, function(ret, err) {
+                    return;
+                });
+            });
+            api.addEventListener({
+                name: 'noticeclicked'
+            }, function(ret, err) {
+                if (ret && ret.value) {
+                    // alert(JSON.stringify(ret)+"----")
+                    var _pushValue = ret.value.extra.ext;
+                    messageId = JSON.parse(_pushValue).messageInfoId;
+                    messageCode = JSON.parse(_pushValue).messageInfoTypeCode;
+                    detailId = JSON.parse(_pushValue).messageInfoBusinessId;
+                    consultInfo = JSON.parse(_pushValue).consultInfo;
+                }
+                // fnOpenMessageDetail("", messageId, messageCode, detailId,)
+            })
+        } else {
+            api.addEventListener({
+                name: 'appintent'
+            }, function(ret, err) {
+                // alert(JSON.stringify(ret))
+                if (ret && ret.appParam.ajpush) {
+                    var _push = ret.appParam.ajpush.extra.ext
+                    var messageId = JSON.parse(_push).messageInfoId;
+                    var messageCode = JSON.parse(_push).messageInfoTypeCode;
+                    var detailId = JSON.parse(_push).messageInfoBusinessId;
+                    var consultInfo = JSON.parse(_push).consultInfo;
+                    // fnOpenMessageDetail("", messageId, messageCode, detailId,consultInfo)
+                }
+            })
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>消息详情</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        .message_detail {
+            padding: 1rem 0.75rem;
+        }
+
+        .message_title {
+            font-size: 1rem;
+            font-family: PingFangSC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: rgba(51, 51, 51, 1);
+            line-height: 1.4rem;
+        }
+
+        .message_content {
+            font-size: 0.85rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(68, 68, 68, 1);
+            line-height: 1.35rem;
+        }
+
+        .message_content img {
+            width: 100%;
+            height: auto
+        }
+
+        .message_time {
+            font-size: 0.65rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+            line-height: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="message_detail" v-if="messageInfo!=''">
+            <div class="message_title" v-html="messageInfo.title"></div>
+            <div class="message_time">
+                05月08日 12:11:11
+            </div>
+            <div class="message_content" id="messageContent" v-html="messageInfo.context"></div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+        //fnInitPage();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                messageId: api.pageParam.messageId || "",
+                messageInfo: {
+                    title: "2018年关于未来科研成功的公告在此公布于众",
+                    context: "从 2015 年 4 月起，Ant Design 在蚂蚁金服中后台产品线迅速推广，对接多条业务线，覆盖系统 800 个以上。定位于中台业务的 Ant Design 兼顾专业和非专业的设计人员，具有学习成本低、上手速度快、实现效果好等特点，并且提供从界面设计到前端开发的全链路生态，可以大大提升设计和开发的效率。"
+                }
+            }
+        })
+    }
+
+    function fnInitPage() {
+        $S.ShowProgress();
+        var postData = {
+            "messageInfoId": vm.messageId
+        };
+        $S.POST("apiAppMessage/findUserMessageDetails", postData, function(ret, err) {
+            if (ret && ret.status == '200') {
+                vm.messageInfo = ret.data;
+            }
+            $S.CloseProgress();
+            vm.$nextTick(function() {
+                fnAdaptationContent("messageContent");
+            })
+        })
+    }
+</script>
+
+</html>

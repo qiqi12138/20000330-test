@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>积分兑换福利</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        .exchange_head {
+            display: flex;
+            height: 2.8rem;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            margin-left: 0.75rem;
+            margin-right: 0.65rem;
+            align-items: center;
+            font-size: 0.85rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1.2rem;
+        }
+
+        .exchange_head img {
+            width: 0.5rem;
+            height: 0.5rem;
+        }
+
+        .exchange_item {
+            background: rgba(255, 255, 255, 1);
+            border-radius: 0.2rem;
+            border: 1px solid rgba(237, 237, 237, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 0;
+            height: 13rem;
+        }
+
+        .exchange_item img {
+            width: 8.35rem;
+            height: 8.35rem;
+            border-radius: 0.2rem 0.2rem 0px 0px;
+        }
+
+        .aui-row {
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .aui-row-padded {
+            margin-left: -0.275rem;
+            margin-right: -0.275rem;
+        }
+
+        .aui-row-padded [class*=aui-col-xs-] {
+            padding: 0.275rem;
+            ;
+        }
+
+        .exchange_item_info {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0.4rem 0.5rem 0.5rem 0.5rem;
+        }
+
+        .exchange_item_info h2 {
+            font-size: 0.75rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1.05rem;
+        }
+
+        .exchange_item_info_span {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(217, 39, 39, 1);
+            line-height: 1rem;
+        }
+
+        .exchange_btn {
+            width: 3.3rem;
+            height: 1.25rem;
+            border-radius: 0.65rem;
+            border: 0.5px solid rgba(217, 39, 39, 1);
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(217, 39, 39, 1);
+            line-height: 1.25rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="exchange_head public_line">
+            <span>兑换记录</span>
+            <img class="mine_info_right" src="../../image/index/go_page.png" alt="">
+        </div>
+        <div class="aui-content aui-margin-b-15">
+            <ul class="aui-list   aui-list-noborder">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner aui-padded-t-15">
+                        <div class="aui-row aui-row-padded">
+                            <div class="aui-col-xs-6 ">
+                                <div class="exchange_item">
+                                    <img src="../../image/index/t2.jpg" alt="">
+                                    <div class="exchange_item_info">
+                                        <h2>高中英语试听课</h2>
+                                        <div class="exchange_item_info_span">
+                                            <span>20积分</span>
+                                            <span class="exchange_btn" tapmode @click="fnOpenPublicWin('积分兑换福利','mine/mine_integral_exchange_apply')">立即兑换</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="aui-col-xs-6 ">
+                                <div class="exchange_item">
+                                    <img src="../../image/index/t2.jpg" alt="">
+                                    <div class="exchange_item_info">
+                                        <h2>高中英语试听课高中英语试听课</h2>
+                                        <div class="exchange_item_info_span">
+                                            <span>20积分</span>
+                                            <span class="exchange_btn" tapmode @click="fnOpenPublicWin('积分兑换福利','mine/mine_integral_exchange_apply')">立即兑换</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="aui-col-xs-6 ">
+                                <div class="exchange_item">
+                                    <img src="../../image/index/t2.jpg" alt="">
+                                    <div class="exchange_item_info">
+                                        <h2>高中英语试听课高中英语试听课</h2>
+                                        <div class="exchange_item_info_span">
+                                            <span>20积分</span>
+                                            <span class="exchange_btn" tapmode @click="fnOpenPublicWin('积分兑换福利','mine/mine_integral_exchange_apply')">立即兑换</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="aui-col-xs-6 ">
+                                <div class="exchange_item">
+                                    <img src="../../image/index/t2.jpg" alt="">
+                                    <div class="exchange_item_info">
+                                        <h2>高中英语试听课高中英语试听课</h2>
+                                        <div class="exchange_item_info_span">
+                                            <span>20积分</span>
+                                            <span class="exchange_btn">立即兑换</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="aui-col-xs-6 ">
+                                <div class="exchange_item">
+                                    <img src="../../image/index/t2.jpg" alt="">
+                                    <div class="exchange_item_info">
+                                        <h2>高中英语试听课高中英语试听课</h2>
+                                        <div class="exchange_item_info_span">
+                                            <span>20积分</span>
+                                            <span class="exchange_btn">立即兑换</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="aui-col-xs-6 ">
+                                <div class="exchange_item">
+                                    <img src="../../image/index/t2.jpg" alt="">
+                                    <div class="exchange_item_info">
+                                        <h2>高中英语试听课高中英语试听课</h2>
+                                        <div class="exchange_item_info_span">
+                                            <span>20积分</span>
+                                            <span class="exchange_btn">立即兑换</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    }
+</script>
+
+</html>

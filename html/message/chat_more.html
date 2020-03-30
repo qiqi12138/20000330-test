@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>设置</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/base.css" />
+    <style>
+        html,
+        body {
+            background: rgba(248, 248, 248, 1);
+        }
+
+        .public_info_list .public_info_item .login_mode {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.45rem;
+        }
+
+        .logout_btn {
+            margin: 0 0.75rem;
+            margin-top: 1.5rem;
+            height: 2.25rem;
+            line-height: 2.25rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 0.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(151, 158, 166, 1);
+            border: 1px solid rgba(151, 158, 166, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="public_info_list">
+            <div class="public_info_item public_line" tapmode @click="fnOpenSearch()">
+                <span class="public_info_item_title">查看聊天记录</span>
+                <img class="public_info_item_img" src="../../image/index/go_page.png" alt="">
+            </div>
+            <div class="public_info_item public_line" tapmode @click="fnOpenReportFrame()">
+                <span class="public_info_item_title">举报</span>
+                <img class="public_info_item_img" src="../../image/index/go_page.png" alt="">
+            </div>
+
+
+        </div>
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    }
+    function fnOpenSearch() {
+        var param = {
+            name: 'chat_search',
+            url: '../message/chat_search.html',
+        }
+        fnOpenWin(param)
+    }
+
+    function fnOpenReportFrame() {
+          api.openFrame({
+              name: 'chat_report_frm',
+              url: './chat_report_frm.html',
+              rect: {
+                  x: 0,
+                  y: 0,
+                  w: 'auto',
+                  h: 'auto'
+              },
+              bgColor: 'rgba(0,0,0,0.5)' // 设置Frame的透明度
+          });
+      }
+
+
+
+
+
+</script>
+
+</html>

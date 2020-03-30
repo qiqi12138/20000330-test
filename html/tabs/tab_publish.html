@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/swiper.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    var FNPhotograph;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+
+        FNPhotograph = api.require('FNPhotograph');
+        FNPhotograph.openCameraView({
+            rect: {
+                x: 0,
+                y: 0,
+                w: api.frameWidth,
+                h: api.winHeight
+
+            },
+            orientation: 'portrait',
+            isStatusBarHidden: true,
+            fixed: true,
+            isShowAlbum: true,
+        }, function(ret) {
+
+            api.openFrame({
+                name: 'page2',
+                url: '../index/test.html',
+                rect: {
+                    x: 0,
+                    y: 0,
+                    w: api.frameWidth,
+                    h: api.winHeight
+
+                },
+                pageParam: {
+                    name: 'test'
+                },
+                vScrollBarEnabled: true,
+                hScrollBarEnabled: true
+            });
+        });
+
+        FNPhotograph.addEventListener({
+            name: 'click'
+        }, function(ret) {
+            if (ret) {
+                FNPhotograph.takePhoto({
+                    quality: 'medium',
+                    //path: 'fs://FNPhotograph/01.png',
+                    album: true
+                }, function(ret) {
+                    var pathimg = ret.imagePath;
+                    log(pathimg);
+                });
+
+            }
+        });
+
+
+
+        fnInit();
+    }
+
+    function fnInit() {
+
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    };
+
+    function fnSetCamera() {
+        FNPhotograph.getCamera(function(ret) {
+            if (ret.status) {
+              if(ret.camera=='front'){
+                FNPhotograph.setCamera({
+                    camera: 'back'
+                });
+              }else {
+                FNPhotograph.setCamera({
+                    camera: 'front'
+                });
+              }
+            }
+        });
+
+    }
+
+
+</script>
+
+</html>

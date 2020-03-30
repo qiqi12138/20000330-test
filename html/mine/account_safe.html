@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>个人信息</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            background: #F6F6F6;
+        }
+
+        .public_info_list .public_info_item .public_info_item_value {
+            color:rgba(204,204,204,1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="public_info_list" v-if="userInfo!=''">
+
+            <div class="public_info_item public_line" tapmode @click="fnOpenPublicWin('更换手机号','mine/change_phone')">
+                <span class="public_info_item_title">手机号</span>
+                <span class="public_info_item_value overflow_hidden_one">{{fnSetTel(phone)}}</span>
+                <img class="public_info_item_img" src="../../image/index/go_page.png" alt="">
+            </div>
+            <div class="public_info_item public_line"  tapmode @click="fnOpenPublicWin('','mine/change_password')">
+                <span class="public_info_item_title">修改密码</span>
+
+                <img class="public_info_item_img" src="../../image/index/go_page.png" alt="">
+            </div>
+            <div class="space"></div>
+            <div class="public_info_item public_line" tapmode>
+                <span class="public_info_item_title">微信账号</span>
+                <span class="public_info_item_value overflow_hidden_one">未绑定</span>
+                <img class="public_info_item_img" src="../../image/index/go_page.png" alt="">
+            </div>
+            <div class="public_info_item public_line" tapmode >
+                <span class="public_info_item_title">苹果账号</span>
+                <span class="public_info_item_value overflow_hidden_one">已绑定</span>
+                <img class="public_info_item_img" src="../../image/index/go_page.png" alt="">
+            </div>
+
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-pic.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+        fnInitPage();
+        api.addEventListener({
+            name: 'imgURL'
+        }, function(ret, err) {
+            if (ret && ret.value.type == 'personalInfo') {
+                fnOpenClipPic(ret.value.imgURL[0].path);
+            }
+        });
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+               phone:"18813137144",
+                listData: [{
+                    text: "头像", //该栏显示的信息名称
+                    value: "../../image/mine/default_head.png", //该栏显示的信息对应的数据
+                    editType: "1", //该栏显示的信息对应的数据类型
+                    verifyType: "", //该栏显示的信息对应的数据校验类型
+                    isSpace: true,
+                    nickName:"李富贵"
+                }, {
+                    text: "姓名",
+                    value: "林礼",
+                    editType: "2",
+                    verifyType: "",
+                }, {
+                    text: "性别",
+                    value: "男",
+                    editType: "3",
+                    verifyType: "",
+                }],
+                // newListData: [],
+                userInfo: {nickName:"李富贵",sex:1,phone:' 18813137144'} ,
+            },
+            mounted: function() {
+                this.$nextTick(function() {
+                    // this.newListData = [];
+                    // this.fnNewListData();
+                })
+            },
+            methods: {
+
+
+              fnSetTel: function(tel) {
+                  var reg = /^(\d{3})\d{4}(\d{4})$/;
+                  return tel.replace(reg, "$1****$2");
+              } ,
+
+
+
+                fnSexText: function(key) {
+                    if (key == '1') {
+                        return '男';
+                    } else if (key == '2') {
+                        return '女';
+                    } else {
+                        return '';
+                    }
+                },
+                fnNewListData: function() {
+                    if (vm.listData.length > 0) {
+                        for (var i = 0; i < vm.listData.length; i++) {
+                            if (vm.listData[i].isSpace) {
+                                vm.newListData.push(vm.listData.splice(0, i + 1));
+                                vm.fnNewListData();
+                                return;
+                            }
+                        }
+                        vm.newListData.push(vm.listData.splice(0, vm.listData.length));
+                        console.log(JSON.stringify(vm.newListData))
+                    }
+                }
+            }
+        })
+    }
+
+    function fnInitPage() {
+        if (fnCheckIsOpenLogin()) {
+            $S.ShowProgress();
+            $S.POST("apiTbAppUser/findUserBasic", "", function(ret, err) {
+                if (ret && ret.status == '200') {
+                    vm.userInfo = ret.data;
+                    api.execScript({
+                        name: 'main',
+                        frameName: 'tab_mine',
+                        script: 'fnInitPage();'
+                    });
+                }
+                $S.CloseProgress();
+            })
+        }
+    }
+
+    function fnEditNickname() {
+        var pageData = {
+            nickName: vm.userInfo.nickName,
+            isBtn: false,
+            btnType: "title",
+            btnName: "保存",
+            headerFn: "fnSaveNickname()"
+        };
+        fnOpenPublicWin("修改昵称", "mine/modify_name", pageData)
+    }
+
+    function fnUpdateInfor(type, value) {
+        $S.ShowProgress();
+        var postData = {}
+        postData[type] = value
+        $S.POST("apiTbAppUser/updateUserBasic", postData, function(ret, err) {
+            if (ret && ret.status == '200') {
+                fnToast("信息修改成功");
+                fnInitPage();
+            }
+            $S.CloseProgress();
+        })
+    }
+
+    function fnSelectSex() {
+        var params = {
+            name: 'select_model',
+            url: './select_model.html',
+            rect: {
+                x: 0,
+                y: 0,
+                w: 'auto',
+                h: 'auto'
+            },
+            pageParam: {
+                modelType: '3',
+                winName: api.winName,
+                frameName: api.frameName
+            }
+        }
+        fnOpenFrame(params);
+    }
+
+    function fnSelectData(sender, code) {
+        vm.userInfo.sex = code;
+        fnUpdateInfor("sex", code);
+    }
+    function fnOpenChangePass() {
+      ss
+    }
+</script>
+
+</html>

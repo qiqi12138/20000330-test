@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>店铺课程</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/store.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+    html,
+    body {
+        background: rgba(246, 246, 246, 1);
+    }
+
+        .lession_head {
+            background: #fff;
+            padding: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+        }
+
+        .lession_head_left {
+            display: flex;
+              align-items: center;
+        }
+
+        .lession_head_left img {
+            width: 1.2rem;
+            height: 1.2rem;
+            background: rgba(235, 29, 49, 1);
+            border-radius: 0.2rem;
+        }
+
+        .lession_head_left h2 {
+            font-size: 0.8rem;
+            font-family: PingFangSC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1.1rem;
+            margin-left: 0.4rem;
+        }
+
+        .lession_head_right {
+            display: flex;
+            align-items: center;
+        }
+
+        .lession_head_right img {
+            width: 1.1rem;
+            height: 1.1rem;
+            margin-right: 0.6rem;
+        }
+        .honor_wall {
+            display: flex;
+            padding: 0.45rem 0 2.7rem 0.25rem;
+            flex-wrap: wrap;
+        }
+
+        .honor_wall_item {
+            width: 48%;
+            margin-right: 0.25rem;
+            margin-bottom: 0.4rem;
+            border-radius: 0.2rem;
+            background: #fff;
+            align-items: center;
+
+        }
+
+        .honor_wall_item img {
+            width: 100%;
+            height: 6.7rem;
+            object-fit: cover;
+            border-radius: 0.2rem 0.2rem 0 0;
+
+
+        }
+
+        .honor_wall_item span {
+            height: 1.8rem;
+            padding-left: 0.5rem;
+            font-size: .69rem;
+            font-weight: 500;
+            color: rgba(51, 51, 51, 1);
+            line-height: 1.8rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="lession_head">
+            <div class="lession_head_left">
+                <img src="../../image/index/t4.jpg" alt="">
+                <h2>融安消防机构</h2>
+            </div>
+
+            <div class="lession_head_right">
+                <img src="../../image/index/chat_icon.png" alt="" tapmode @click="fnOpenChat()">
+                <img src="../../image/index/share_icon.png" alt="">
+                <div class="follow">关注</div>
+            </div>
+        </div>
+        <div class="space"></div>
+        <div class="honor_wall" >
+            <div class="honor_wall_item">
+                <img src="../../image/index/onlin_course.png" alt="">
+                <span>全国十佳教师</span>
+            </div>
+            <div class="honor_wall_item">
+                <img src="../../image/index/onlin_course.png" alt="">
+                <span>全国十佳教师</span>
+            </div>
+
+        </div>
+
+        <!-- <footer class="aui-bar aui-bar-tab aui-padded-l-5 aui-padded-r-5" id="footer">
+            <div class="aui-bar-tab-item" tapmode @click="fnOpenPublicWin('课程','index/store_detail')">
+                <img src="../../image/index/store_tab1.png" alt="">
+                <div class="aui-bar-tab-label">店内信息</div>
+            </div>
+            <div class="aui-bar-tab-item aui-active" tapmode @click="fnOpenPublicWin('课程','index/store_lession')">
+                <img src="../../image/index/store_tab2.png" alt="">
+                <div class="aui-bar-tab-label">课程</div>
+            </div>
+            <div class="aui-bar-tab-item" tapmode @click="fnOpenPublicWin('试听课','index/store_audition')">
+                <img src="../../image/index/store_tab3.png" alt="">
+                <div class="aui-bar-tab-label">试听课</div>
+            </div>
+            <div class="aui-bar-tab-item" tapmode @click="fnOpenPublicWin('外教汇','index/store_teachers')">
+                <img src="../../image/index/store_tab4_sel.png" alt="">
+                <div class="aui-bar-tab-label">外教汇</div>
+            </div>
+            <div class="aui-bar-tab-item" tapmode>
+                <img src="../../image/index/store_tab5.png" alt="">
+                <div class="aui-bar-tab-label">品牌形象</div>
+            </div>
+        </footer> -->
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+        api.addEventListener({
+            name: 'searchVal'
+        }, function(ret, err) {
+            if (ret) {
+                if (ret.value.winName == api.winName) {
+                    vm.searchVal = ret.value.searchVal;
+                    fnInitPage();
+                }
+            }
+        });
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                searchVal: api.pageParam.searchVal || '',
+                isSerach: api.pageParam.isSerach || '0',
+                listData: [{
+                    id: "1"
+                }, {
+                    id: "2"
+                }],
+            }
+        })
+    }
+
+    function fnInitPage() {
+        $S.ShowProgress();
+        var postData = {};
+        $S.POST("", postData, function(ret, err) {
+            if (ret && ret.status == '200') {
+
+            }
+            $S.CloseProgress();
+        })
+    }
+    function fnOpenChat() {
+        var param = {
+            name: 'store_chat',
+            url: '../message/chat.html',
+        }
+        fnOpenWin(param)
+    }
+</script>
+
+</html>

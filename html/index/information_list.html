@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>资讯列表</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="hot_news_list" v-if="listData.length>0">
+            <div class="hot_news_item" v-for="item in listData" tapmode @click="fnOpenPublicWin('详情','index/information_detail',{articleId:item.id})">
+                <div class="hot_news_info">
+                    <div class="hot_news_title overflow_hidden_two">
+                        铁树开花逢盛世 日月同辉耀中华揭秘国庆70周年庆典活动70周年庆典活动
+                    </div>
+                    <div class="hot_news_time">
+                        <span>2019.09.27 15:02</span>
+                        <span>19w 阅读</span>
+                    </div>
+                </div>
+                <div class="hot_news_cover">
+                    <img src="../../image/index/cover.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div v-if="listData.length==0">
+            <div class="no_data">
+                <img :src="isSerach=='1'?'../../image/no_page/no_search.png':'../../image/no_page/no_information.png'" alt="">
+                <p v-text="isSerach=='1'?'没有搜到相关内容，换个关键词试试吧':'暂无资讯'"></p>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+        api.addEventListener({
+            name: 'searchVal'
+        }, function(ret, err) {
+            if (ret) {
+                if (ret.value.winName == api.winName) {
+                    vm.searchVal = ret.value.searchVal;
+                    fnInitPage();
+                }
+            }
+        });
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                searchVal: api.pageParam.searchVal || '',
+                isSerach: api.pageParam.isSerach || '0',
+                listData: [{
+                    id: "1"
+                }, {
+                    id: "2"
+                }],
+            }
+        })
+    }
+
+    function fnInitPage() {
+        $S.ShowProgress();
+        var postData = {};
+        $S.POST("", postData, function(ret, err) {
+            if (ret && ret.status == '200') {
+
+            }
+            $S.CloseProgress();
+        })
+    }
+</script>
+
+</html>

@@ -1,0 +1,230 @@
+.reading_detail {
+    padding: 0.75rem;
+}
+
+.reading_detail h2 {
+    font-size: 0.85rem;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 800;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1.25rem;
+}
+
+.reading_detail h3 {
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(123, 130, 139, 1);
+    line-height: 2rem;
+}
+
+.base_info p {
+    font-size: .7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color:rgba(87,91,96,1);
+    line-height: 1.25rem;
+}
+.lession_comment {
+    padding: 0.75rem 0.75rem 0 0.75rem;
+}
+
+.question_head {
+    padding: 0.7rem 0.75rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.question_avatar {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+.question_avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.question_head_mid {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.6rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(151, 158, 166, 1);
+    line-height: 0.85rem;
+    margin-left: 0.6rem;
+}
+
+.question_head_mid h2 {
+    font-size: 0.7rem;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1rem;
+}
+
+.question_head_right {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+}
+
+.question_head_right img {
+    width: 1.1rem;
+    height: 1.1rem;
+    object-fit: cover;
+}
+
+.question_detail {
+    padding: 0 0.75rem 0.75rem 0.75rem;
+}
+
+
+
+.question_head_right span {
+    width: 2.9rem;
+    height: 1.3rem;
+    border-radius: 0.65rem;
+    border: 1px solid rgba(254, 114, 3, 1);
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(254, 114, 3, 1);
+    line-height: 1.3rem;
+    text-align: center;
+    margin-right: 0.75rem;
+}
+
+.question_pic img {
+
+    height: 10.5rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.question_title {
+    font-size: 0.85rem;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1.25rem;
+    padding: 0.75rem 0.75rem 0.6rem 0.75rem;
+}
+
+.question_attr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 1.35rem;
+    margin-top: 1.2rem;
+}
+
+.question_attr h2 {
+    background: rgba(253, 244, 244, 1);
+    border-radius: 0.8rem;
+    border: 1px solid rgba(217, 39, 39, 1);
+    font-size: 0.6rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(217, 39, 39, 1);
+    line-height: 1.35rem;
+    height: 1.5rem;
+    padding: 0 0.7rem;
+}
+
+.question_attr span {
+    font-size: 0.6rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(44, 53, 64, 1);
+    line-height: 0.85rem;
+}
+
+.dy_reply {
+    margin-top: 0.35rem;
+    padding: 0.5rem;
+    background: rgba(246, 246, 246, 1);
+}
+
+.dy_reply .dy_reply_one {
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1rem;
+}
+
+.dy_reply_item {
+    display: flex;
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    align-items: center;
+    font-weight: 400;
+    color: rgba(254, 114, 3, 1);
+    line-height: 1rem;
+}
+
+.dy_reply_item img {
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+.view_all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.2rem;
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(254, 114, 3, 1);
+    line-height: 2.2rem;
+    border-top: 1px solid rgba(237, 237, 240, 1);
+}
+
+.view_all img {
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+.dy_footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    padding-left: 0.75rem;
+}
+
+.dy_bot_left {
+    height: 2.7rem;
+    width: 53%;
+    display: flex;
+    align-items: center;
+}
+
+.dy_bot_item {
+    width: 20%;
+    height: 2.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dy_bot_item img {
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+.dy_bot_left input {
+    height: 1.65rem;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 0.85rem;
+    border: 1px solid rgba(199, 199, 204, 1);
+}

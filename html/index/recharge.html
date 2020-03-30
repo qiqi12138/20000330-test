@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>充值列表</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        .recharge {}
+
+        .recharge h2 {
+            padding: 0.75rem 0.75rem 0 0.75rem;
+            font-size: .65rem;
+            font-weight: 400;
+            color: rgba(151, 158, 166, 1);
+            line-height: 0.9rem;
+        }
+
+        .recharge_list {
+            display: flex;
+            flex-wrap: wrap;
+            padding-left: 0.75rem;
+        }
+
+        .recharge_item {
+            width: 30%;
+            height: 3.65rem;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 0.2rem;
+            border:0.5px solid rgba(151,158,166,1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0.5rem 0.5rem 0 0;
+            font-size: .65rem;
+            font-weight: 400;
+            color:rgba(102,102,102,1);
+            line-height: .9rem;
+        }
+
+        .recharge_item_price {
+            font-size: .65rem;
+            font-weight: 400;
+            line-height: .9rem;
+            color:rgba(44,53,64,1);
+        }
+
+        .recharge_item_price span {
+            font-size: 1.05rem;
+            font-family: Oswald-Medium, Oswald;
+            font-weight: 500;
+            line-height: 1.65rem;
+            margin-right: 0.25rem;
+        }
+
+        .recharge_active {
+            border: 1px solid rgba(217, 39, 39, 1);
+            color: rgba(217, 39, 39, 1);
+        }
+        .recharge_active_span {
+            color: rgba(217, 39, 39, 1);
+        }
+
+
+        .recharge_record {
+            height: 2.8rem;
+            margin: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: .85rem;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1.2rem;
+        }
+
+        .recharge_record img {
+            width: .5rem;
+            height: .5rem;
+        }
+
+        .bot-btn {
+          position: fixed;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          left:0.75rem;
+          right: 0.75rem;
+          text-align: center;
+          bottom: 1rem;
+        }
+
+        .recharge_btn {
+          width: 100%;
+          height: 2.25rem;
+          background: rgba(217, 39, 39, 1);
+          border-radius: 0.2rem;
+          font-size: .8rem;
+          font-weight: 500;
+          color: rgba(255, 255, 255, 1);
+          line-height: 2.25rem;
+        }
+
+        .recharge_info {
+            font-size: .55rem;
+            font-weight: 400;
+            color: rgba(151, 158, 166, 1);
+            line-height: 0.8rem;
+            margin-top: 0.4rem;
+        }
+
+        .recharge_info span {
+            color: #D92727;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="space"></div>
+        <div class="recharge">
+            <h2>请选择充值金额</h2>
+            <div class="recharge_list">
+                <div class="recharge_item recharge_active">
+                    <div class="recharge_item_price recharge_active_span">
+                        <span>7</span>番茄币
+                    </div>
+                    <span>售价:¥1</span>
+                </div>
+                <div class="recharge_item">
+                    <div class="recharge_item_price">
+                        <span>7</span>番茄币
+                    </div>
+                    <span>售价:¥1</span>
+                </div>
+                <div class="recharge_item">
+                    <div class="recharge_item_price">
+                        <span>7</span>番茄币
+                    </div>
+                    <span>售价:¥1</span>
+                </div>
+                <div class="recharge_item">
+                    <div class="recharge_item_price">
+                        <span>7</span>番茄币
+                    </div>
+                    <span>售价:¥1</span>
+                </div>
+                <div class="recharge_item">
+                    <div class="recharge_item_price">
+                        <span>7</span>番茄币
+                    </div>
+                    <span>售价:¥1</span>
+                </div>
+                <div class="recharge_item">
+                    <div class="recharge_item_price">
+                        <span>7</span>番茄币
+                    </div>
+                    <span>售价:¥1</span>
+                </div>
+            </div>
+            <div class="recharge_record public_line" @click="fnOpenPublicWin('充值记录','index/recharge_list')">
+                <span>充值记录</span>
+                <img src="../../image/index/go_page.png" alt="">
+            </div>
+            <div class="bot-btn">
+                <div class="recharge_btn" tapmode @click="fnRecharge()">确定充值</div>
+                <div class="recharge_info">充值即同意 <span tapmode @click="fnOpenAgreement('1')">《充值协议》</span></div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    }
+
+    function fnOpenAgreement(type) {
+        var pageTitle = type == '1' ? '充值协议' : '隐私政策';
+        pageData = {
+            type: type
+        }
+        fnOpenPublicWin('充值协议', "login/agreement", pageData);
+    }
+
+    function fnRecharge() {
+        var param = {
+            alertConfirmFn: "fnOpenCrewAuth()",
+            cancelFn: "fnBack()",
+            alertType: "2",
+            cancelText: "取消",
+            confirmText: "去认证",
+        }
+        fnOpenAlert(param);
+    }
+    function fnOpenCrewAuth() {
+        fnOpenPublicWin('认证', 'mine/real_auth');
+        fnDelayCloseWin(1000);
+    }
+    function fnBack() {
+
+        api.closeFrame({
+            name: 'alert'
+        });
+
+    }
+</script>
+
+</html>

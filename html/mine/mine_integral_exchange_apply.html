@@ -1,0 +1,239 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>个人信息</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            background: #F6F6F6;
+        }
+
+        .public_info_list .public_info_item .public_info_item_value {
+            color: rgba(204, 204, 204, 1);
+        }
+
+        .public_info_list .public_info_item .public_info_item_img {
+            width: 0.8rem;
+            height: 0.8rem;
+            object-fit: cover;
+            margin-left: 0.75rem;
+        }
+
+        .info_space {
+            height: 1.95rem;
+            background: rgba(248, 248, 248, 1);
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+            padding: 0.75rem 0 0.2rem 0.75rem;
+        }
+
+        .perfect_info_list {
+            background: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.35rem 0 0.75rem;
+        }
+
+        .perfect_info_item {
+            width: 33%;
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .perfect_info_item span {
+            width: 4.7rem;
+            height: 1.65rem;
+            background: rgba(253, 244, 244, 1);
+            border-radius: 0.2rem;
+            border: 1px solid rgba(217, 39, 39, 1);
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(217, 39, 39, 1);
+            line-height: 1.65rem;
+            letter-spacing: 1px;
+        }
+
+        .perfect_info_item .not_check {
+            background: rgba(244, 244, 244, 1);
+            color: rgba(51, 51, 51, 1);
+            border-style: none;
+        }
+
+        .save_btn {
+            position: fixed;
+            bottom: 0.75rem;
+            left: 0.75rem;
+            right: 0.75rem;
+            height: 2.25rem;
+            background: #D92727;
+            border-radius: 0.2rem;
+            font-size: 0.8rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            line-height: 2.25rem;
+            text-align: center;
+        }
+
+        .jump_btn {
+            margin: 0 0.75rem 0.75rem 0.75rem;
+            height: 2.25rem;
+            background: rgba(255, 255, 255, 1);
+            border: 1px solid rgba(151, 158, 166, 1);
+            border-radius: 0.2rem;
+            font-size: 0.8rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: rgba(151, 158, 166, 1);
+            line-height: 2.25rem;
+            text-align: center;
+        }
+
+        .public_info_list .public_info_item input,
+        .public_info_list .public_info_item textarea {
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(123, 130, 139, 1);
+            line-height: 1rem;
+            text-align: left;
+            flex: 1;
+            padding-left: 0.9rem;
+            padding-right: 0.7rem;
+        }
+
+        input::-webkit-input-placeholder {
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(204, 204, 204, 1);
+            line-height: 1rem;
+        }
+
+        input:-moz-placeholder {
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(170, 170, 170, 1);
+            line-height: 0.9rem;
+        }
+
+        input::-moz-placeholder {
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(170, 170, 170, 1);
+            line-height: 0.9rem;
+        }
+
+        input:-ms-input-placeholder {
+            line-height: 1rem;
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(170, 170, 170, 1);
+        }
+
+        .public_info_list .public_info_item_address {
+            background: #fff;
+            padding: 0.8rem 0.75rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            height: 2.8rem;
+            /*line-height: 2.5rem;*/
+            overflow: hidden;
+        }
+
+        .apply_tips {
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(151, 158, 166, 1);
+            line-height: 0.85rem;
+            margin: 0.4rem 0.75rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="public_info_list">
+
+            <div class="public_info_item public_line">
+                <span class="public_info_item_title">收件人</span>
+                <input type="text" name="cName" value="" v-model="cName" placeholder="请输入收件人">
+                <img v-if="cName!=''" class="public_info_item_img" src="../../image/index/clear_val.png" alt="" tapmode @click="fnClearName()">
+            </div>
+            <div class="public_info_item public_line">
+                <span class="public_info_item_title" style="margin-right:0.85rem;">手机号码</span>
+                <input type="text" name="" value="" placeholder="请输入您的收货手机号">
+                <img v-if="cName!=''" class="public_info_item_img" src="../../image/index/clear_val.png" alt="" tapmode @click="fnClearName()">
+            </div>
+            <div class="public_info_item public_info_item_address public_line" style="height:3.65rem;">
+                <span class="public_info_item_title">收货地址</span>
+                <textarea name="name" placeholder="请输入收货地址">中国浙江省宁波市江北区市民路988号宁波市江北区市</textarea>
+                <img class="public_info_item_img" style="align-self:center;" src="../../image/index/clear_val.png" alt="" tapmode @click="fnClearName()">
+            </div>
+        </div>
+        <div class="apply_tips">
+            注：以上填写信息仅用来为您寄送商品。
+        </div>
+
+        <div class="save_btn" tapmode>提交</div>
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-pic.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                cName: ''
+            },
+            methods: {
+                fnClearName: function() {
+                    this.cName = "";
+                }
+            }
+        })
+    }
+</script>
+
+</html>

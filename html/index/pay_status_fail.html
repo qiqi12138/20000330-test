@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>暂未开通</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        .pay_status {
+            display: flex;
+            flex-direction: column;
+            padding-top: 2.99rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pay_status p {
+            margin: 0.75rem 0;
+            font-size: 1.28rem;
+            font-weight: 500;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1.76rem;
+        }
+
+        .pay_status img {
+            width: 6.88rem;
+            height: 5.12rem;
+        }
+
+        .pay_status span {
+            margin-top: 4.8rem font-size: .7rem;
+            font-weight: 400;
+            color: rgba(123, 130, 139, 1);
+            line-height: 1.07rem;
+        }
+
+        .view_btn {
+            position: fixed;
+            bottom: 6.19rem ;
+            padding: .6rem 6rem;
+            height: 2.4rem;
+            text-align: center;
+            background: rgba(217, 39, 39, 1);
+            border-radius: 0.2rem;
+            font-size: .85rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="pay_status">
+            <img src="../../image/index/pay_fail.png" alt="">
+            <p>订单支付失败！</p>
+
+            <div class="view_btn">重新支付</div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    }
+</script>
+
+</html>

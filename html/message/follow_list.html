@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>收到的赞</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            background: rgba(246, 246, 246, 1);
+        }
+
+        .praise_list {
+            padding: 0 0.75rem;
+            background: #fff;
+        }
+
+        .praise_item {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 0.5rem 0;
+        }
+
+        .praise_item_left {
+            width: 2.4rem;
+            min-width: 2.4rem;
+            height: 2.4rem;
+        }
+
+        .praise_item_left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 100%;
+        }
+
+        .praise_item_right {
+            width: 4.3rem;
+            min-width: 4.3rem;
+            height: 3rem;
+            margin-left: auto;
+            align-self: center;
+            text-align: right;
+            line-height: 3rem;
+        }
+
+        .praise_item_right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.2rem;
+        }
+
+        .praise_item_info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-left: 0.4rem;
+        }
+
+        .praise_item_info h2 {
+            font-size: 0.7rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 800;
+            color: rgba(51, 51, 51, 1);
+            line-height: 1rem;
+        }
+
+        .praise_item_info p {
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(122, 125, 129, 1);
+            line-height: 1rem;
+        }
+
+        .praise_item_info span {
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(204, 204, 204, 1);
+            line-height: 0.85rem;
+        }
+
+        .praise_item_right .follow {
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(217, 39, 39, 1);
+            line-height: 1rem;
+            border-radius: 0.65rem;
+            border: 1px solid rgba(217, 39, 39, 1);
+            padding: 0.15rem 0.55rem;
+        }
+
+        .followed {
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            line-height: 1rem;
+            border-radius: 0.65rem;
+            padding: 0.15rem 0.55rem;
+            color: rgba(182, 182, 182, 1);
+            border: 1px solid rgba(199, 199, 204, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="praise_list">
+            <div class="praise_item public_line">
+                <div class="praise_item_left">
+                    <img src="../../image/index/lecturer.png" alt="">
+                </div>
+                <div class="praise_item_info">
+                    <h2>柳林东</h2>
+                    <p>开始关注你了</p>
+                    <span>2019-04-01  11:01</span>
+                </div>
+                <div class="praise_item_right">
+                    <span class="follow">关注</span>
+                </div>
+            </div>
+            <div class="praise_item">
+                <div class="praise_item_left">
+                    <img src="../../image/index/lecturer.png" alt="">
+                </div>
+                <div class="praise_item_info">
+                    <h2>柳林东</h2>
+                    <p>开始关注你了</p>
+                    <span>2019-04-01  11:01</span>
+                </div>
+                <div class="praise_item_right">
+                    <span class=" followed">互相关注</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    }
+</script>
+
+</html>

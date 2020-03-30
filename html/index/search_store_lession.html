@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>店铺课程</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/store.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            background: rgba(246, 246, 246, 1);
+        }
+
+
+
+        .organ_time {
+            font-size: 0.65rem;
+            color: rgba(153, 153, 153, 1);
+            line-height: 0.85rem;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            width: 100%;
+            margin: 0;
+        }
+        .organ_time img {
+          width: 0.5rem;
+          height: 0.5rem;
+          align-self:center;
+          margin-top: 0.2rem;
+        }
+        .organ_price {
+            font-size: 0.8rem;
+            font-family: Oswald-Medium, Oswald;
+            font-weight: 500;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1.2rem;
+            margin-left: auto;
+        }
+
+        .organ_price span {
+            font-size: 0.6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(151, 158, 166, 1);
+            line-height: 0.85rem;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+       
+        <div class="space"></div>
+        <div class="organ_list" v-if="listData.length>0">
+            <div class="organ_item" v-for="item in listData" tapmode @click="fnOpenPublicWin('详情','index/store_lession_detail',{articleId:1})">
+                <div class="organ_cover" style="margin-top:0.25rem;">
+                    <img src="../../image/index/Mask.png" alt="">
+                </div>
+                <div class="organ_info aui-flex-box">
+                    <div class="organ_title overflow_hidden_two">
+                        雅思词汇语法单项班雅思词汇语法单项提升课
+                    </div>
+                    <div class="organ_time" style="margin:0;">
+                        <img src="../../image/index/star.png" alt="">
+                        <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                        <span>销量 6506</span>
+                        <div class="organ_price"> <span>¥666</span>¥282
+                        </div>
+                    </div>
+
+                    <span class="lecturer overflow_hidden_one " style="width:100%;">北京市融安消防职业技能培训学校(北沙滩校区)</span>
+                    <div class="store_label">
+                        <div class="store_label_item">1对1课程</div>
+                        <div class="store_label_item">适合0-15岁</div>
+                        <div class="store_label_item">线下付尾款</div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div v-if="listData.length==0">
+            <div class="no_data">
+                <img :src="isSerach=='1'?'../../image/no_page/no_search.png':'../../image/no_page/no_information.png'" alt="">
+                <p v-text="isSerach=='1'?'没有搜到相关内容，换个关键词试试吧':'暂无资讯'"></p>
+            </div>
+        </div>
+
+        <!-- <footer class="aui-bar aui-bar-tab aui-padded-l-5 aui-padded-r-5" id="footer">
+            <div class="aui-bar-tab-item" tapmode @click="fnOpenPublicWin('课程','index/store_detail')">
+                <img src="../../image/index/store_tab1.png" alt="">
+                <div class="aui-bar-tab-label">店内信息</div>
+            </div>
+            <div class="aui-bar-tab-item aui-active" tapmode @click="fnOpenPublicWin('课程','index/store_lession')">
+                <img src="../../image/index/store_tab2_sel.png" alt="">
+                <div class="aui-bar-tab-label">课程</div>
+            </div>
+            <div class="aui-bar-tab-item" tapmode @click="fnOpenPublicWin('试听课','index/store_audition')">
+                <img src="../../image/index/store_tab3.png" alt="">
+                <div class="aui-bar-tab-label">试听课</div>
+            </div>
+            <div class="aui-bar-tab-item" tapmode @click="fnOpenPublicWin('外教汇','index/store_teachers')">
+                <img src="../../image/index/store_tab4.png" alt="">
+                <div class="aui-bar-tab-label">外教汇</div>
+            </div>
+            <div class="aui-bar-tab-item" tapmode>
+                <img src="../../image/index/store_tab5.png" alt="">
+                <div class="aui-bar-tab-label">品牌形象</div>
+            </div>
+        </footer> -->
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+
+        api.addEventListener({
+            name: 'searchVal'
+        }, function(ret, err) {
+            if (ret) {
+                if (ret.value.winName == api.winName) {
+                    vm.searchVal = ret.value.searchVal;
+                    fnInitPage();
+                }
+            }
+        });
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                searchVal: api.pageParam.searchVal || '',
+                isSerach: api.pageParam.isSerach || '0',
+                listData: [{
+                    id: "1"
+                }, {
+                    id: "2"
+                }],
+            }
+        })
+    }
+
+    function fnInitPage() {
+        $S.ShowProgress();
+        var postData = {};
+        $S.POST("", postData, function(ret, err) {
+            if (ret && ret.status == '200') {
+
+            }
+            $S.CloseProgress();
+        })
+    }
+
+    function fnOpenChat() {
+        var param = {
+            name: 'store_chat',
+            url: '../message/chat.html',
+        }
+        fnOpenWin(param)
+    }
+</script>
+
+</html>

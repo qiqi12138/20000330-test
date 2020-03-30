@@ -1,0 +1,749 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+</head>
+<style>
+    .public_header .public_header_left {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 2.8rem;
+        font-size: 0.7rem;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: rgba(44, 53, 64, 1);
+        line-height: 1rem;
+    }
+
+    .public_header .public_header_left img {
+        width: 0.3rem;
+        height: 0.2rem;
+        margin-left: 0.35rem;
+        margin-right: 1rem;
+    }
+
+    .public_header .public_header_right img {
+        width: 1.1rem;
+        height: 1.1rem;
+    }
+
+</style>
+
+<body>
+    <div class="vueApp" v-cloak>
+
+        <header class="index_header">
+            <div class="public_header">
+                <div class="public_header_left" tapmode @click="fnOpenChooseCity()">
+                    <div>北京</div>
+                    <img src="../../image/index/choose_city.png" alt="">
+                </div>
+                <div class="public_header_search" tapmode @click="fnOpenSearch()">
+                    <img src="../../image/index/search_icon.png" alt="">
+                    <span>请输入搜索内容</span>
+                </div>
+                <div class="public_header_right" tapmode @click="fnOpenMap()">
+                    <img src="../../image/index/index_map.png" alt="">
+                </div>
+            </div>
+        </header>
+        <header>
+            <div class="public_header"></div>
+        </header>
+        <div class="head_bg">
+            <div class="index_swiper">
+                <div class="swiper-container" id="swiperList">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide">
+
+                                <img src="../../image/index/690270.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination swiper-pagination-bullets"></div>
+                </div>
+            </div>
+
+            <div class="index_icon">
+                <!-- <div class="index_icon_item" tapmode @click="fnOpenPublicWin('全部机构','index/view_all_reply')">
+                    <img src="../../image/index/organization.png" alt="">
+                    <span>机构</span>
+                </div> -->
+                <div class="index_icon_item" tapmode @click="fnOpenPublicWin('全部机构','index/all_organ')">
+                    <img src="../../image/index/organization.png" alt="">
+                    <span>机构</span>
+                </div>
+                <div class="index_icon_item" tapmode @click="fnOpenPublicWin('全部课程','index/all_lession')">
+                    <img src="../../image/index/course.png" alt="">
+                    <span>课程</span>
+                </div>
+                <div class="index_icon_item" tapmode @click="fnOpenPublicWin('外教汇','index/all_teachers')">
+                    <img src="../../image/index/foreignteacher.png" alt="">
+                    <span>外教汇</span>
+                </div>
+                <div class="index_icon_item" tapmode @click="fnOpenPublicWin('番茄课','index/fanqie',{isLine:0})">
+                    <img src="../../image/index/fqk.png" alt="">
+                    <span>番茄课</span>
+                </div>
+                <div class="index_icon_item" tapmode @click="fnOpenPublicWin('问答','index/all_question')">
+                    <img src="../../image/index/wenda.png" alt="">
+                    <span>问答</span>
+                </div>
+            </div>
+        </div>
+        <div class="index_experience">
+            <div class="index_experience_title" tapmode @click="fnOpenPublicWin('0元体验课','index/zero_experience')">
+                <p>0元试听体验课</p>
+                <img src="../../image/index/index_go_page.png" alt="">
+            </div>
+            <div class="index_experience_list" tapmode @click="fnOpenPublicWin('课程详情','index/lession_detail',{articleId:1})">
+                <div class="index_experience_item">
+                    <div class="experience">
+                        <img src="../../image/index/typic.png" alt="">
+                    </div>
+                    <div class="index_experience_item_title overflow_hidden_two">
+                        物理【高三物理】搞定期未（全国）
+                    </div>
+                </div>
+                <div class="index_experience_item">
+                    <div class="experience">
+                        <img src="../../image/index/typic.png" alt="">
+                    </div>
+                    <div class="index_experience_item_title overflow_hidden_two">
+                        物理【高三物理】
+                    </div>
+                </div>
+                <div class="index_experience_item">
+                    <div class="experience">
+                        <img src="../../image/index/typic.png" alt="">
+                    </div>
+                    <div class="index_experience_item_title overflow_hidden_two">
+                        物理【高三物理】搞定期未（全国）
+                    </div>
+                </div>
+                <div class="index_experience_item">
+                    <div class="experience">
+                        <img src="../../image/index/typic.png" alt="">
+                    </div>
+                    <div class="index_experience_item_title overflow_hidden_two">
+                        物理【高三物理】搞定期未（全国）
+                    </div>
+                </div>
+                <div class="index_experience_item">
+                    <div class="experience">
+                        <img src="../../image/index/typic.png" alt="">
+                    </div>
+                    <div class="index_experience_item_title overflow_hidden_two">
+                        物理【高三物理】搞定期未（全国）
+                    </div>
+                </div>
+                <div class="index_experience_item">
+                    <div class="experience">
+                        <img src="../../image/index/typic.png" alt="">
+                    </div>
+                    <div class="index_experience_item_title overflow_hidden_two">
+                        物理【高三物理】搞定期未（全国）
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="space"></div>
+        <div class="index_optimization">
+            <div class="index_optimization_title" tapmode @click="fnOpenPublicWin('优选面授课','index/optimization')">
+                优选面授课
+            </div>
+            <div class="aui-content  aui-padded-t-0">
+                <ul class="aui-list aui-media-list aui-list-noborder">
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-row aui-row-padded">
+                                <div class="aui-col-xs-6 aui-padded-r-5" tapmode @click="fnOpenPublicWin('课程详情','index/store_lession_detail',{articleId:1})">
+                                    <img src="../../image/index/youxuan.png" alt="">
+                                    <div class="index_optimization_item_title aui-padded-t-10 overflow_hidden_two">
+                                        寒假目标一本班 高三 化学2轮复习
+                                    </div>
+
+                                    <div class="aui-flex-box">
+                                        <h2>¥282  <i>¥666</i></h2>
+                                    </div>
+                                    <div class="score">
+                                        <div class="icon  iconfont_index icon-xing stars"><span style="width:50%;"></span></div>
+                                        <div class="score-font">5.0</div>
+                                    </div>
+
+                                </div>
+                                <div class="aui-col-xs-6 aui-padded-l-5">
+                                    <img src="../../image/index/youxuan.png" alt="">
+                                    <div class="index_optimization_item_title aui-padded-t-10 overflow_hidden_two">
+                                        寒假目标一本班 高三 化学2轮复习
+                                    </div>
+
+                                    <div class="aui-flex-box">
+                                        <h2>¥282  <i>¥666</i></h2>
+                                    </div>
+                                    <div class="score">
+                                        <div class="icon  iconfont_index icon-xing stars"><span style="width:50%;"></span></div>
+                                        <div class="score-font">5.0</div>
+                                    </div>
+
+
+                                </div>
+                                <div class="aui-col-xs-6 aui-padded-r-5">
+                                    <img src="../../image/index/youxuan.png" alt="">
+                                    <div class="index_optimization_item_title aui-padded-t-10 overflow_hidden_two">
+                                        寒假目标一本班 高三 化学2轮复习
+                                    </div>
+
+                                    <div class="aui-flex-box">
+                                        <h2>¥282  <i>¥666</i></h2>
+                                    </div>
+                                    <div class="score">
+                                        <div class="icon  iconfont_index icon-xing stars"><span style="width:50%;"></span></div>
+                                        <div class="score-font">5.0</div>
+                                    </div>
+
+
+                                </div>
+                                <div class="aui-col-xs-6 aui-padded-l-5">
+                                    <img src="../../image/index/youxuan.png" alt="">
+                                    <div class="index_optimization_item_title aui-padded-t-10 overflow_hidden_two">
+                                        寒假目标一本班 高三 化学2轮复习
+                                    </div>
+
+                                    <div class="aui-flex-box">
+                                        <h2>¥282  <i>¥666</i></h2>
+                                    </div>
+                                    <div class="score">
+                                        <div class="icon  iconfont_index icon-xing stars"><span style="width:50%;"></span></div>
+                                        <div class="score-font">5.0</div>
+                                    </div>
+
+
+                                </div>
+                                <div class="aui-col-xs-6 aui-padded-r-5">
+                                    <img src="../../image/index/youxuan.png" alt="">
+                                    <div class="index_optimization_item_title aui-padded-t-10 overflow_hidden_two">
+                                        寒假目标一本班 高三 化学2轮复习
+                                    </div>
+
+                                    <div class="aui-flex-box">
+                                        <h2>¥282  <i>¥666</i></h2>
+                                    </div>
+                                    <div class="score">
+                                        <div class="icon  iconfont_index icon-xing stars"><span style="width:50%;"></span></div>
+                                        <div class="score-font">5.0</div>
+                                    </div>
+
+                                </div>
+                                <div class="aui-col-xs-6 aui-padded-l-5">
+                                    <img src="../../image/index/youxuan.png" alt="">
+                                    <div class="index_optimization_item_title aui-padded-t-10 overflow_hidden_two">
+                                        寒假目标一本班 高三 化学2轮复习
+                                    </div>
+
+                                    <div class="aui-flex-box">
+                                        <h2>¥282  <i>¥666</i></h2>
+                                    </div>
+                                    <div class="score">
+                                        <div class="icon  iconfont_index icon-xing stars"><span style="width:50%;"></span></div>
+                                        <div class="score-font">5.0</div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="view_more" tapmode @click="fnOpenPublicWin('优选面授课','index/optimization')">查看更多</div>
+        </div>
+        <div class="space"></div>
+        <div class="index_online">
+            <div class="index_online_title" tapmode @click="fnOpenPublicWin('在线课推荐','index/search_fanqie')">
+                在线课推荐
+            </div>
+            <div class="index_online_list">
+                <div class="index_online_item" tapmode @click="fnOpenPublicWin('详情','index/fanqie_lession_detail',{articleId:1})">
+                    <div class="index_online_item_cover">
+                        <img src="../../image/index/onlin_course.png" alt="">
+                    </div>
+                    <div class="index_online_item_info">
+                        <div class="index_online_item_info_title overflow_hidden_two">
+                            寒假目标一本班【高三】化学二轮复习备考
+                        </div>
+
+                        <div class="index_online_attr aui-flex-box aui-margin-b-10">
+                            <span class="lecturer">讲师：伊丽莎白</span>
+                            <h2>免费</h2>
+                        </div>
+                        <div class="score">
+                            <div class="icon  iconfont icon-xing stars" style="font-size: 0.5rem;letter-spacing:0.1rem;"><span style="width:50%;"></span></div>
+                            <span style="font-size:0.6rem;font-weight:400;color:rgba(217,39,39,1);">4.7</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="index_online_item" tapmode @click="fnOpenPublicWin('详情','index/information_detail',{articleId:item.id})">
+                    <div class="index_online_item_cover">
+                        <img src="../../image/index/onlin_course.png" alt="">
+                    </div>
+                    <div class="index_online_item_info">
+                        <div class="index_online_item_info_title overflow_hidden_two">
+                            寒假目标一本班【高三】化学二轮复习备考
+                        </div>
+
+                        <div class="index_online_attr aui-flex-box aui-margin-b-10">
+                            <span class="lecturer">讲师：伊丽莎白</span>
+                            <h2><i>¥666</i>  ¥282</h2>
+                        </div>
+                        <div class="score">
+                            <div class="icon  iconfont icon-xing stars" style="font-size: 0.5rem;letter-spacing:0.1rem;"><span style="width:50%;"></span></div>
+                            <span style="font-size:0.6rem;font-weight:400;color:rgba(217,39,39,1);">4.7</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="index_online_item" tapmode @click="fnOpenPublicWin('详情','index/information_detail',{articleId:item.id})">
+                    <div class="index_online_item_cover">
+                        <img src="../../image/index/onlin_course.png" alt="">
+                    </div>
+                    <div class="index_online_item_info">
+                        <div class="index_online_item_info_title overflow_hidden_two">
+                            寒假目标一本班【高三】化学二轮复习备考
+                        </div>
+
+                        <div class="index_online_attr aui-flex-box aui-margin-b-10">
+                            <span class="lecturer">讲师：伊丽莎白</span>
+                            <h2><i>¥666</i>  ¥282</h2>
+                        </div>
+                        <div class="score">
+                          <div class="icon  iconfont icon-xing stars" style="font-size: 0.5rem;letter-spacing:0.1rem;"><span style="width:50%;"></span></div>
+                            <span style="font-size:0.6rem;font-weight:400;color:rgba(217,39,39,1);">4.7</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="index_online_item" tapmode @click="fnOpenPublicWin('详情','index/information_detail',{articleId:item.id})">
+                    <div class="index_online_item_cover">
+                        <img src="../../image/index/onlin_course.png" alt="">
+                    </div>
+                    <div class="index_online_item_info">
+                        <div class="index_online_item_info_title overflow_hidden_two">
+                            寒假目标一本班【高三】化学二轮复习备考
+                        </div>
+
+                        <div class="index_online_attr aui-flex-box aui-margin-b-10">
+                            <span class="lecturer">讲师：伊丽莎白</span>
+                            <h2><i>¥666</i>  ¥282</h2>
+                        </div>
+                        <div class="score">
+                          <div class="icon  iconfont icon-xing stars" style="font-size: 0.5rem;letter-spacing:0.1rem;"><span style="width:50%;"></span></div>
+                            <span style="font-size:0.6rem;font-weight:400;color:rgba(217,39,39,1);">4.7</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="index_online_item" tapmode @click="fnOpenPublicWin('详情','index/information_detail',{articleId:item.id})">
+                    <div class="index_online_item_cover">
+                        <img src="../../image/index/onlin_course.png" alt="">
+                    </div>
+                    <div class="index_online_item_info">
+                        <div class="index_online_item_info_title overflow_hidden_two">
+                            寒假目标一本班【高三】化学二轮复习备考
+                        </div>
+
+                        <div class="index_online_attr aui-flex-box aui-margin-b-10">
+                            <span class="lecturer">讲师：伊丽莎白</span>
+                            <h2><i>¥666</i>  ¥282</h2>
+                        </div>
+                        <div class="score">
+                          <div class="icon  iconfont icon-xing stars" style="font-size: 0.5rem;letter-spacing:0.1rem;"><span style="width:50%;"></span></div>
+                            <span style="font-size:0.6rem;font-weight:400;color:rgba(217,39,39,1);">4.7</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="index_online_item" tapmode @click="fnOpenPublicWin('详情','index/information_detail',{articleId:item.id})">
+                    <div class="index_online_item_cover">
+                        <img src="../../image/index/onlin_course.png" alt="">
+                    </div>
+                    <div class="index_online_item_info">
+                        <div class="index_online_item_info_title overflow_hidden_two">
+                            寒假目标一本班【高三】化学二轮复习备考
+                        </div>
+
+                        <div class="index_online_attr aui-flex-box aui-margin-b-10">
+                            <span class="lecturer">讲师：伊丽莎白</span>
+                            <h2><i>¥666</i>  ¥282</h2>
+                        </div>
+                        <div class="score">
+                            <div class="icon  iconfont icon-xing stars" style="font-size: 0.5rem;letter-spacing:0.1rem;"><span style="width:50%;"></span></div>
+                            <span style="font-size:0.6rem;font-weight:400;color:rgba(217,39,39,1);">4.7</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="view_more" style="margin:0.75rem " tapmode @click="fnOpenPublicWin('在线课推荐','index/search_fanqie')">查看更多</div>
+        <div class="space"></div>
+        <div class="index_experience">
+            <div class="index_experience_title" tapmode @click="fnOpenPublicWin('大牌机构优选','index/search_organ')">
+                <p>优选大牌机构</p>
+                <img src="../../image/index/index_go_page.png" alt="">
+            </div>
+            <div class="index_experience_list">
+                <div class="index_experience_item" tapmode @click="fnOpenPublicWin('机构详情','index/organ_detail')">
+                    <div class=" optimization_img">
+                        <img src="../../image/index/typic.png" alt="">
+                    </div>
+                </div>
+                <div class="index_experience_item" tapmode @click="fnOpenPublicWin('机构详情','index/organ_detail')">
+                    <div class="experience optimization_img">
+                        <img src="../../image/index/typic.png" alt="">
+                    </div>
+                </div>
+                <div class="index_experience_item" tapmode @click="fnOpenPublicWin('机构详情','index/organ_detail')">
+                    <div class="experience optimization_img">
+                        <img src="../../image/index/typic.png" alt="">
+                    </div>
+                </div>
+                <div class="index_experience_item" tapmode @click="fnOpenPublicWin('机构详情','index/organ_detail')">
+                    <div class="experience optimization_img">
+                        <img src="../../image/index/typic.png" alt="">
+                    </div>
+                </div>
+                <div class="index_experience_item" tapmode @click="fnOpenPublicWin('机构详情','index/organ_detail')">
+                    <div class="experience optimization_img">
+                        <img src="../../image/index/typic.png" alt="">
+                    </div>
+                </div>
+                <div class="index_experience_item" tapmode @click="fnOpenPublicWin('机构详情','index/organ_detail')">
+                    <div class="experience optimization_img">
+                        <img src="../../image/index/typic.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="space"></div>
+        <div class="organ_list">
+            <div class="organ_list_title" tapmode @click="fnOpenPublicWin('推荐机构','index/search_organ')">
+                推荐机构
+            </div>
+            <div class="organ_item" tapmode @click="fnOpenPublicWin('机构详情','index/organ_detail')">
+                <div class="organ_cover" style="margin-top:0.25rem;">
+                    <img src="../../image/index/Mask.png" alt="">
+                    <div class="store_label_icon"><img src="../../image/index/store_label_icon.png" alt=""></div>
+                </div>
+                <div class="organ_info">
+                    <div class="organ_title overflow_hidden_two">
+                        1北京市融安消防职业技能培训学校(北沙滩校区)
+                    </div>
+                    <div class="organ_time" style="margin-bottom:0;">
+                        <img src="../../image/index/star.png" alt="">
+                        <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                        <span>月售 6506</span>
+                        <span style="margin-left: auto;">距离: 2.0km</span>
+                    </div>
+                    <span class="lecturer overflow_hidden_one" style="width:100%;">中国上海市浦东新区浦建路769号浦东新区浦建</span>
+                    <div class="store_label">
+                        <div class="store_label_item">1对1课程</div>
+                        <div class="store_label_item">适合0-15岁</div>
+                        <div class="store_label_item">线下付尾款</div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="organ_item" tapmode @click="fnOpenPublicWin('机构详情','index/organ_detail')">
+                  <div class="organ_cover" style="margin-top:0.25rem;">
+                    <img src="../../image/index/Mask.png" alt="">
+                    <div class="store_label_icon"><img src="../../image/index/store_label_icon.png" alt=""></div>
+                </div>
+                <div class="organ_info">
+                    <div class="organ_title overflow_hidden_two">
+                        1北京市融安消防职业技能培训学校(北沙滩校区)
+                    </div>
+                    <div class="organ_time" style="margin-bottom:0;">
+                        <img src="../../image/index/star.png" alt="">
+                        <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                        <span>月售 6506</span>
+                        <span style="margin-left: auto;">距离: 2.0km</span>
+                    </div>
+                    <span class="lecturer overflow_hidden_one" style="width:100%;">中国上海市浦东新区浦建路769号浦东新区浦建</span>
+                    <div class="store_label">
+                        <div class="store_label_item">1对1课程</div>
+                        <div class="store_label_item">适合0-15岁</div>
+                        <div class="store_label_item">线下付尾款</div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="organ_item" tapmode @click="fnOpenPublicWin('机构详情','index/organ_detail')">
+                  <div class="organ_cover" style="margin-top:0.25rem;">
+                    <img src="../../image/index/Mask.png" alt="">
+                    <div class="store_label_icon"><img src="../../image/index/store_label_icon.png" alt=""></div>
+                </div>
+                <div class="organ_info">
+                    <div class="organ_title overflow_hidden_two">
+                        1北京市融安消防职业技能培训学校(北沙滩校区)
+                    </div>
+                    <div class="organ_time" style="margin-bottom:0;">
+                        <img src="../../image/index/star.png" alt="">
+                        <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                        <span>月售 6506</span>
+                        <span style="margin-left: auto;">距离: 2.0km</span>
+                    </div>
+                    <span class="lecturer overflow_hidden_one" style="width:100%;">中国上海市浦东新区浦建路769号浦东新区浦建</span>
+                    <div class="store_label">
+                        <div class="store_label_item">1对1课程</div>
+                        <div class="store_label_item">适合0-15岁</div>
+                        <div class="store_label_item">线下付尾款</div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="organ_item" tapmode @click="fnOpenPublicWin('机构详情','index/organ_detail')">
+                  <div class="organ_cover" style="margin-top:0.25rem;">
+                    <img src="../../image/index/Mask.png" alt="">
+                    <div class="store_label_icon"><img src="../../image/index/store_label_icon.png" alt=""></div>
+                </div>
+                <div class="organ_info">
+                    <div class="organ_title overflow_hidden_two">
+                        1北京市融安消防职业技能培训学校(北沙滩校区)
+                    </div>
+                    <div class="organ_time" style="margin-bottom:0;">
+                        <img src="../../image/index/star.png" alt="">
+                        <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                        <span>月售 6506</span>
+                        <span style="margin-left: auto;">距离: 2.0km</span>
+                    </div>
+                    <span class="lecturer overflow_hidden_one" style="width:100%;">中国上海市浦东新区浦建路769号浦东新区浦建</span>
+                    <div class="store_label">
+                        <div class="store_label_item">1对1课程</div>
+                        <div class="store_label_item">适合0-15岁</div>
+                        <div class="store_label_item">线下付尾款</div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="organ_item" tapmode @click="fnOpenPublicWin('机构详情','index/organ_detail')">
+                  <div class="organ_cover" style="margin-top:0.25rem;">
+                    <img src="../../image/index/Mask.png" alt="">
+                    <div class="store_label_icon"><img src="../../image/index/store_label_icon.png" alt=""></div>
+                </div>
+                <div class="organ_info">
+                    <div class="organ_title overflow_hidden_two">
+                        1北京市融安消防职业技能培训学校(北沙滩校区)
+                    </div>
+                    <div class="organ_time" style="margin-bottom:0;">
+                        <img src="../../image/index/star.png" alt="">
+                        <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                        <span>月售 6506</span>
+                        <span style="margin-left: auto;">距离: 2.0km</span>
+                    </div>
+                    <span class="lecturer overflow_hidden_one" style="width:100%;">中国上海市浦东新区浦建路769号浦东新区浦建</span>
+                    <div class="store_label">
+                        <div class="store_label_item">1对1课程</div>
+                        <div class="store_label_item">适合0-15岁</div>
+                        <div class="store_label_item">线下付尾款</div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="organ_item" tapmode @click="fnOpenPublicWin('机构详情','index/organ_detail')">
+                  <div class="organ_cover" style="margin-top:0.25rem;">
+                    <img src="../../image/index/Mask.png" alt="">
+                    <div class="store_label_icon"><img src="../../image/index/store_label_icon.png" alt=""></div>
+                </div>
+                <div class="organ_info public_line">
+                    <div class="organ_title overflow_hidden_two">
+                        1北京市融安消防职业技能培训学校(北沙滩校区)
+                    </div>
+                    <div class="organ_time" style="margin-bottom:0;">
+                        <img src="../../image/index/star.png" alt="">
+                        <span style="margin-left:0.15rem;color:rgba(217,39,39,1);">4.7</span>
+                        <span>月售 6506</span>
+                        <span style="margin-left: auto;">距离: 2.0km</span>
+                    </div>
+                    <span class="lecturer overflow_hidden_one" style="width:100%;">中国上海市浦东新区浦建路769号浦东新区浦建</span>
+                    <div class="store_label">
+                        <div class="store_label_item">1对1课程</div>
+                        <div class="store_label_item">适合0-15岁</div>
+                        <div class="store_label_item">线下付尾款</div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="view_more" style="margin-bottom:1rem;margin-top:0.75rem;" tapmode @click="fnOpenPublicWin('全部机构店','index/all_store')">查看更多</div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/swiper.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+
+        fnInit();
+    }
+
+    function fnInit() {
+
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                bannerList: [{
+                    "type": "1",
+                    "url": "https://www.baidu.com/",
+                    "id": "",
+                    "img": "../../image/index/banner1.png"
+                }, {
+                    "type": "0",
+                    "url": "",
+                    "id": "",
+                    "img": "../../image/index/banner1.png"
+                }, {
+                    "type": "0",
+                    "url": "",
+                    "id": "",
+                    "img": "../../image/index/banner1.png"
+                }],
+                listData: [{
+                    id: "1",
+                }, {
+                    id: "2",
+                }]
+            },
+            mounted: function() {
+                //  this.fnIndexInfo();  
+            },
+            methods: {
+                fnIndexInfo: function() { //获取banner列表
+                    $S.ShowProgress();
+                    var postData = {
+                        "entityName": "bannerConfig"
+                    }
+                    $S.POST("common/findList", postData, function(ret, err) {
+                        if (ret && ret.status == '200') {
+                            vm.bannerList = ret.data.listData;
+                            vm.$nextTick(function() {
+                                vm.initSwiper();  
+                            })
+                        }
+                        $S.CloseProgress();
+                    })
+                },
+                initSwiper: function() {
+                    this.mySwiper = new Swiper('.swiper-container', {
+                        autoplay: vm.bannerList.length == '1' ? false : {
+                            delay: 3000,
+                            stopOnLastSlide: false,
+                            disableOnInteraction: false,
+                        },
+                        loop: vm.bannerList.length == '1' ? false : true,
+                        pagination: {
+                            el: '.swiper-pagination',
+                        },
+                        on: {
+                            touchStart: function(event) {
+                                api.refreshHeaderLoadDone();
+                            },
+                            touchEnd: function(event) {
+                                api.refreshHeaderLoadDone();
+                            },
+                            click: function(event) {
+                                var _newIndex = this.realIndex;
+                                var pageData = {};
+                                var pageUrl = "index/banner_detail";
+                                if (vm.bannerList[_newIndex].ifOutLink == '1') { //1外链
+                                    pageUrl = vm.bannerList[_newIndex].outUrl || "";
+                                } else {
+                                    pageData = {
+                                        bannerId: vm.bannerList[_newIndex].id || "",
+                                        bannerTitle: vm.bannerList[_newIndex].bannerTitle || "",
+                                        bannerContext: vm.bannerList[_newIndex].selfContent || "",
+                                    }
+                                };
+                                if (pageUrl == "") {
+                                    return;
+                                }
+                                fnOpenPublicWin("详情", pageUrl, pageData)
+                            }
+                        },
+                    });   
+                }
+            }
+        })
+    };
+
+    function fnOpenSearch() {
+        var param = {
+            name: 'information_search',
+            url: '../index/information_search.html',
+        }
+        fnOpenWin(param)
+    }
+
+    function fnOpenFrame() {
+        var param = {
+            name: 'zero_experience',
+            url: '../index/zero_experience.html',
+        }
+        fnOpenWin(param)
+    }
+
+    function fnOpenChooseCity() {
+        var param = {
+            name: 'choose_city',
+            url: '../index/choose_city.html',
+        }
+        fnOpenWin(param)
+    }
+    function fnOpenMap() {
+        var param = {
+            name: 'map',
+            url: '../index/map.html',
+        }
+        fnOpenWin(param)
+    }
+</script>
+
+</html>

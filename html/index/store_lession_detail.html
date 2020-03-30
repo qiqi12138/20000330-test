@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>课程详情</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/store.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/lession.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="lession_head">
+            <div class="lession_head_main">
+                <img src="../../image/index/lession_head.png" alt="">
+            </div>
+            <div class="lession_head_play">
+                <img src="../../image/index/play_icon.png" alt="">
+            </div>
+        </div>
+        <div class="lession_title">
+            <div class="lession_title_info overflow_hidden_two">
+                <h2><span style="margin-right:0.3rem;">线下英语</span> 寒假目标【高三】化学二轮复习备考寒假目标【高三】化学二轮复寒假目标【高三】化学二轮复习备考寒假目标【高三】化学二轮复<h2>
+            </div>
+            <div class="lession_title_share">
+                <img src="../../image/index/lession_share_icon.png" alt=""> 分享
+            </div>
+        </div>
+        <div class="lession_attr">
+            <div class="lession_attr_one">
+                <h2>0元试听 <span>¥666</span></h2>
+                <div>销量 650</div>
+            </div>
+            <div class="lession_attr_two score" style="margin-top:0.3rem;margin-bottom:0;">
+                <div class="icon  iconfont icon-xing stars" style="font-size: 0.5rem;letter-spacing:0.1rem;"><span style="width:50%;"></span></div>
+                <span style="font-size:0.6rem;font-weight:400;color:rgba(217,39,39,1);">4.7</span>
+            </div>
+            <div class="lession_attr_three overflow_hidden_two">
+                这里是课程简介这里是课程简介这里是课程简介这里是课程简介这里是课程简介
+            </div>
+            <div class="lession_attr_four">
+                <div class="store_label">
+                    <div class="store_label_item">1对1课程</div>
+                    <div class="store_label_item">适合0-15岁</div>
+                    <div class="store_label_item">线下付尾款</div>
+                    <div class="store_label_item">1对1课程</div>
+                    <div class="store_label_item">适合0-15岁</div>
+                    <div class="store_label_item">线下付尾款</div>
+                    <div class="store_label_item">1对1课程</div>
+                    <div class="store_label_item">适合0-15岁</div>
+                    <div class="store_label_item">线下付尾款</div>
+
+                </div>
+            </div>
+        </div>
+        <div class="space"></div>
+        <div class="lession_lecturer">
+            <img src="../../image/index/lecturer.png" alt="">
+            <div class="lession_lecturer_info">
+                <h2>Paula</h2>
+                <p>任职机构：英孚教育 </p>
+                <p>累计教学时长：6123课时 </p>
+                <p>擅长课时：启蒙英语、少儿培训口语翻译</p>
+                <div class="lession_follow">关注</div>
+            </div>
+
+        </div>
+        <div class="space"></div>
+        <div class="lession_detail">
+            <div class="tab-nav" id="tab" :class="{'is_fixed' : isFixed}">
+                <div class="tab-nav-item " :class="tabIndex=='1'?'nav-active':''" tapmode @click="fnSetTabIndex('1')">课程详情</div>
+                <div class="tab-nav-item" :class="tabIndex=='2'?'nav-active':''" tapmode @click="fnSetTabIndex('2')">课程评价</div>
+            </div>
+            <div class="tabBox">
+                <div v-if="tabIndex=='1'">
+                    <div class="base_info">
+                        <p>从 2015 年 4 月起，Ant Design 在蚂蚁金服中后台产品线迅速推广，对接多条业务线，覆盖系统 800 个以上。定位于中台业务的 Ant Design 兼顾专业和非专业的设计人员，具有学习成本低、上手速度快、实现效果好等特点，并且提供从界面设计到前端开发的全链路生态，可以大大提升设计和开发的效率。</p>
+                        <img src="../../image/index/t5.png" alt="">
+                    </div>
+                    <div class="base_info">
+                        <p>从 2015 年 4 月起，Ant Design 在蚂蚁金服中后台产品线迅速推广，对接多条业务线，覆盖系统 800 个以上。定位于中台业务的 Ant Design 兼顾专业和非专业的设计人员，具有学习成本低、上手速度快、实现效果好等特点，并且提供从界面设计到前端开发的全链路生态，可以大大提升设计和开发的效率。</p>
+                        <img src="../../image/index/t5.png" alt="">
+                    </div>
+                    <div class="base_info">
+                        <p>从 2015 年 4 月起，Ant Design 在蚂蚁金服中后台产品线迅速推广，对接多条业务线，覆盖系统 800 个以上。定位于中台业务的 Ant Design 兼顾专业和非专业的设计人员，具有学习成本低、上手速度快、实现效果好等特点，并且提供从界面设计到前端开发的全链路生态，可以大大提升设计和开发的效率。</p>
+                        <img src="../../image/index/t5.png" alt="">
+                    </div>
+                    <div class="base_info">
+                        <p>从 2015 年 4 月起，Ant Design 在蚂蚁金服中后台产品线迅速推广，对接多条业务线，覆盖系统 800 个以上。定位于中台业务的 Ant Design 兼顾专业和非专业的设计人员，具有学习成本低、上手速度快、实现效果好等特点，并且提供从界面设计到前端开发的全链路生态，可以大大提升设计和开发的效率。</p>
+                        <img src="../../image/index/t5.png" alt="">
+                    </div>
+                    <div class="base_info">
+                        <p>从 2015 年 4 月起，Ant Design 在蚂蚁金服中后台产品线迅速推广，对接多条业务线，覆盖系统 800 个以上。定位于中台业务的 Ant Design 兼顾专业和非专业的设计人员，具有学习成本低、上手速度快、实现效果好等特点，并且提供从界面设计到前端开发的全链路生态，可以大大提升设计和开发的效率。</p>
+                        <img src="../../image/index/t5.png" alt="">
+                    </div>
+                    <div class="base_info">
+                        <p>从 2015 年 4 月起，Ant Design 在蚂蚁金服中后台产品线迅速推广，对接多条业务线，覆盖系统 800 个以上。定位于中台业务的 Ant Design 兼顾专业和非专业的设计人员，具有学习成本低、上手速度快、实现效果好等特点，并且提供从界面设计到前端开发的全链路生态，可以大大提升设计和开发的效率。</p>
+                        <img src="../../image/index/t5.png" alt="">
+                    </div>
+                </div>
+                <div class="evaluation" v-if="tabIndex=='2'">
+                    <div class="lession_evaluation">
+                        <div class="lession_evaluation_left">
+                            <p>4.7</p>
+                            <div class="lession_evaluation_left_info">
+                                <h2>课程评分</h2>
+                                <div class="icon  iconfont icon-xing stars" style="letter-spacing:0.05rem;"><span style="width:50%;"></span></div>
+                            </div>
+                        </div>
+                        <div class="lession_evaluation_right">
+                            <div class="lession_evaluation_right_item">
+                                <h2>老师</h2>
+                                <span>4.7</span>
+                            </div>
+                            <div class="lession_evaluation_right_item">
+                                <h2>授课店</h2>
+                                <span>4.7</span>
+                            </div>
+                            <div class="lession_evaluation_right_item">
+                                <h2>机构</h2>
+                                <span>4.7</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="lession_comment">
+                        <h2>评论(234)</h2>
+                        <div class="lession_comment_list">
+                            <div class="lession_comment_item">
+                                <div class="lession_comment_item_avatar">
+                                    <img src="../../image/index/lecturer.png" alt="">
+                                </div>
+                                <div class="lession_comment_item_info">
+                                    <div class="lession_comment_item_info_title">
+                                        <span>任秀兰</span>
+                                        <span>2019.05.17</span>
+                                    </div>
+                                    <p>这个老师讲的特别好，帮助我解决了困扰我已久的问题，好开心~</p>
+                                </div>
+
+                            </div>
+                            <div class="lession_comment_item">
+                                <div class="lession_comment_item_avatar">
+                                    <img src="../../image/index/lecturer.png" alt="">
+                                </div>
+                                <div class="lession_comment_item_info">
+                                    <div class="lession_comment_item_info_title">
+                                        <span>任秀兰</span>
+                                        <span>2019.05.17</span>
+                                    </div>
+                                    <p>这个老师讲的特别好，帮助我解决了困扰我已久的问题，好开心~</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+<div class="space" style="height:5rem;"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="lession_price">订金：¥55.00 到店付：¥55.00</div>
+        <div class="aui-bar aui-bar-tab " style="height:2.7rem;padding-right:0.75rem;">
+            <div class="aui-bar-tab-item" tapmode style="width: 2.5rem;" @click="fnOpenStore()">
+                <img src="../../image/index/store_tab_icon.png" alt="">
+                <div class="aui-bar-tab-label" tapmode>门店</div>
+            </div>
+            <div class="aui-bar-tab-item" style="width: 2.5rem;" tapmode>
+                <img src="../../image/index/star_icon.png" alt="">
+                <div class="aui-bar-tab-label">收藏</div>
+            </div>
+            <div class="aui-bar-tab-item" tapmode style="width: 2.5rem;" @click="fnOpenChat()">
+                <img src="../../image/index/chat_icon.png" alt="">
+                <div class="aui-bar-tab-label">咨询</div>
+            </div>
+            <div class="aui-bar-tab-item item_buy_left" style="width: auto;" tapmode @click="fnOpenPublicWin('预约试听','index/order_reserve')"><span>预约试听</span></div>
+            <div class="aui-bar-tab-item item_buy_right" style="width: auto;" tapmode @click="fnOpenPublicWin('确认订单','index/store_order_confirm')"><span>立即购买</span></div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+
+    }
+
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                tabIndex: 1,
+                isFixed: false,
+                offsetTop: 0,
+                listData: [{
+                    id: "1"
+                }, {
+                    id: "2"
+                }]
+            },
+            mounted() {
+                window.addEventListener('scroll', this.initHeight);
+                this.$nextTick(() => {
+                    //获取对象相对于版面或由 offsetTop 属性指定的父坐标的计算顶端位置
+                    this.offsetTop = document.querySelector('#tab').offsetTop;
+                })
+            },
+            methods: {
+
+                fnSetTabIndex: function(key) {
+                    this.tabIndex = key;
+                    //  fnLoginBtnStatus();
+                },
+                initHeight() {
+                    // 设置或获取位于对象最顶端和窗口中可见内容的最顶端之间的距离 (被卷曲的高度)
+                    var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+                        //如果被卷曲的高度大于吸顶元素到顶端位置 的距离
+                    this.isFixed = scrollTop > this.offsetTop ? true : false;
+
+                }
+            },
+            destroyed() {
+                window.removeEventListener('scroll', this.handleScroll)
+            }
+        })
+    }
+
+    function fnOpenChat() {
+        var param = {
+            name: 'store_chat',
+            url: '../message/chat.html',
+        }
+        fnOpenWin(param)
+    }
+    function fnOpenStore(){
+       openNavTabWin();
+    }
+</script>
+
+</html>

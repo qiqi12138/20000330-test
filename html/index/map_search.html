@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>搜索</title>
+    <style>
+        .map_header {
+            position: relative;
+
+        }
+
+        .map_search {
+            margin: 0.6rem 0.75rem;
+            height: 2.2rem;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0px 4px 8px 0px rgba(171, 178, 193, 0.25);
+            border-radius: 0.2rem;
+            display: flex;
+            align-items: center;
+            justify-content:  flex-start;
+            font-size: 0.65rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(151, 158, 166, 1);
+            line-height: 0.9rem;
+        }
+
+        .map_search img {
+            width: 1.1rem;
+            height: 1.1rem;
+            margin-left: 0.6rem;
+        }
+        .map_search input {
+           border-style: none;
+           margin-left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <header class="map_header" id="header">
+
+            <div class="map_search">
+                <img src="../../image/index/back.png" alt="" tapmode onclick="fnBack()">
+                <form id="map_search_from" target="nm_iframe">
+                    <input spellcheck="false" type="search" id="goToSearch" name="" v-model="searchVal" placeholder="搜索关键字" maxlength="17">
+                </form>
+                <iframe name="nm_iframe" style="display:none;"></iframe>
+            </div>
+
+        </header>
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var _footerH;
+    var searchHis;
+    var vm;
+
+    //  var NVNavigationBar;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        searchHis = api.getPrefs({
+            sync: true,
+            key: 'search_news'
+        }) || "";
+        searchHis = searchHis != "" ? searchHis.split(",") : [];
+        _footerH = localStorage.safeBottom;
+        fnInit();
+
+
+    }
+
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                searchVal: "",
+                searchHisList: searchHis.reverse(),
+                isOpenFrm: false
+            },
+            mounted: function() {
+                this.$nextTick(function() {
+                    if (document.getElementById('search_from')) {
+                        document.getElementById('search_from').onsubmit = function() {
+                            fnKeyboard();
+                            var searchVal = vm.searchVal;
+                            fnStartSearch(searchVal)
+                        };
+                    }
+                })
+            }
+        })
+    }
+
+    function fnBack() {
+        fnDelayCloseWin();
+    }
+</script>
+
+</html>

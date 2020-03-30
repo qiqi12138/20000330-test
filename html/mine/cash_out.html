@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>提现</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            background: rgba(246, 246, 246, 1);
+        }
+
+        .cash_out {
+            padding: 0.75rem;
+        }
+
+        .cash_head {
+            padding: 0.75rem;
+            background: #fff;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 3.8rem;
+            border-radius: 0.2rem;
+        }
+
+        .cash_head img {
+            width: 2.6rem;
+            height: 2.6rem;
+            object-fit: cover;
+            border-radius: 100%;
+        }
+
+        .cash_head h2 {
+            font-size: .8rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1.1rem;
+            margin-left: 0.5rem;
+        }
+
+        .cash_head span {
+            font-size: .6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(123, 130, 139, 1);
+            line-height: .85rem;
+            margin-left: auto;
+        }
+
+        .cash_out_item {
+            margin-top: 0.75rem;
+            padding: 0.75rem 0.75rem 0.3rem 0.75rem;
+            background: #fff;
+            border-radius: 0.2rem;
+        }
+
+        .cash_out_item h2 {
+            font-size: .7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(55, 56, 77, 1);
+            line-height: 1rem;
+        }
+
+        .cash_out_item p {
+            font-size: .6rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(138, 138, 154, 1);
+            line-height: 1.7rem;
+        }
+
+        .cash_out_item_info {
+            display: flex;
+            width: 100%;
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: 1.4rem;
+            padding-bottom: 0.45rem;
+        }
+
+        .cash_out_item_info h3 {
+            font-size: 1.25rem;
+            font-family: Oswald-Medium, Oswald;
+            font-weight: 500;
+            color: rgba(55, 56, 77, 1);
+            line-height: 1.85rem;
+            padding-top: 0.3rem;
+        }
+
+        .cash_out_item_info input {
+            font-size: 1.6rem;
+            font-family: Oswald-Medium, Oswald;
+            font-weight: 500;
+            color: rgba(55, 56, 77, 1);
+            line-height: 2.35rem;
+            margin-left: 0.4rem;
+        }
+
+        .cash_out_item_info span {
+          width:3rem;
+          min-width: 3rem;
+            font-size: .6rem;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight: 400;
+            color: rgba(55, 56, 77, 1);
+            line-height: .85rem;
+            margin-left: auto;
+            text-align: right;
+        }
+        .bot-btn {
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            left:0.75rem;
+            right: 0.75rem;
+            text-align: center;
+            bottom: 1rem;
+        }
+
+        .recharge_btn {
+          width: 100%;
+          height: 2.25rem;
+          background: rgba(217, 39, 39, 1);
+          border-radius: 0.2rem;
+          font-size: .8rem;
+          font-weight: 500;
+          color: rgba(255, 255, 255, 1);
+          line-height: 2.25rem;
+        }
+
+        .recharge_info {
+            font-size: .55rem;
+            font-weight: 400;
+            color: rgba(151, 158, 166, 1);
+            line-height: 0.8rem;
+            margin-top: 0.4rem;
+        }
+
+        .recharge_info span {
+            color: #D92727;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="cash_out">
+            <div class="cash_head">
+                <img src="../../image/index/lecturer.png" alt="">
+                <h2>谭敏仪</h2>
+                <span>现金收益余额：80.00</span>
+            </div>
+            <div class="cash_out_item">
+                <h2>提现金额</h2>
+                <div class="cash_out_item_info public_line">
+                    <h3>¥</h3>
+                    <input type="text" name="" value="80.00">
+                    <span>全部提现</span>
+                </div>
+                <p>单笔最低 5 元，提现手续费 3%</p>
+            </div>
+            <div class="bot-btn">
+                <div class="recharge_btn" tapmode @click="fnOpenPublicWin(' ','mine/apply_cashout_success',{isLine:false})">立即提现</div>
+                  <div class="recharge_info">提现即同意 <span tapmode @click="fnOpenAgreement('1')">《提现协议》</span></div>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+
+            }
+        })
+    }
+    function fnOpenAgreement(type) {
+        var pageTitle = type == '1' ? '充值协议' : '隐私政策';
+        pageData = {
+            type: type
+        }
+        fnOpenPublicWin('提现协议', "login/agreement", pageData);
+    }
+</script>
+
+</html>

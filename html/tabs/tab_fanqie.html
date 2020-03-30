@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>番茄园</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        .index_header {
+            position: relative;
+        }
+
+        .public_header .public_header_search {
+            padding: 0 0.75rem;
+            justify-content: flex-start;
+        }
+
+        .lession_detail {
+            border-top: 1px solid rgba(237, 237, 240, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <header class="index_header" id="header">
+            <div class="public_header">
+
+              <div class="public_header_search" tapmode @click="fnOpenSearch()">
+                  <img src="../../image/index/search_icon.png" alt="">
+                  <span>请输入搜索内容</span>
+              </div>
+            </div>
+            <div class="lession_detail">
+                <div class="tab-nav" id="tab">
+                    <div class="tab-nav-item " :class="tabIndex=='0'?'nav-active':''" tapmode @click="fnSetTabIndex('0')">关注</div>
+                    <div class="tab-nav-item" :class="tabIndex=='1'?'nav-active':''" tapmode @click="fnSetTabIndex('1')">番茄园</div>
+                    <div class="tab-nav-item" :class="tabIndex=='2'?'nav-active':''" tapmode @click="fnSetTabIndex('2')">悦读</div>
+                </div>
+            </div>
+        </header>
+
+
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var _footerH;
+    var searchHis;
+    var vm;
+
+    //  var NVNavigationBar;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+
+        fnInit();
+        fnsetFrameGroup();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                tabIndex: 1,
+                isFixed: false,
+                searchVal: "",
+                isOpenFrm: false
+            },
+            mounted: function() {
+                this.$nextTick(function() {
+                    if (document.getElementById('search_from')) {
+                        document.getElementById('search_from').onsubmit = function() {
+                            fnKeyboard();
+                            var searchVal = vm.searchVal;
+                            fnStartSearch(searchVal)
+                        };
+                    }
+                })
+            },
+            methods: {
+
+                fnSetTabIndex: function(key) {
+                    this.tabIndex = key;
+                    fnFrameIndex(key);
+                }
+            }
+        })
+
+    }
+
+    function fnsetFrameGroup() {
+
+        var header_H = AD('#header').offsetH();
+        api.openFrameGroup({
+            name: 'fanqie_group',
+            index: 1,
+            preload:0,
+            rect: {
+                x: 0,
+                y: header_H,
+                w: 'auto',
+                h:api.winHeight-header_H,
+                marginBottom: 50
+            },
+            scrollEnabled: true,
+            frames: [{
+                name: 'follow_frm',
+                url: '../index/follow_frm.html',
+
+                pageParam: {
+                    name: 'value'
+                }
+            }, {
+                name: 'fanqie_frm',
+                url: '../index/fanqie_frm.html',
+                pageParam: {
+                    name: 'value',
+                    header_height:header_H
+                }
+            }, {
+                name: 'reading_frm',
+                url: '../index/reading_frm.html',
+                pageParam: {
+                    name: 'value',
+                    header_height:header_H
+                }
+            }]
+        }, function(ret, err) {
+            if (ret) {
+              localStorage.fqTabIndex=ret.index;
+
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+
+    }
+
+    function fnFrameIndex(key) {
+
+        api.setFrameGroupIndex({
+            name: 'fanqie_group',
+            index: key
+        });
+
+        if (key == 1) {
+          api.setFrameGroupAttr({
+              name: 'reading_frm_group',
+              hidden: true
+          });
+            api.setFrameGroupAttr({
+                name: 'fanqie_frm_group',
+                hidden: false
+            });
+
+
+        } else if(key==2) {
+          api.setFrameGroupAttr({
+              name: 'reading_frm_group',
+              hidden: false
+          });
+          api.setFrameGroupAttr({
+              name: 'fanqie_frm_group',
+              hidden: true
+          });
+
+        }else {
+          api.setFrameGroupAttr({
+              name: 'fanqie_frm_group',
+              hidden: true
+          });
+          api.setFrameGroupAttr({
+              name: 'reading_frm_group',
+              hidden: true
+          });
+        }
+    }
+
+    function fnBack() {
+        fnDelayCloseWin();
+    }
+    function fnOpenSearch() {
+        var param = {
+            name: 'search_reading_all',
+            url: '../index/search_reading_all.html',
+        }
+        fnOpenWin(param)
+    }
+</script>
+
+</html>

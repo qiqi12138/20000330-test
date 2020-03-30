@@ -1,0 +1,455 @@
+.lession_head {
+    position: relative;
+}
+
+.lession_head .lession_head_main img {
+    width: 100%;
+    height: 10.5rem;
+}
+
+.lession_head_play {
+    left: 50%;
+    top: 50%;
+    margin-left: -1em;
+    margin-top: -1rem;
+    position: absolute;
+}
+
+.lession_head_play img {
+    width: 2rem;
+    height: 2rem;
+}
+
+.lession_title {
+    padding: 0.65rem 0 0.65rem 0.75rem;
+    display: flex;
+    justify-content: flex-start;
+    align-self: center;
+}
+
+.lession_title .lession_title_info {
+    margin-right: 0.3rem;
+    width: 14rem;
+}
+
+.lession_title .lession_title_info h2 {
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1.2rem;
+}
+
+.lession_title .lession_title_info span {
+    background: rgba(217, 39, 39, 1);
+    border-radius: 0.1rem;
+    font-size: 0.5rem;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    line-height: 0.8rem;
+    height: 0.8rem;
+    width: 2.4rem;
+    text-align: center;
+    align-self: flex-start;
+}
+
+.lession_title_share {
+    display: flex;
+    align-self: center;
+    flex-wrap: nowrap;
+    width: 2.8rem;
+    font-size: 0.6rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(123, 130, 139, 1);
+    line-height: 0.85rem;
+    background: rgba(244, 244, 244, 1);
+    border-radius: 5rem 0 0 5rem;
+    padding: 0.2rem 0.4rem;
+    margin-left: auto;
+}
+
+.lession_title_share img {
+    width: 0.8rem;
+    height: 0.8rem;
+}
+
+.lession_attr {
+    padding: 0 0.75rem;
+}
+
+.lession_attr_one {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 500;
+    color: rgba(95, 112, 133, 1);
+    line-height: 0.9rem;
+}
+
+.lession_attr_one h2 {
+    font-size: 0.8rem;
+    font-family: Oswald-Medium, Oswald;
+    font-weight: 500;
+    color: rgba(44, 53, 64, 1);
+    line-height: 0.9rem;
+}
+
+.lession_attr_one h2 span {
+    font-size: 0.6rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(151, 158, 166, 1);
+    line-height: 0.85rem;
+    text-decoration: line-through;
+}
+
+.lession_attr_three {
+    font-size: 0.65rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 500;
+    color: rgba(95, 112, 133, 1);
+    line-height: 0.9rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid #EDEDF0;
+}
+
+.lession_lecturer {
+    display: flex;
+    padding: 0.75rem 0.75rem 1.05rem 0.75rem;
+}
+
+.lession_lecturer img {
+    width: 3.75rem;
+    height: 3.75rem;
+}
+
+.lession_lecturer_info {
+    margin-left: 0.6rem;
+    width: 100%;
+    position: relative;
+}
+
+.lession_lecturer_info h2 {
+    font-size: 0.75rem;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1.05rem;
+}
+
+.lession_lecturer_info p {
+    font-size: 0.6rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(123, 130, 139, 1);
+    line-height: 1rem;
+}
+
+.lession_follow {
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(217, 39, 39, 1);
+    line-height: 1rem;
+    border-radius: 0.65rem;
+    border: 1px solid rgba(217, 39, 39, 1);
+    padding: 0.15rem 0.75rem;
+    right: 0rem;
+    top: 1rem;
+    position: absolute;
+}
+
+.evaluation {
+    width: 100%;
+    height: 25rem;
+}
+
+.lession_evaluation {
+    height: 3.3rem;
+    padding: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.lession_evaluation h2 {
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 600;
+    color: rgba(44, 53, 64, 1);
+    line-height: 0.85rem;
+}
+
+.lession_evaluation_left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.lession_evaluation_left p {
+    font-size: 1.2rem;
+    font-family: Oswald-Medium, Oswald;
+    font-weight: 500;
+    color: rgba(217, 39, 39, 1);
+    line-height: 1.8rem;
+    margin-right: 0.4rem;
+}
+
+.lession_evaluation_left_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.lession_evaluation_left_info h2 {
+    font-size: 0.65rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(44, 53, 64, 1);
+    line-height: 0.9rem;
+}
+
+.lession_evaluation_right {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.lession_evaluation_right_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin-right: 1.2rem;
+}
+
+.lession_evaluation_right_item h2 {
+    font-size: 0.6rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(44, 53, 64, 1);
+    line-height: 0.85rem;
+}
+
+.lession_evaluation_right_item span {
+    font-size: 0.9rem;
+    font-family: Oswald-Medium, Oswald;
+    font-weight: 500;
+    color: rgba(123, 130, 139, 1);
+    line-height: 1.3rem;
+}
+
+.tabBox {
+    width: 100%;
+    height: 100%;
+}
+
+.lession_comment {
+    padding: 0.75rem;
+    background: #fff;
+}
+
+.lession_comment h2 {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 1.2rem;
+}
+
+.lession_comment_item {
+    display: flex;
+    padding-top: 0.75rem;
+}
+
+.lession_comment_item_avatar {
+    width: 1.7rem;
+    min-width: 1.7rem;
+}
+
+.lession_comment_item_avatar img {
+    width: 1.2rem;
+    height: 1.2rem;
+    min-width: 1.2rem;
+    border-radius: 100%;
+}
+
+.lession_comment_item_info_title {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    font-weight: 400;
+    color: rgba(153, 153, 153, 1);
+    line-height: 0.9rem;
+}
+
+.lession_comment_item_info {
+    height: 100%;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #EDEDF0;
+}
+
+.lession_comment_item_info p {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 1.05rem;
+}
+
+.lession_comment_item:last-child>.lession_comment_item_info {
+    border-bottom: none;
+}
+
+.lession_price {
+    position: fixed;
+    width: 100%;
+    height: 1.8rem;
+    text-align: center;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: rgba(217, 39, 39, 1);
+    line-height: 1.8rem;
+    background: rgba(253, 244, 244, 1);
+    bottom: 2.7rem;
+    z-index: 99;
+    border-bottom: 1px solid rgba(237, 237, 240, 1);
+}
+
+.experience_button {
+    vertical-align: middle;
+    text-align: center;
+    background: rgba(217, 39, 39, 1);
+    border-radius: 1rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 1);
+    line-height: 1rem;
+}
+
+.question_imgs {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 0.6rem;
+}
+
+.question_imgs_item {
+    width: 32%;
+    height: 3.85rem;
+    margin-bottom: 0.25rem;
+}
+
+.question_imgs_item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.1rem;
+}
+
+.lession_catalog_item {
+    display: flex;
+    margin: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.lession_catalog_item_img {
+    position: relative;
+    width: 7rem;
+    height: 4rem;
+}
+
+.lession_catalog_item_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.1rem;
+}
+
+.lession_catalog_item_img_play {
+    right: 0.5rem;
+    bottom: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    margin-left: -1em;
+    margin-top: -1rem;
+    position: absolute;
+}
+
+.lession_catalog_item_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 0.6rem;
+}
+
+.lession_catalog_item_info h2 {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1.05rem;
+}
+
+.lession_catalog_item_info_attr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: rgba(95, 112, 133, 1);
+    line-height: 0.85rem;
+}
+
+.catalog_free_btn {
+    color: rgba(254, 114, 3, 1);
+    width: 3.4rem;
+    border-radius: 0.1rem;
+    border: 1px solid rgba(254, 114, 4, 1);
+    text-align: center;
+    padding: 0.2rem;
+}
+
+.catalog_pay_btn {
+    color: rgba(217, 39, 39, 1);
+    width: 3.4rem;
+    border-radius: 0.1rem;
+    border: 1px solid rgba(217, 39, 39, 1);
+    text-align: center;
+    padding: 0.2rem;
+}
+
+.reply_nickname {
+    font-size: 0.65rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(44, 53, 64, 1);
+    line-height: 0.9rem;
+}
+
+.answer_bot {
+    position: fixed;
+    background: #fff;
+    bottom: 0;
+    width: 100%;
+    height: 2.7rem;
+    padding: 0.5rem 0.75rem;
+    border-top: 1px solid rgba(237, 237, 240, 1);
+}
+
+.answer_bot span {
+    width: 100%;
+    border-radius: 0.85rem;
+    border: 0.5px solid rgba(199, 199, 204, 1);
+    height: 1.65rem;
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(153, 153, 153, 1);
+    line-height: 1.65rem;
+    padding-left: 0.7rem;
+}

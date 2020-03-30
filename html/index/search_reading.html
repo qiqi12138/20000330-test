@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>搜索悦读</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+    html,
+    body {
+        background: rgba(246, 246, 246, 1);
+    }
+        .reading_list {
+            padding: 0 0.75rem;
+            background: #fff;
+        }
+
+        .reading_list .reading_item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding-top: 0.6rem;
+            overflow: hidden;
+            border-bottom: 1px solid #EDEDF0;
+        }
+
+        .reading_list .reading_item .reading_item_title {
+            font-size: 0.85rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: bold;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1.2rem;
+            width: 100%;
+        }
+
+        .reading_list .reading_item .reading_item_info {
+            display: flex;
+            margin-top: 0.3rem;
+            overflow: hidden;
+        }
+
+        .reading_list .reading_item .reading_item_info .reading_item_info_content {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .reading_list .reading_item .reading_item_info .reading_item_info_content h2 {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: rgba(123, 130, 139, 1);
+            line-height: 1rem;
+        }
+
+        .reading_list .reading_item .reading_item_info span {
+            font-size: 0.75rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 500;
+            color: rgba(151, 158, 166, 1);
+            line-height: 1.2rem;
+        }
+
+        .reading_list .reading_item .reading_item_info img {
+            width: 5rem;
+            height: 3.5rem;
+            object-fit: cover;
+            background: rgba(216, 216, 216, 1);
+            border-radius: 0.2rem;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="space"></div>
+        <div class="reading_list" v-if="listData.length>0">
+            <div class="reading_item" v-for="item in listData" tapmode @click="fnOpenPublicWin('详情','index/reading_detail',{articleId:1})">
+                <div class="reading_item_title overflow_hidden_one">
+                    比地球自转还快的超音速客机！创下多个世界纪录
+                </div>
+                <div class="reading_item_info">
+                    <div class="reading_item_info_content">
+                        <h2>  平台编辑：2018.05.16</h2>
+                        <span class="overflow_hidden_two">
+                      一个服务于企业级产品的设计体系，基于『确定』和『自然』的设计价…
+                    </span>
+                        <span style="font-size:0.6rem;color:rgba(151,158,166,1);line-height:1.9rem;"> 点赞 22.01w</span>
+                    </div>
+                    <img src="../../image/index/Mask.png" alt="">
+                </div>
+
+            </div>
+        </div>
+        <div v-if="listData.length==0">
+            <div class="no_data">
+                <img :src="isSerach=='1'?'../../image/no_page/no_search.png':'../../image/no_page/no_information.png'" alt="">
+                <p v-text="isSerach=='1'?'没有搜到相关内容，换个关键词试试吧':'暂无资讯'"></p>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+        api.addEventListener({
+            name: 'searchVal'
+        }, function(ret, err) {
+            if (ret) {
+                if (ret.value.winName == api.winName) {
+                    vm.searchVal = ret.value.searchVal;
+                    fnInitPage();
+                }
+            }
+        });
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                searchVal: api.pageParam.searchVal || '',
+                isSerach: api.pageParam.isSerach || '0',
+                listData: [{
+                    id: "1"
+                }, {
+                    id: "2"
+                }],
+            }
+        })
+    }
+
+    function fnInitPage() {
+        $S.ShowProgress();
+        var postData = {};
+        $S.POST("", postData, function(ret, err) {
+            if (ret && ret.status == '200') {
+
+            }
+            $S.CloseProgress();
+        })
+    }
+</script>
+
+</html>

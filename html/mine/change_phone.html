@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>修改姓名</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            background: rgba(246, 246, 246, 1);
+        }
+
+        .public_info_list .public_info_item .public_info_item_img {
+            width: 0.8rem;
+            height: 0.8rem;
+            object-fit: cover;
+        }
+
+        .space {
+            height: 3rem;
+            padding: 0.75rem 0.75rem 0.2rem 0.75rem;
+            font-size: 0.7rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+            line-height: 1rem;
+        }
+
+        .public_info_list .public_info_item input {
+            font-size: 0.85rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(44, 53, 64, 1);
+            line-height: 1.2rem;
+            text-align: left;
+            flex: 1;
+            padding-left: 0;
+        }
+        input::-webkit-input-placeholder {
+            font-size: 0.85rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(170, 170, 170, 1);
+            line-height: 1.2rem;
+        }
+        input:-moz-placeholder {
+            font-size: 0.85rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(170, 170, 170, 1);
+            line-height: 1.2rem;
+        }
+
+        input::-moz-placeholder {
+            font-size: 0.85rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(170, 170, 170, 1);
+          line-height: 1.2rem;
+        }
+
+        input:-ms-input-placeholder {
+          line-height: 1.2rem;
+          font-size: 0.85rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(170, 170, 170, 1);
+        }
+         .new_btn {
+            position: fixed;;
+            bottom: 0.75rem;
+            left: 0.75rem;
+            right: 0.75rem;
+            height: 2.25rem;
+            background:rgba(217,39,39,1);
+            border-radius: 0.2rem;
+            font-size: .8rem;
+            font-weight: 500;
+            color:rgba(255,255,255,1);
+            line-height: 2.25rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="space">你的账号目前绑定手机号是 18813127144, 请输入你绑定的新手机号。</div>
+        <div class="public_info_list" id="modify_name">
+            <div class="public_info_item">
+                <input spellcheck="false" class="public_info_item_input" type="text" v-model="nickName" maxlength="10" data-verify="true" data-null="true" name="姓名" placeholder="请输入新的手机号">
+                <img v-if="nickName!=''" class="public_info_item_img" src="../../image/index/clear_val.png" alt="" tapmode @click="fnClearName()">
+            </div>
+        </div>
+        <div class="new_btn" tapmode @click="fnOpenPublicWin('输入验证码','mine/mobile_phone')">下一步</div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var USER;
+    var $S;
+    var vm;
+    apiready = function() {
+        USER = USER();
+        $S = SERVICE();
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                nickName: api.pageParam.nickName,
+            },
+            methods: {
+                fnClearName: function() {
+                    this.nickName = "";
+                }
+            }
+        })
+    }
+
+    function fnSaveNickname() {
+        $S.ShowProgress();
+        var postData = {
+            nickName: vm.nickName
+        }
+        $S.POST("apiTbAppUser/updateUserBasic", postData, function(ret, err) {
+            if (ret && ret.status == '200') {
+                fnToast("信息修改成功");
+                api.execScript({
+                    name: 'mine/personal_info_win',
+                    frameName: 'mine/personal_info',
+                    script: 'fnInitPage();'
+                });
+                fnDelayCloseWin(300)
+            }
+            $S.CloseProgress();
+        })
+    }
+</script>
+
+</html>

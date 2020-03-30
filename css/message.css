@@ -1,0 +1,176 @@
+.message {
+  background: #fff;
+}
+.message .message_item {
+    height: 3.6rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.75rem;
+}
+
+.message .message_item .message_icon {
+    position: relative;
+}
+
+.message .message_item .message_icon img {
+    width: 2.1rem;
+    height: 2.1rem;
+}
+
+.message_icon_avatar img {
+    width: 2.5rem;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 100%;
+}
+
+.message .message_item .message_icon .message_icon_red {
+    position: absolute;
+    right: -0.4rem;
+    top: -0.4rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background: rgba(217, 39, 39, 1);
+    border: 1px solid rgba(255, 255, 255, 1);
+    font-size: 0.55rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    line-height: 0.7rem;
+    text-align: center;
+}
+
+.message .message_item .message_item_text {
+    padding: 0 0.75rem;
+    font-size: 0.75rem;
+    color: rgba(51, 51, 51, 1);
+    font-weight: 800;
+    flex: 1;
+}
+
+.message .message_item .message_go_page {
+    width: 0.65rem;
+    height: 0.65rem;
+}
+
+.message_head {
+    background: #fff;
+    padding: 1rem 1.3rem;
+    height: 5.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message_head_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.message_head_item img {
+    width: 2.1rem;
+    height: 2.1rem;
+}
+
+.message_head_item span {
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 1.5rem;
+}
+
+.message_time {
+    font-size: 0.6rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(153, 153, 153, 1);
+    line-height: 0.85rem;
+    min-width: 2.5rem;
+    text-align: right;
+}
+
+.message_item::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 80%;
+    opacity: 1;
+    border-bottom: 1px solid rgba(237, 237, 240, 1);
+}
+
+.message_item:last-child::after {
+    border-style: hidden;
+}
+
+.message_info {
+    display: flex;
+    flex-direction: column;
+    padding-left: :0.75rem;
+     width: 10.4rem;
+}
+
+.message_info p {
+    font-size: 0.7rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(155, 155, 155, 1);
+    line-height: 1rem;
+}
+
+.message_info img {
+    width: 2.6rem;
+    height: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+.message_item_text_flex {
+    display: flex;
+    align-items: center;
+}
+
+html, body {
+    background: rgba(246, 246, 246, 1);
+}
+
+.contact_head {
+    background: #fff;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact_head img {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.contact_head_title {
+    flex: 1;
+    font-size: .91rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(44, 53, 64, 1);
+    line-height: 1.28rem;
+}
+
+.contact_head_title_red {
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background: rgba(217, 39, 39, 1);
+    font-size: .59rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    line-height: .85rem;
+    text-align: center;
+    margin-left: 0.4rem;
+}
